@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace JobAnalyzer
 {
-    //,"address\":{\"building\":\"46бк1\",\"city\":\"Москва\",\"description\":null,\"metro\":{\"line_name\":\"Таганско-Краснопресненская\",\"station_id\":\"7.139\",\"line_id\":\"7\",\"lat\":55.709211,\"station_name\":\"Текстильщики\",\"lng\":37.732117},\"metro_stations\":[{\"line_name\":\"Таганско-Краснопресненская\",\"station_id\":\"7.139\",\"line_id\":\"7\",\"lat\":55.709211,\"station_name\":\"Текстильщики\",\"lng\":37.732117}],"raw\":null,\"street\":\"Волгоградский проспект\",\"lat\":55.70461,\"lng\":37.726385},\
+
     //\"quick_responses_allowed\":true,\"negotiations_url\":null,\"department\":null,\"branded_description\":null,\"hidden\":false,\
 
     class Vacancy
@@ -14,6 +14,9 @@ namespace JobAnalyzer
             specializations = new Specializations[] { };
             type = new Type();
             salary = new Salary();
+            experience = new Experience();
+            schedule = new Schedule();
+            key_skills = new Key_skills[] { };
         }
         public string description { get; set; }
         public string name { get; set; }
@@ -24,13 +27,17 @@ namespace JobAnalyzer
         public bool response_letter_required { get; set; }
         public DateTime published_at { get; set; }
         public DateTime created_at { get; set; }
+
+
         public string city { get; set; }
         public string apply_alternate_url { get; set; }
         public Dictionary<string, string> department { get; set; }
-        public Dictionary<string, string> schedule { get; set; } // Занятость
         public Dictionary<string, string> employment { get; set; } // Занятость
-        public Dictionary<string, string> experience { get; set; } // опыт в годах
         public Dictionary<string, string> area { get; set; } // здесь есть город
+
+        public Key_skills[] key_skills { get; set; }
+        public Schedule schedule { get; set; }
+        public Experience experience { get; set; }
         public Salary salary { get; set; }
         public Employer employer { get; set; }
         public Specializations[] specializations { get; set; }
@@ -97,5 +104,44 @@ namespace JobAnalyzer
         public string currency { get; set; }
 
         //"salary":{"to":null,"from":2000,"currency":"USD"}
-    }    
+    }
+
+    /// <summary>
+    /// Требуемый опыт работы в годах
+    /// </summary>
+    class Experience
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+    }
+
+    /// <summary>
+    /// График работы
+    /// </summary>
+    class Schedule
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+    }
+
+    /// <summary>
+    /// Ключевые навыки
+    /// </summary>
+    class Key_skills
+    {
+        public string name { get; set; }
+    }
+
+
+    class Address
+    {
+
+        //,"address\":
+        //{\"building\":\"46бк1\",\"city\":\"Москва\",\"description\":null,\
+        //"metro\":{\"line_name\":\"Таганско-Краснопресненская\",\"station_id\":\"7.139\",\"line_id\":\"7\",\"lat\":55.709211,\"station_name\":\"Текстильщики\",\"lng\":37.732117},
+        //\"metro_stations\":[{\"line_name\":\"Таганско-Краснопресненская\",\"station_id\":\"7.139\",\"line_id\":\"7\",\"lat\":55.709211,\"station_name\":\"Текстильщики\",\"lng\":37.732117}],"raw\":null,\"street\":\"Волгоградский проспект\",\"lat\":55.70461,\"lng\":37.726385},\  
+    }
+
+
+
 }
