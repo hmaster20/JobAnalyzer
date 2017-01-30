@@ -11,18 +11,18 @@ namespace JobAnalyzer
 {
     public partial class Form1 : Form
     {
-        hh_vacancies yt;
+        hh_vacancies hhv;
 
         public Form1()
         {
             InitializeComponent();
 
-            yt = new hh_vacancies();
+            hhv = new hh_vacancies();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            yt.Translate("1", "2");
+            hhv.GetVacancy("1");
         }
     }
 }

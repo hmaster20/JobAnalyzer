@@ -8,25 +8,25 @@ namespace JobAnalyzer
 {
     class hh_vacancies
     {
-        public string Translate(string s, string lang)
+        public string FindVacancy(string word)
         {
-            if (s.Length > 0)
+            return "";
+        }
+
+        public string GetVacancy(string vac)
+        {
+            if (vac.Length > 0)
             {
                 //WebRequest request = WebRequest.Create("https://api.hh.ru/vacancies/"
                 //    + "8252535");
-                //+ "&text=" + s
                 //+ "&lang=" + lang);
-
-                // WebRequest request = WebRequest.Create("https://api.hh.ru/2/vacancies/?employer_id=foo");
-
-                // WebRequest request = WebRequest.Create("https://api.hh.ru/vacancies");
-                
+              
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/vacancies/19490253");
 
                 request.Method = "GET";
                 request.Accept = "application/json";
-                request.UserAgent = ".NET Framework Example Client";
+                request.UserAgent = ".NET Framework Test Client";
 
                 try
                 {
@@ -51,7 +51,7 @@ namespace JobAnalyzer
                     }
                 }
                 catch (Exception ex) { System.Windows.Forms.MessageBox.Show(ex.Message); }
-                return s;
+                return vac;
             }
             else
                 return "";
@@ -62,7 +62,6 @@ namespace JobAnalyzer
     {
         public string description { get; set; }
         public string city { get; set; }
-       // public Dictionary <string,string> address { get; set; }
 
         public Dictionary<string, string> department { get; set; }
 
