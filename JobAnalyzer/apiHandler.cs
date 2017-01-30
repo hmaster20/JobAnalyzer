@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace JobAnalyzer
 {
@@ -19,7 +20,7 @@ namespace JobAnalyzer
 
             if (vac.Length > 0)
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/vacancies/" + vac);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/vacancies/" + "?employer_id=foo");
                 request.Method = "GET";
                 request.Accept = "application/json";
                 request.UserAgent = ".NET Framework Client";
@@ -38,7 +39,25 @@ namespace JobAnalyzer
                         }
                     }
                 }
-                catch (Exception ex) { System.Windows.Forms.MessageBox.Show(ex.Message); }
+                catch (WebException exc)
+                {
+                    using (StreamReader stream = new StreamReader(exc.Response.GetResponseStream()))
+                    {
+                        string line;
+                        if ((line = stream.ReadLine()) != null)
+                        {
+                            Err translation = JsonConvert.DeserializeObject<Err>(line);
+                        }
+                    }
+                    MessageBox.Show("Сетевая ошибка: " + exc.Message + "\nКод состояния: " + exc.Status);
+                }
+                catch (ProtocolViolationException exc) { MessageBox.Show("Протокольная ошибка: " + exc.Message); }
+                catch (UriFormatException exc) { MessageBox.Show("Ошибка формата URI: " + exc.Message); }
+                catch (NotSupportedException exc) { MessageBox.Show("Неизвестный протокол: " + exc.Message); }
+                catch (IOException exc) { MessageBox.Show("Ошибка ввода-вывода: " + exc.Message); }
+                catch (System.Security.SecurityException exc) { MessageBox.Show("Исключение в связи с нарушением безопасности: " + exc.Message); }
+                catch (InvalidOperationException exc) { MessageBox.Show("Недопустимая операция: " + exc.Message); }
+
                 return vac;
             }
             else
@@ -143,8 +162,40 @@ namespace JobAnalyzer
         //"salary":{"to":null,"from":2000,"currency":"USD"}
     }
 
+    class Err
+    {
+        //\"description\":\"bad argument\",
+        //\"bad_argument\":\"employer_id\"}"
 
+        public Err()
+        {
+            errors = new Errors[] { };
+            bad_arguments = new BadArguments[] { };
+        }
 
+        public Errors[] errors { get; set; }
+
+        public BadArguments[] bad_arguments { get; set; }
+
+        public string description { get; set; }
+        public string bad_argumentom { get; set; }
+    }
+
+    class Errors
+    {
+        public string type { get; set; }
+        public string value { get; set; }
+
+        //"{\"errors\":[{\"type\":\"bad_argument\",\"value\":\"employer_id\"}],
+    }
+
+    class BadArguments
+    {
+        public string name { get; set; }
+        public string description { get; set; }
+
+        //\"bad_arguments\":[{\"name\":\"employer_id\",\"description\":\"bad argument\"}],
+    }
 
 
 
