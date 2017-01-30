@@ -10,19 +10,26 @@ namespace JobAnalyzer
     {
         public string FindVacancy(string word)
         {
+  
+
             return "";
+
+
         }
 
+        
         public string GetVacancy(string vac)
-        {
+        {            
             vac = "19291539";
 
             if (vac.Length > 0)
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/vacancies/" + "?employer_id=foo");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.
+                    Create("https://api.hh.ru/vacancies/" + vac);
                 request.Method = "GET";
                 request.Accept = "application/json";
-                request.UserAgent = ".NET Framework Client";
+                request.ContentType = "application/json";
+                request.UserAgent = "JobAnalyzer - .NET Framework Client";
 
                 try
                 {
