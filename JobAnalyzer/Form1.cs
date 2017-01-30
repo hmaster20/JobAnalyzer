@@ -11,13 +11,13 @@ namespace JobAnalyzer
 {
     public partial class Form1 : Form
     {
-        hh_vacancies hhv;
+        apiHandler hhv;
 
         public Form1()
         {
             InitializeComponent();
 
-            hhv = new hh_vacancies();
+            hhv = new apiHandler();
         }
 
         private void button1_Click(object sender, EventArgs e)
