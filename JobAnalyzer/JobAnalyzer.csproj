@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Error.cs" />
+    <Compile Include="Class\Search.cs" />
     <Compile Include="Class\Vacancy.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
