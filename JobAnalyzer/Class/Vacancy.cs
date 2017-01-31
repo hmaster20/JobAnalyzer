@@ -14,6 +14,10 @@ namespace JobAnalyzer
             experience = new Experience();
             schedule = new Schedule();
             key_skills = new Key_skills[] { };
+            address = new Address();
+            employment = new Employment();
+            area = new Area();
+            department = new Department();
         }
         public string description { get; set; }
         public string name { get; set; }
@@ -30,16 +34,17 @@ namespace JobAnalyzer
         public DateTime published_at { get; set; }
         public DateTime created_at { get; set; }
         public string city { get; set; }
-        public Dictionary<string, string> department { get; set; }  // подразделение компании
-        public Dictionary<string, string> employment { get; set; }  // Занятость
-        public Dictionary<string, string> area { get; set; }        // здесь есть город
+        public Department department { get; set; }
+        public Area area { get; set; }
         public Key_skills[] key_skills { get; set; }
-        public Schedule schedule { get; set; }
         public Experience experience { get; set; }
+        public Schedule schedule { get; set; } 
+        public Employment employment { get; set; }
         public Salary salary { get; set; }
         public Employer employer { get; set; }
         public Specializations[] specializations { get; set; }
         public Type type { get; set; }
+        public Address address { get; set; }
     }
 
     /// <summary>
@@ -58,6 +63,15 @@ namespace JobAnalyzer
     }
 
     /// <summary>
+    /// Подразделение
+    /// </summary>
+    class Department
+    {
+        public string id { get; set; }      // HH-1455-TECH
+        public string name { get; set; }    // HeadHunter::Технический департамент
+    }
+
+    /// <summary>
     /// Специализация
     /// </summary>
     class Specializations
@@ -73,9 +87,9 @@ namespace JobAnalyzer
     /// </summary>
     class Salary
     {
-        public string to { get; set; }          // null
-        public string from { get; set; }        //2000
-        public string currency { get; set; }    // USD
+        public string from { get; set; }        // 30000
+        public string to { get; set; }          // 35000
+        public string currency { get; set; }    // RUR или USD
     }
 
     /// <summary>
@@ -90,20 +104,33 @@ namespace JobAnalyzer
     /// <summary>
     /// Требуемый опыт работы в годах
     /// </summary>
-    class Experience
+    class Experience 
     {
-        public string id { get; set; }
-        public string name { get; set; }
-    }
+        public string id { get; set; }  // between1And3
+    public string name { get; set; }    //"От 1 года до 3 лет
+}
 
     /// <summary>
     /// График работы
     /// </summary>
-    class Schedule
+    class Schedule 
     {
-        public string id { get; set; }
-        public string name { get; set; }
+        public string id { get; set; }      // fullDay
+        public string name { get; set; }    // Полный день
     }
+
+    /// <summary>
+    /// Тип занятости
+    /// </summary>
+    class Employment
+    {
+        public string id { get; set; }      // full
+        public string name { get; set; }    // Полная занятость
+    }
+        
+
+
+
 
     /// <summary>
     /// Ключевые навыки
@@ -111,6 +138,16 @@ namespace JobAnalyzer
     class Key_skills
     {
         public string name { get; set; }
+    }
+
+    /// <summary>
+    /// Регион
+    /// </summary>
+    class Area
+    {
+        public string url { get; set; } // https://api.hh.ru/areas/53
+        public int id { get; set; }     // 53
+        public string name { get; set; } //Краснодар
     }
 
     class Address
@@ -124,34 +161,23 @@ namespace JobAnalyzer
         public Metro_stations[] metro_stations { get; set; }
 
         public string building { get; set; }    // 46бк1
-        public string city { get; set; }    //Москва
+        public string city { get; set; }        //Москва
         public string description { get; set; }
         public string street { get; set; }  // Волгоградский проспект
         public float lat { get; set; }      // 55.709211
         public float lng { get; set; }      // 37.732117
-
-        //,"raw\":null,\"       
+        public string raw { get; set; }
     }
 
     class Metro
     {
-        public string line_name { get; set; } // Таганско-Краснопресненская
-        public float station_id { get; set; } // 7.139
-        public int line_id { get; set; }  // 7
-        public float lat { get; set; } // 55.709211
+        public string line_name { get; set; }   // Таганско-Краснопресненская
+        public float station_id { get; set; }   // 7.139
+        public int line_id { get; set; }        // 7
+        public float lat { get; set; }          // 55.709211
         public string station_name { get; set; } // Текстильщики
-        public float lng { get; set; } // 37.732117
+        public float lng { get; set; }          // 37.732117
     }
 
-    class Metro_stations : Metro
-    {
-        //public string line_name { get; set; } // Таганско-Краснопресненская
-        //public float station_id { get; set; } // 7.139
-        //public int line_id { get; set; }  // 7
-        //public float lat { get; set; } // 55.709211
-        //public string station_name { get; set; } // Текстильщики
-        //public float lng { get; set; } // 37.732117       
-    }
-
-
+    class Metro_stations : Metro { }
 }
