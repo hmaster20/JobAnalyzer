@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace JobAnalyzer
 {
@@ -9,61 +7,51 @@ namespace JobAnalyzer
     {
         public Search()
         {
-            items = new Items();
+            items = new Items[] { };
         }
+        public Items[] items { get; set; }
 
         public int per_page { get; set; } // Показывать количество на странице
         public int page { get; set; }      // Текущая страница
         public int pages { get; set; }     // Всего страниц
         public int found { get; set; }      // Найдено вакансий
-
-        public Items items { get; set; }
-
     }
 
     class Items
     {
-
+        public Items()
+        {
+            salary = new Salary();
+            employer = new Employer();
+            type = new Type();
+            address = new Address();
+            snippet = new Snippet();
+            area = new Area();
+        }
+        public Salary salary { get; set; }
+        public Employer employer { get; set; }
+        public Type type { get; set; }
+        public Address address { get; set; }
+        public Snippet snippet { get; set; }
+        public Area area { get; set; }
+        public bool archived { get; set; }
+        public bool premium { get; set; }
+        public string name { get; set; } // Программист C# junior
+        public int id { get; set; }     // 19431195
+        public string url { get; set; }                 // https://api.hh.ru/vacancies/19431195?host=hh.ru
+        public string apply_alternate_url { get; set; } // https://hh.ru/applicant/vacancy_response?vacancyId=19431195
+        public string alternate_url { get; set; }       // https://hh.ru/vacancy/19431195
+        public DateTime created_at { get; set; } //"2017-01-30T12:34:37+0300"
+        public DateTime published_at { get; set; }//"2017-01-30T12:34:37+0300"
+        public bool response_letter_required { get; set; }
+        public Dictionary<string, string> department { get; set; }  // подразделение компании
     }
 
-    /*
-     * {"clusters":null,"
-     * items":[{
-     * "salary":{"to":35000,"from":30000,"currency":"RUR"},
-     * "snippet":{"requirement":"Высшее техническое образование. Знание языка программирования <highlighttext>C#</highlighttext>. Опыт разработки c СУБД, знание SQL. Многопоточное программирование. Уверенные знания основных концепций разработки...","responsibility":"Разработка прикладного программного обеспечения. Участие в командной разработке."},
-     * "archived":false,
-     * "premium":false,
-     * "name":"Программист C# junior",
-     * "area":{"url":"https://api.hh.ru/areas/53","id":"53","name":"Краснодар"},
-     * "url":"https://api.hh.ru/vacancies/19431195?host=hh.ru",
-     * "created_at":"2017-01-30T12:34:37+0300",
-     * "apply_alternate_url":"https://hh.ru/applicant/vacancy_response?vacancyId=19431195",
-     * "relations":[],
-     * "employer":{
-     * "logo_urls":null,
-     * "vacancies_url":"https://api.hh.ru/vacancies?employer_id=2657316",
-     * "name":"Аура",
-     * "url":"https://api.hh.ru/employers/2657316",
-     * "alternate_url":"https://hh.ru/employer/2657316",
-     * "id":"2657316",
-     * "trusted":true},
-     * "response_letter_required":false,
-     * "published_at":"2017-01-30T12:34:37+0300",
-     * "address":{
-     * "building":"2/1",
-     * "city":"Краснодар",
-     * "description":null,
-     * "metro":null,
-     * "metro_stations":[],
-     * "raw":null,
-     * "street":"Центральный микрорайон, Железнодорожная улица",
-     * "lat":45.020832,
-     * "lng":38.98638,
-     * "id":"748874"},
-     * "department":null,
-     * "alternate_url":"https://hh.ru/vacancy/19431195",
-     * "type":{"id":"open","name":"Открытая"},"id":"19431195"},
-     */
+    class Snippet
+    {
+        public string responsibility { get; set; } // Обязанность : Разработка прикладного программного обеспечения. Участие в командной разработке.
+        public string requirement { get; set; } // Требование : Высшее техническое образование. Знание языка программирования <highlighttext>C#</highlighttext>. Опыт разработки c СУБД, знание SQL. Многопоточное программирование. Уверенные знания основных концепций разработки...
+    }     
 
 
 
