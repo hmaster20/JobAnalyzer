@@ -3,48 +3,33 @@ using System.Collections.Generic;
 
 namespace JobAnalyzer
 {
-    class Vacancy
+ 
+    /// <summary>
+    /// Класс вакансий
+    /// </summary>
+    class Vacancy : VacancyGlobal
     {
         public Vacancy()
         {
-            employer = new Employer();
             specializations = new Specializations[] { };
-            type = new Type();
-            salary = new Salary();
             experience = new Experience();
             schedule = new Schedule();
             key_skills = new Key_skills[] { };
-            address = new Address();
             employment = new Employment();
-            area = new Area();
-            department = new Department();
         }
         public string description { get; set; }
-        public string name { get; set; }
-        public int id { get; set; }
-        public bool archived { get; set; }
-        public string alternate_url { get; set; }
         public bool allow_messages { get; set; }
-        public bool response_letter_required { get; set; }
-        public string apply_alternate_url { get; set; }
         public bool quick_responses_allowed { get; set; }
         public string negotiations_url { get; set; }
         public string branded_description { get; set; }
         public bool hidden { get; set; }
-        public DateTime published_at { get; set; }
-        public DateTime created_at { get; set; }
-        public string city { get; set; }
-        public Department department { get; set; }
-        public Area area { get; set; }
         public Key_skills[] key_skills { get; set; }
         public Experience experience { get; set; }
-        public Schedule schedule { get; set; } 
+        public Schedule schedule { get; set; }
         public Employment employment { get; set; }
-        public Salary salary { get; set; }
-        public Employer employer { get; set; }
         public Specializations[] specializations { get; set; }
-        public Type type { get; set; }
-        public Address address { get; set; }
+
+        //  public string city { get; set; }
     }
 
     /// <summary>
@@ -104,16 +89,16 @@ namespace JobAnalyzer
     /// <summary>
     /// Требуемый опыт работы в годах
     /// </summary>
-    class Experience 
+    class Experience
     {
         public string id { get; set; }  // between1And3
-    public string name { get; set; }    //"От 1 года до 3 лет
-}
+        public string name { get; set; }    //"От 1 года до 3 лет
+    }
 
     /// <summary>
     /// График работы
     /// </summary>
-    class Schedule 
+    class Schedule
     {
         public string id { get; set; }      // fullDay
         public string name { get; set; }    // Полный день
@@ -127,7 +112,7 @@ namespace JobAnalyzer
         public string id { get; set; }      // full
         public string name { get; set; }    // Полная занятость
     }
-        
+
 
 
 
