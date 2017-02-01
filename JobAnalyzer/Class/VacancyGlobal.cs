@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-
 
 namespace JobAnalyzer
 {
-    class VacancyGlobal
+    public class VacancyGlobal
     {
         public VacancyGlobal()
         {
@@ -30,6 +28,4 @@ namespace JobAnalyzer
         public Type type { get; set; }
         public Address address { get; set; }
     }
-
-
 }
