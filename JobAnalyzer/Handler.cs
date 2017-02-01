@@ -6,22 +6,19 @@ using System.Windows.Forms;
 
 namespace JobAnalyzer
 {
-    class apiHandler
+    class Handler
     {
         public string FindVacancy(string word)
-        {
-  
+        {  
+
+
 
             return "";
-
-
         }
 
         
         public string GetVacancy(string vac)
-        {            
-            vac = "19291539";
-
+        {
             if (vac.Length > 0)
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.
