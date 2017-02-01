@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace JobAnalyzer
 {
+    /// <summary>
+    /// Класс обработки найденных вакансий
+    /// </summary>
     class Search
     {
         public Search()
@@ -10,48 +13,31 @@ namespace JobAnalyzer
             items = new Items[] { };
         }
         public Items[] items { get; set; }
-
         public int per_page { get; set; } // Показывать количество на странице
         public int page { get; set; }      // Текущая страница
         public int pages { get; set; }     // Всего страниц
         public int found { get; set; }      // Найдено вакансий
     }
 
-    class Items
+    class Items : VacancyGlobal
     {
         public Items()
         {
-            salary = new Salary();
-            employer = new Employer();
-            type = new Type();
-            address = new Address();
-            snippet = new Snippet();
-            area = new Area();
+            snippet = new Snippet();         
         }
-        public Salary salary { get; set; }
-        public Employer employer { get; set; }
-        public Type type { get; set; }
-        public Address address { get; set; }
         public Snippet snippet { get; set; }
-        public Area area { get; set; }
-        public bool archived { get; set; }
         public bool premium { get; set; }
-        public string name { get; set; } // Программист C# junior
-        public int id { get; set; }     // 19431195
         public string url { get; set; }                 // https://api.hh.ru/vacancies/19431195?host=hh.ru
-        public string apply_alternate_url { get; set; } // https://hh.ru/applicant/vacancy_response?vacancyId=19431195
-        public string alternate_url { get; set; }       // https://hh.ru/vacancy/19431195
-        public DateTime created_at { get; set; } //"2017-01-30T12:34:37+0300"
-        public DateTime published_at { get; set; }//"2017-01-30T12:34:37+0300"
-        public bool response_letter_required { get; set; }
-        public Dictionary<string, string> department { get; set; }  // подразделение компании
     }
 
     class Snippet
     {
         public string responsibility { get; set; } // Обязанность : Разработка прикладного программного обеспечения. Участие в командной разработке.
         public string requirement { get; set; } // Требование : Высшее техническое образование. Знание языка программирования <highlighttext>C#</highlighttext>. Опыт разработки c СУБД, знание SQL. Многопоточное программирование. Уверенные знания основных концепций разработки...
-    }     
+    }  
+    
+    
+       
 
 
 
