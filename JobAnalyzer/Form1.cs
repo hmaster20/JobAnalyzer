@@ -22,8 +22,10 @@ namespace JobAnalyzer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string vac = "19291539";
-            getVacancy.GetVacancy(vac);
+            //string vac = "19291539";
+            //getVacancy.GetVacancy(vac);
+
+            getVacancy.FindVacancy("C%23");
         }
     }
 }
