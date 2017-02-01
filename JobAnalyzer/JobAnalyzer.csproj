@@ -52,7 +52,7 @@
     <Compile Include="Class\VacancySearch.cs" />
     <Compile Include="Class\Vacancy.cs" />
     <Compile Include="Class\VacancyGlobal.cs" />
-    <Compile Include="Class\VacancySearchCollection.cs" />
+    <Compile Include="Class\VacancyCollection.cs" />
     <Compile Include="Class\XmlSerializeHelper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
