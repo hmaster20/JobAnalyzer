@@ -11,18 +11,19 @@ namespace JobAnalyzer
 {
     public partial class Form1 : Form
     {
-        apiHandler hhv;
+        Handler getVacancy;
 
         public Form1()
         {
             InitializeComponent();
 
-            hhv = new apiHandler();
+            getVacancy = new Handler();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            hhv.GetVacancy("1");
+            string vac = "19291539";
+            getVacancy.GetVacancy(vac);
         }
     }
 }
