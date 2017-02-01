@@ -28,9 +28,7 @@ namespace JobAnalyzer
         public Specializations[] specializations { get; set; }
     }
 
-    /// <summary>
-    /// Работодатель
-    /// </summary>
+    /// <summary>Работодатель</summary>
     public class Employer
     {
         public SerializableDictionary<string, string> logo_urls { get; set; } // original Ссылка на логотип работодателя https://hhcdn.ru/employer-logo-original/246850.jpg\
@@ -43,18 +41,14 @@ namespace JobAnalyzer
         public bool trusted { get; set; }
     }
 
-    /// <summary>
-    /// Подразделение
-    /// </summary>
+    /// <summary>Подразделение</summary>
     public class Department
     {
         public string id { get; set; }      // HH-1455-TECH
         public string name { get; set; }    // HeadHunter::Технический департамент
     }
 
-    /// <summary>
-    /// Специализация
-    /// </summary>
+    /// <summary>Специализация</summary>
     public class Specializations
     {
         public float id { get; set; }
@@ -110,20 +104,13 @@ namespace JobAnalyzer
     }
 
 
-
-
-
-    /// <summary>
-    /// Ключевые навыки
-    /// </summary>
+    /// <summary>Ключевые навыки</summary>
     public class Key_skills
     {
         public string name { get; set; }
     }
 
-    /// <summary>
-    /// Регион
-    /// </summary>
+    /// <summary>Регион</summary>
     public class Area
     {
         public string url { get; set; } // https://api.hh.ru/areas/53

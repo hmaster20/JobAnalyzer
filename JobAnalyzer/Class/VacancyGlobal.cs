@@ -12,7 +12,7 @@ namespace JobAnalyzer
             address = new Address();
             area = new Area();
             type = new Type();
-        }
+        }     
         public int id { get; set; }         // 19431195
         public string name { get; set; }    // Программист C# junior
         public bool archived { get; set; }
