@@ -34,7 +34,7 @@ namespace JobAnalyzer
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-
+            RefreshTable();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -46,7 +46,6 @@ namespace JobAnalyzer
               if ( _vacancyCollection.VacancyList.Count > 0) RefreshTable();
             }
         }
-
 
         private void RefreshTable()    // Обновление таблицы путем фильтрации элементов по полю Path
         { 
