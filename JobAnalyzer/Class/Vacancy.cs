@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace JobAnalyzer
 {
@@ -108,7 +109,7 @@ namespace JobAnalyzer
         public string name { get; set; }
     }
 
-    /// <summary>Регион</summary>
+    /// <summary>Регион (Страны)</summary>
     public class Area
     {
         public string url { get; set; } // https://api.hh.ru/areas/53
@@ -119,6 +120,19 @@ namespace JobAnalyzer
         {
             return name;
         }
+    }
+
+    /// <summary>Дерево всех регионов</summary>
+    public class Areas
+    {
+        public Areas()
+        {
+            areas = new List<Areas>();
+        }
+        public string parent_id { get; set; }
+        public List<Areas> areas { get; set; }
+        public string id { get; set; }
+        public string name { get; set; }
     }
 
     public class Address
