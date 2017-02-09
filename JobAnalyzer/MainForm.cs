@@ -91,30 +91,8 @@ namespace JobAnalyzer
 
         private void btnGetArr_Click(object sender, EventArgs e)
         {
-            getVacancy.GetArrr();
+            getVacancy.GetRegions();
         }
-    }
+    } 
 
-    
-
-
-}
-
-namespace tester
-{
-    public class Area
-    {
-        public string parent_id { get; set; }
-        public List<object> areas { get; set; }
-        public string id { get; set; }
-        public string name { get; set; }
-    }
-
-    public class RootObject
-    {
-        public object parent_id { get; set; }
-        public List<Area> areas { get; set; }
-        public string id { get; set; }
-        public string name { get; set; }
-    }
 }
