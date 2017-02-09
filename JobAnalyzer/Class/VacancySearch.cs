@@ -19,6 +19,7 @@ namespace JobAnalyzer
         public int pages { get; set; }      // Всего страниц
     }
 
+    /// <summary>Краткие сведения о вакансии из поиска</summary>
     public class Items : VacancyGlobal
     {
         public Items()
