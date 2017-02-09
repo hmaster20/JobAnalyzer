@@ -4,21 +4,28 @@ using System.Windows.Forms;
 
 namespace JobAnalyzer
 {
+    public class AnalyzeKey
+    {
+        public AnalyzeKey()
+        {
+            key = new List<string>();
+        }
+        List<string> key { get; set; }
+    }
+
+
     public class VacancyCollection
     {
         public VacancyCollection()
         {
             VacancyList = new List<Items>();
+            DicKey = new Dictionary<int, List<string>>();
+            aKey = new AnalyzeKey();
         }
 
-        public void Clear()
-        {
-            try
-            {
-                ClearVacancyList();
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
-        }
+        public AnalyzeKey aKey { get; set; }
+
+        public Dictionary<int, List<string>> DicKey { get; set; }
 
         public static string BaseName { get; } = "VacancyList.xml";
 
@@ -27,6 +34,7 @@ namespace JobAnalyzer
         public void Add(Items vac) => VacancyList.Add(vac);
         public void Remove(Items vac) => VacancyList.Remove(vac);
         public void ClearVacancyList() => VacancyList.Clear();
+
 
 
 
