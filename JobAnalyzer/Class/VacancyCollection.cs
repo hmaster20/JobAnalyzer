@@ -35,8 +35,7 @@ namespace JobAnalyzer
         public void Remove(Items vac) => VacancyList.Remove(vac);
         public void ClearVacancyList() => VacancyList.Clear();
 
-
-
+        
 
 
         #region Сериализация
