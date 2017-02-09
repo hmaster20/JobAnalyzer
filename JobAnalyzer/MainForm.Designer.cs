@@ -37,23 +37,24 @@
             this.tbKey = new System.Windows.Forms.TextBox();
             this.cbCountry = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbCity = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnRefreshCountry = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnGetArr = new System.Windows.Forms.Button();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
             this.SuspendLayout();
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(1005, 105);
+            this.btnQuery.Location = new System.Drawing.Point(1134, 345);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 0;
-            this.btnQuery.Text = "Query";
+            this.btnQuery.Text = "Запрос";
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
@@ -67,7 +68,7 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(1005, 141);
+            this.btnLoad.Location = new System.Drawing.Point(1134, 384);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(75, 23);
             this.btnLoad.TabIndex = 2;
@@ -77,7 +78,7 @@
             // 
             // btnAnalyze
             // 
-            this.btnAnalyze.Location = new System.Drawing.Point(989, 295);
+            this.btnAnalyze.Location = new System.Drawing.Point(941, 413);
             this.btnAnalyze.Name = "btnAnalyze";
             this.btnAnalyze.Size = new System.Drawing.Size(75, 23);
             this.btnAnalyze.TabIndex = 3;
@@ -87,7 +88,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(827, 218);
+            this.btnAdd.Location = new System.Drawing.Point(814, 384);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(120, 23);
             this.btnAdd.TabIndex = 4;
@@ -98,7 +99,7 @@
             // lbKeys
             // 
             this.lbKeys.FormattingEnabled = true;
-            this.lbKeys.Location = new System.Drawing.Point(827, 273);
+            this.lbKeys.Location = new System.Drawing.Point(814, 439);
             this.lbKeys.Name = "lbKeys";
             this.lbKeys.Size = new System.Drawing.Size(120, 95);
             this.lbKeys.TabIndex = 5;
@@ -106,7 +107,7 @@
             // 
             // tbKey
             // 
-            this.tbKey.Location = new System.Drawing.Point(827, 247);
+            this.tbKey.Location = new System.Drawing.Point(814, 413);
             this.tbKey.Name = "tbKey";
             this.tbKey.Size = new System.Drawing.Size(120, 20);
             this.tbKey.TabIndex = 6;
@@ -128,27 +129,10 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Страна";
             // 
-            // cbCity
-            // 
-            this.cbCity.FormattingEnabled = true;
-            this.cbCity.Location = new System.Drawing.Point(814, 79);
-            this.cbCity.Name = "cbCity";
-            this.cbCity.Size = new System.Drawing.Size(121, 21);
-            this.cbCity.TabIndex = 7;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(811, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Город";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(812, 105);
+            this.label3.Location = new System.Drawing.Point(810, 243);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 13);
             this.label3.TabIndex = 9;
@@ -156,7 +140,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(814, 121);
+            this.textBox1.Location = new System.Drawing.Point(812, 259);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(121, 20);
             this.textBox1.TabIndex = 6;
@@ -173,41 +157,67 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(989, 35);
+            this.button1.Location = new System.Drawing.Point(971, 35);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 23);
+            this.button1.Size = new System.Drawing.Size(135, 23);
             this.button1.TabIndex = 10;
-            this.button1.Text = "Показать код";
+            this.button1.Text = "Показать id страны";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnGetArr
+            // treeView1
             // 
-            this.btnGetArr.Location = new System.Drawing.Point(833, 156);
-            this.btnGetArr.Name = "btnGetArr";
-            this.btnGetArr.Size = new System.Drawing.Size(75, 23);
-            this.btnGetArr.TabIndex = 11;
-            this.btnGetArr.Text = "районы";
-            this.btnGetArr.UseVisualStyleBackColor = true;
-            this.btnGetArr.Click += new System.EventHandler(this.btnGetArr_Click);
+            this.treeView1.Location = new System.Drawing.Point(813, 64);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(290, 176);
+            this.treeView1.TabIndex = 12;
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
+            // 
+            // button2
+            // 
+            this.button2.Image = global::JobAnalyzer.Properties.Resources.refresh;
+            this.button2.Location = new System.Drawing.Point(1109, 64);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(24, 23);
+            this.button2.TabIndex = 2;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnGetArr_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(814, 303);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(266, 20);
+            this.textBox2.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(812, 287);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Подготовленный запрос";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1106, 546);
-            this.Controls.Add(this.btnGetArr);
+            this.ClientSize = new System.Drawing.Size(1221, 546);
+            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbCity);
             this.Controls.Add(this.cbCountry);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.tbKey);
             this.Controls.Add(this.lbKeys);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnAnalyze);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnRefreshCountry);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.dgvTable);
@@ -232,13 +242,14 @@
         private System.Windows.Forms.TextBox tbKey;
         private System.Windows.Forms.ComboBox cbCountry;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbCity;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnRefreshCountry;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnGetArr;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label2;
     }
 }
 
