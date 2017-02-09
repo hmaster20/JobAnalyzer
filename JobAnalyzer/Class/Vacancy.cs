@@ -2,9 +2,7 @@
 
 namespace JobAnalyzer
 {
-    /// <summary>
-    /// Класс вакансий
-    /// </summary>
+    /// <summary>Класс содержит полные сведения о вакансии</summary>
     public class Vacancy : VacancyGlobal
     {
         public Vacancy()
@@ -116,6 +114,11 @@ namespace JobAnalyzer
         public string url { get; set; } // https://api.hh.ru/areas/53
         public int id { get; set; }     // 53
         public string name { get; set; } //Краснодар
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 
     public class Address
