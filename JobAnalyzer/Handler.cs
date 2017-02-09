@@ -16,7 +16,7 @@ namespace JobAnalyzer
             _VacancySearchCollection = new VacancyCollection();
         }
 
-        public string FindVacancy(string key)
+        public string FindAllVacancies(string key)
         {
             //https://krasnodar.hh.ru/search/vacancy
             /*
@@ -187,9 +187,10 @@ namespace JobAnalyzer
         }
         
 
-        public List<Areas> GetRegions()
+
+        public Areas GetRegions()
         {
-            List<Areas> _ListRegions = new List<Areas>();
+            Areas CollectVac = new Areas(); 
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/areas/113");
             request.Method = "GET";
@@ -205,14 +206,7 @@ namespace JobAnalyzer
                     string line;
                     if ((line = stream.ReadLine()) != null)
                     {
-
-                       Areas CollectVac = JsonConvert.DeserializeObject<Areas>(line);
-
-                        // CollectVac содержит id и name
-                        foreach (var item in CollectVac.areas)
-                        {
-                            _ListRegions.Add(item);
-                        }
+                       CollectVac = JsonConvert.DeserializeObject<Areas>(line);
                     }
                 }
             }
@@ -228,9 +222,8 @@ namespace JobAnalyzer
             catch (System.Security.SecurityException exc) { MessageBox.Show("Исключение в связи с нарушением безопасности: " + exc.Message); }
             catch (InvalidOperationException exc) { MessageBox.Show("Недопустимая операция: " + exc.Message); }
 
-            return _ListRegions;
+            return CollectVac;
         }
-
     }
 }
 
