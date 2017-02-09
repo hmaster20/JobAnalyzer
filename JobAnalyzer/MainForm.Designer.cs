@@ -183,7 +183,7 @@
             // 
             // btnGetArr
             // 
-            this.btnGetArr.Location = new System.Drawing.Point(827, 147);
+            this.btnGetArr.Location = new System.Drawing.Point(833, 156);
             this.btnGetArr.Name = "btnGetArr";
             this.btnGetArr.Size = new System.Drawing.Size(75, 23);
             this.btnGetArr.TabIndex = 11;
