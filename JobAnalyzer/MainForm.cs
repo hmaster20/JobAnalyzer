@@ -14,6 +14,9 @@ namespace JobAnalyzer
     {
         Handler getVacancy;
         VacancyCollection _vacancyCollection;
+        Areas ars;
+
+        Dictionary<string, List<string>> DicQuery;
 
         public MainForm()
         {
@@ -22,6 +25,8 @@ namespace JobAnalyzer
             getVacancy = new Handler();
 
             _vacancyCollection = new VacancyCollection();
+            ars = new Areas();
+            DicQuery = new Dictionary<string, List<string>>();
         }
 
         private void btnQuery_Click(object sender, EventArgs e)
@@ -29,7 +34,7 @@ namespace JobAnalyzer
             //string vac = "19291539";
             //getVacancy.GetVacancy(vac);
 
-            getVacancy.FindVacancy("C%23");
+            getVacancy.FindAllVacancies("C%23");
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -85,14 +90,44 @@ namespace JobAnalyzer
             if (cbCountry.SelectedItem is Area)
             {
                 info = (Area)cbCountry.SelectedItem;
-            }  
+            }
             MessageBox.Show(info.id.ToString());
         }
 
         private void btnGetArr_Click(object sender, EventArgs e)
-        {
-            getVacancy.GetRegions();
+        {     
+            ars = getVacancy.GetRegions();
+            TreeViewDeveloper(ars);
         }
-    } 
+
+        void TreeViewDeveloper(Areas _areas)
+        {
+            TreeNode treeNode = new TreeNode(_areas.name);
+            AddChildren(treeNode, _areas.areas);
+            treeView1.Nodes.Add(treeNode);
+        }
+
+        void AddChildren(TreeNode treeNode, List<Areas> _areas) // Рекурсивное построение дерева
+        {
+            foreach (var item in _areas)
+            {
+                TreeNode newNode = new TreeNode(item.name);
+                treeNode.Nodes.Add(newNode);
+                if (item.areas != null && item.areas.Count > 0)
+                {
+                    AddChildren(newNode, item.areas);
+                }
+            } 
+        }
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            Areas aaa = Areas.Find(ars, e.Node.Text);
+            if (aaa != null)
+            {
+                textBox1.Text = aaa.id + " - " + aaa.name;
+            }
+        }
+    }
 
 }
