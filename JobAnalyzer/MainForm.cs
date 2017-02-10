@@ -54,17 +54,18 @@ namespace JobAnalyzer
 
         private void RefreshTable()    // Обновление таблицы путем фильтрации элементов по полю Path
         {
-
             List<Items> filtered = _vacancyCollection.VacancyList;
 
             dgvTable.DataSource = null;
             dgvTable.DataSource = filtered;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+
+        #region Analyze
+
+        private void btnAddKeyforAnalyze_Click(object sender, EventArgs e)
         {
             lbKeys.Items.Add(tbKey.Text);
-
         }
 
         private void lbKeys_DoubleClick(object sender, EventArgs e)
@@ -72,34 +73,26 @@ namespace JobAnalyzer
             lbKeys.Items.Remove(lbKeys.SelectedItem);
         }
 
-        private void btnAnalyze_Click(object sender, EventArgs e)
-        {
+        #endregion
 
-        }
 
+
+        // Получить список стран
         private void btnRefreshCountry_Click(object sender, EventArgs e)
         {
             btnRefreshCountry.Enabled = false;
-            cbCountry.Items.AddRange(getVacancy.GetCountry().ToArray());
+            cbCountry.Items.AddRange(getVacancy.GetCountry().ToArray());    // List<Area> 
             btnRefreshCountry.Enabled = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Получить список регионов
+        private void btnRefreshRegion_Click(object sender, EventArgs e)
         {
-            Area info = new Area();
-            if (cbCountry.SelectedItem is Area)
-            {
-                info = (Area)cbCountry.SelectedItem;
-            }
-            MessageBox.Show(info.id.ToString());
-        }
-
-        private void btnGetArr_Click(object sender, EventArgs e)
-        {     
             ars = getVacancy.GetRegions();
             TreeViewDeveloper(ars);
         }
 
+        #region Постройка дерева
         void TreeViewDeveloper(Areas _areas)
         {
             TreeNode treeNode = new TreeNode(_areas.name);
@@ -117,17 +110,106 @@ namespace JobAnalyzer
                 {
                     AddChildren(newNode, item.areas);
                 }
-            } 
-        }
-
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            Areas aaa = Areas.Find(ars, e.Node.Text);
-            if (aaa != null)
-            {
-                textBox1.Text = aaa.id + " - " + aaa.name;
             }
         }
-    }
+        #endregion
 
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    Area info = new Area();
+        //    if (cbCountry.SelectedItem is Area)
+        //    {
+        //        info = (Area)cbCountry.SelectedItem;
+        //    }
+        //    MessageBox.Show(info.id.ToString());
+        //}
+
+
+        // Выбор страны
+        private void cbCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Area _country = new Area();
+            if (cbCountry.SelectedItem is Area)
+            {
+                _country = (Area)cbCountry.SelectedItem;
+            }
+
+            if (_country != null)
+            {
+                //if (DicQuery.ContainsKey("country"))
+                //{
+                //    DicQuery["country"].Clear();
+                //}
+                //else
+                //{
+                //DicQuery.Add("country", new List<string>());
+                // }
+
+                if (!DicQuery.ContainsKey("country"))
+                {
+                    DicQuery.Add("country", new List<string>());
+                }
+
+                string strana = "&area=" + _country.id;
+
+                if (!DicQuery["country"].Contains(strana))
+                {
+                    DicQuery["country"].Add(strana);
+                }
+            }
+        }
+
+
+
+        // Выбор региона
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            Areas _regionAreas = Areas.Find(ars, e.Node.Text);
+            if (_regionAreas != null)
+            {
+                string strana = "&area=" + _regionAreas.parent_id;
+                string region = "&area=" + _regionAreas.id;
+
+                if (DicQuery["country"].Contains(strana))
+                {
+                    DicQuery["country"].Remove(strana);
+                }
+
+                if (!DicQuery["country"].Contains(region))
+                {
+                    DicQuery["country"].Add(region);
+                }          
+            }
+        }
+
+
+
+        private void btnCheckTextQuery_Click(object sender, EventArgs e)
+        {
+            tbQuery.Text = "";
+            tbQuery.Text += ("?text=" + tbTextForQuery.Text);
+
+            if (DicQuery != null && DicQuery.Keys.Count > 0)
+            {
+                foreach (var _key in DicQuery.Keys)
+                {
+                    if (DicQuery[_key].Count > 0)
+                    {
+                        foreach (var _listElement in DicQuery[_key])
+                        {
+                            tbQuery.Text += _listElement;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            DicQuery.Clear();
+            tbTextForQuery.Text = "";
+            tbQuery.Text = "";
+        }
+    }
 }
