@@ -152,6 +152,24 @@ namespace JobAnalyzer
 
             return null;
         }
+
+        public static Areas FindbyID(Areas node, string id)   // Рекурсивный поиск
+        {
+            if (node == null)
+                return null;
+
+            if (node.id == id)
+                return node;
+
+            foreach (var child in node.areas)
+            {
+                var found = FindbyID(child, id);
+                if (found != null)
+                    return found;
+            }
+
+            return null;
+        }
     }
 
     public class Address
