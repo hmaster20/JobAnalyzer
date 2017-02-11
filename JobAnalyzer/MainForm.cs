@@ -88,8 +88,10 @@ namespace JobAnalyzer
         // Получить список регионов
         private void btnRefreshRegion_Click(object sender, EventArgs e)
         {
+            btnRefreshRegion.Enabled = false;
             ars = getVacancy.GetRegions();
             TreeViewDeveloper(ars);
+            btnRefreshRegion.Enabled = true;
         }
 
         #region Постройка дерева
@@ -114,16 +116,6 @@ namespace JobAnalyzer
         }
         #endregion
 
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    Area info = new Area();
-        //    if (cbCountry.SelectedItem is Area)
-        //    {
-        //        info = (Area)cbCountry.SelectedItem;
-        //    }
-        //    MessageBox.Show(info.id.ToString());
-        //}
-
 
         // Выбор страны
         private void cbCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -136,15 +128,6 @@ namespace JobAnalyzer
 
             if (_country != null)
             {
-                //if (DicQuery.ContainsKey("country"))
-                //{
-                //    DicQuery["country"].Clear();
-                //}
-                //else
-                //{
-                //DicQuery.Add("country", new List<string>());
-                // }
-
                 if (!DicQuery.ContainsKey("country"))
                 {
                     DicQuery.Add("country", new List<string>());
@@ -164,21 +147,70 @@ namespace JobAnalyzer
         // Выбор региона
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            Areas _regionAreas = Areas.Find(ars, e.Node.Text);
-            if (_regionAreas != null)
+            checkArea(e.Node.Text);
+
+            //Areas _regionA = Areas.Find(ars, e.Node.Text);
+            //if (_regionA != null)
+            //{
+            //    string region = "&area=" + _regionA.id;
+
+            //    // если нет родителя (parent_id), значит это страна
+            //    if (_regionA.parent_id == null)     
+            //    {
+            //        if (!DicQuery["country"].Contains(region))   // если &area=113 не существует, то добавить
+            //        {
+            //            DicQuery["country"].Add(region);
+            //        }
+            //        return;
+            //    }
+
+            //    // если родитель есть, то ищем его в списке и удаляем
+            //    string _country = "&area=" + _regionA.parent_id;
+            //    if (DicQuery["country"].Contains(_country))
+            //    {
+            //        DicQuery["country"].Remove(_country);
+            //    }
+
+
+            //    //проверить есть ли сам объект в списке
+            //    // у него есть родители, и у родителей есть родители, то всех удалить.
+
+            //    foreach (string _id in DicQuery["country"])
+            //    {
+            //        string _id_number_ = _id.Substring(_id.LastIndexOf('=') + 1);   // 113
+
+            //        Areas _id_object_ = Areas.Find(ars, _id_number_);
+
+            //        string parent = "&area=" + _id_object_.parent_id;
+
+            //        if (DicQuery["country"].Contains(parent))       // если указана населенный пункт, то удаляем регион, в котором он находиться.
+            //        {
+            //            DicQuery["country"].Remove(parent);
+            //        }
+            //    }
+
+            //    if (!DicQuery["country"].Contains(region))
+            //    {
+            //        DicQuery["country"].Add(region);
+            //    }
+            //}
+        }
+
+
+        void checkArea(string _id)
+        {
+            string _id_number_ = _id.Substring(_id.LastIndexOf('=') + 1);   // 113
+            Areas _id_obj = Areas.Find(ars, _id_number_);
+            if (_id_obj.parent_id == null)
             {
-                string strana = "&area=" + _regionAreas.parent_id;
-                string region = "&area=" + _regionAreas.id;
-
-                if (DicQuery["country"].Contains(strana))
-                {
-                    DicQuery["country"].Remove(strana);
-                }
-
-                if (!DicQuery["country"].Contains(region))
-                {
-                    DicQuery["country"].Add(region);
-                }          
+                DicQuery["country"].Remove(_id_number_);
+            }
+            else
+            {
+                // если родитель есть - удаляем, запускаем новую итерацию
+                DicQuery["country"].Remove(_id_number_);
+                string parent = "&area=" + _id_obj.parent_id;
+                checkArea(parent);
             }
         }
 
