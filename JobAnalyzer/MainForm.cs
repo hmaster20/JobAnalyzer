@@ -218,6 +218,8 @@ namespace JobAnalyzer
 
 
 
+        // !!!!!! Сделать удаление регионов, если выбрана страна.
+
         void checkArea2(string _id)
         {
             try
@@ -226,8 +228,12 @@ namespace JobAnalyzer
                 Areas _id_obj = Areas.FindbyID(ars, _id_number_);
                 if (_id_obj != null)    //если есть объект
                 {
-                    // если родитель есть - удаляем, запускаем новую итерацию
-                    DicQuery["country"].Remove(_id_number_);
+                    if (!DicQuery["country"].Contains(_id))
+                    {
+                        // если родитель есть - удаляем, запускаем новую итерацию
+                        DicQuery["country"].Remove(_id);
+                    }
+                
                     string parent = "&area=" + _id_obj.parent_id;
                     checkArea2(parent);
                 }
