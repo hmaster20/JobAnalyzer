@@ -41,7 +41,6 @@
             this.tbTextForQuery = new System.Windows.Forms.TextBox();
             this.btnRefreshCountry = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.btnRefreshRegion = new System.Windows.Forms.Button();
             this.tbQuery = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCheckTextQuery = new System.Windows.Forms.Button();
@@ -161,19 +160,9 @@
             // 
             this.treeView1.Location = new System.Drawing.Point(813, 64);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(290, 176);
+            this.treeView1.Size = new System.Drawing.Size(366, 176);
             this.treeView1.TabIndex = 12;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
-            // 
-            // btnRefreshRegion
-            // 
-            this.btnRefreshRegion.Image = global::JobAnalyzer.Properties.Resources.refresh;
-            this.btnRefreshRegion.Location = new System.Drawing.Point(1109, 64);
-            this.btnRefreshRegion.Name = "btnRefreshRegion";
-            this.btnRefreshRegion.Size = new System.Drawing.Size(24, 23);
-            this.btnRefreshRegion.TabIndex = 2;
-            this.btnRefreshRegion.UseVisualStyleBackColor = true;
-            this.btnRefreshRegion.Click += new System.EventHandler(this.btnRefreshRegion_Click);
             // 
             // tbQuery
             // 
@@ -230,7 +219,6 @@
             this.Controls.Add(this.btnAddKeyforAnalyze);
             this.Controls.Add(this.btnAnalyze);
             this.Controls.Add(this.btnCheckTextQuery);
-            this.Controls.Add(this.btnRefreshRegion);
             this.Controls.Add(this.btnRefreshCountry);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.dgvTable);
@@ -259,7 +247,6 @@
         private System.Windows.Forms.TextBox tbTextForQuery;
         private System.Windows.Forms.Button btnRefreshCountry;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.Button btnRefreshRegion;
         private System.Windows.Forms.TextBox tbQuery;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCheckTextQuery;
