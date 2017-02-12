@@ -188,11 +188,11 @@ namespace JobAnalyzer
         
 
 
-        public Areas GetRegions()
+        public Areas GetRegions(string coderRegion)
         {
             Areas CollectVac = new Areas(); 
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/areas/113");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/areas/" + coderRegion);
             request.Method = "GET";
             request.Accept = "application/json";
             request.ContentType = "application/json";
