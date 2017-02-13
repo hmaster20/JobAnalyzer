@@ -27,6 +27,12 @@ namespace JobAnalyzer
             _vacancyCollection = new VacancyCollection();
             ars = new Areas();
             DicQuery = new Dictionary<string, List<string>>();
+
+            for (int i = 1; i < 31; i++)
+            {
+                cbPeriod.Items.Add(i);
+            }
+
         }
 
         private void btnQuery_Click(object sender, EventArgs e)
@@ -34,7 +40,7 @@ namespace JobAnalyzer
             //string vac = "19291539";
             //getVacancy.GetVacancy(vac);
 
-            getVacancy.FindAllVacancies("C%23");
+            //getVacancy.FindAllVacancies("C%23");
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -84,8 +90,56 @@ namespace JobAnalyzer
             cbCountry.Items.AddRange(getVacancy.GetCountry().ToArray());    // List<Area> 
             btnRefreshCountry.Enabled = true;
         }
-        
 
+        // Получить периоды
+        private void btnRefreshPeriod_Click(object sender, EventArgs e)
+        {
+            btnRefreshPeriod.Enabled = false;
+
+            cbGrafik.Items.AddRange(getVacancy.GetGrafik().schedule);    // []Schedule        
+
+            btnRefreshPeriod.Enabled = true;
+        }
+
+        private void cbGrafik_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Schedule _period = new Schedule();
+            if (cbGrafik.SelectedItem is Schedule)
+            {
+                _period = (Schedule)cbGrafik.SelectedItem;
+            }
+
+            string gr = "&schedule=" + _period.id;
+
+            if (!DicQuery.ContainsKey("grafik"))// проверяем создан ли ключ
+            {
+                DicQuery.Add("grafik", new List<string>());
+                DicQuery["grafik"].Add(gr);
+                return;
+            }
+            else
+            {
+                DicQuery["grafik"].Clear();
+                DicQuery["grafik"].Add(gr);
+            }
+        }
+
+        private void cbPeriod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string pr = "&search_period=" + cbPeriod.SelectedItem.ToString();
+
+            if (!DicQuery.ContainsKey("period"))// проверяем создан ли ключ
+            {
+                DicQuery.Add("period", new List<string>());
+                DicQuery["period"].Add(pr);
+                return;
+            }
+            else
+            {
+                DicQuery["period"].Clear();
+                DicQuery["period"].Add(pr);
+            }
+        }
 
         #region Постройка дерева
         void TreeViewDeveloper(Areas _areas)
@@ -267,7 +321,7 @@ namespace JobAnalyzer
             }
         }
 
-        
+
 
 
 
@@ -301,5 +355,7 @@ namespace JobAnalyzer
             tbTextForQuery.Text = "";
             tbQuery.Text = "";
         }
+
+
     }
 }
