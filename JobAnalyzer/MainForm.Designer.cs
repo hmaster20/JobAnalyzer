@@ -45,12 +45,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnCheckTextQuery = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbPeriod = new System.Windows.Forms.ComboBox();
+            this.cbGrafik = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnRefreshPeriod = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(1134, 413);
+            this.btnQuery.Location = new System.Drawing.Point(1110, 459);
             this.btnQuery.Name = "btnQuery";
             this.btnQuery.Size = new System.Drawing.Size(75, 23);
             this.btnQuery.TabIndex = 0;
@@ -61,14 +72,14 @@
             // dgvTable
             // 
             this.dgvTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTable.Location = new System.Drawing.Point(12, 12);
+            this.dgvTable.Location = new System.Drawing.Point(17, 33);
             this.dgvTable.Name = "dgvTable";
-            this.dgvTable.Size = new System.Drawing.Size(779, 522);
+            this.dgvTable.Size = new System.Drawing.Size(227, 379);
             this.dgvTable.TabIndex = 1;
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(1134, 439);
+            this.btnLoad.Location = new System.Drawing.Point(1110, 485);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(75, 23);
             this.btnLoad.TabIndex = 2;
@@ -78,7 +89,7 @@
             // 
             // btnAnalyze
             // 
-            this.btnAnalyze.Location = new System.Drawing.Point(941, 413);
+            this.btnAnalyze.Location = new System.Drawing.Point(147, 62);
             this.btnAnalyze.Name = "btnAnalyze";
             this.btnAnalyze.Size = new System.Drawing.Size(75, 23);
             this.btnAnalyze.TabIndex = 3;
@@ -87,7 +98,7 @@
             // 
             // btnAddKeyforAnalyze
             // 
-            this.btnAddKeyforAnalyze.Location = new System.Drawing.Point(814, 384);
+            this.btnAddKeyforAnalyze.Location = new System.Drawing.Point(20, 33);
             this.btnAddKeyforAnalyze.Name = "btnAddKeyforAnalyze";
             this.btnAddKeyforAnalyze.Size = new System.Drawing.Size(120, 23);
             this.btnAddKeyforAnalyze.TabIndex = 4;
@@ -98,7 +109,7 @@
             // lbKeys
             // 
             this.lbKeys.FormattingEnabled = true;
-            this.lbKeys.Location = new System.Drawing.Point(814, 439);
+            this.lbKeys.Location = new System.Drawing.Point(20, 88);
             this.lbKeys.Name = "lbKeys";
             this.lbKeys.Size = new System.Drawing.Size(120, 95);
             this.lbKeys.TabIndex = 5;
@@ -106,7 +117,7 @@
             // 
             // tbKey
             // 
-            this.tbKey.Location = new System.Drawing.Point(814, 413);
+            this.tbKey.Location = new System.Drawing.Point(20, 62);
             this.tbKey.Name = "tbKey";
             this.tbKey.Size = new System.Drawing.Size(120, 20);
             this.tbKey.TabIndex = 6;
@@ -115,7 +126,7 @@
             // 
             this.cbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCountry.FormattingEnabled = true;
-            this.cbCountry.Location = new System.Drawing.Point(814, 30);
+            this.cbCountry.Location = new System.Drawing.Point(790, 33);
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.Size = new System.Drawing.Size(121, 21);
             this.cbCountry.TabIndex = 7;
@@ -124,7 +135,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(811, 14);
+            this.label1.Location = new System.Drawing.Point(787, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 8;
@@ -133,7 +144,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(810, 248);
+            this.label3.Location = new System.Drawing.Point(786, 294);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 13);
             this.label3.TabIndex = 9;
@@ -141,7 +152,7 @@
             // 
             // tbTextForQuery
             // 
-            this.tbTextForQuery.Location = new System.Drawing.Point(812, 264);
+            this.tbTextForQuery.Location = new System.Drawing.Point(788, 310);
             this.tbTextForQuery.Name = "tbTextForQuery";
             this.tbTextForQuery.Size = new System.Drawing.Size(367, 20);
             this.tbTextForQuery.TabIndex = 6;
@@ -149,7 +160,7 @@
             // btnRefreshCountry
             // 
             this.btnRefreshCountry.Image = global::JobAnalyzer.Properties.Resources.refresh;
-            this.btnRefreshCountry.Location = new System.Drawing.Point(941, 28);
+            this.btnRefreshCountry.Location = new System.Drawing.Point(917, 31);
             this.btnRefreshCountry.Name = "btnRefreshCountry";
             this.btnRefreshCountry.Size = new System.Drawing.Size(24, 23);
             this.btnRefreshCountry.TabIndex = 2;
@@ -158,7 +169,7 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(813, 58);
+            this.treeView1.Location = new System.Drawing.Point(789, 61);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(366, 187);
             this.treeView1.TabIndex = 12;
@@ -166,7 +177,7 @@
             // 
             // tbQuery
             // 
-            this.tbQuery.Location = new System.Drawing.Point(814, 308);
+            this.tbQuery.Location = new System.Drawing.Point(790, 354);
             this.tbQuery.Name = "tbQuery";
             this.tbQuery.ReadOnly = true;
             this.tbQuery.Size = new System.Drawing.Size(335, 20);
@@ -175,7 +186,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(812, 292);
+            this.label2.Location = new System.Drawing.Point(788, 338);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 13);
             this.label2.TabIndex = 9;
@@ -184,7 +195,7 @@
             // btnCheckTextQuery
             // 
             this.btnCheckTextQuery.Image = global::JobAnalyzer.Properties.Resources.refresh;
-            this.btnCheckTextQuery.Location = new System.Drawing.Point(1155, 306);
+            this.btnCheckTextQuery.Location = new System.Drawing.Point(1131, 352);
             this.btnCheckTextQuery.Name = "btnCheckTextQuery";
             this.btnCheckTextQuery.Size = new System.Drawing.Size(24, 23);
             this.btnCheckTextQuery.TabIndex = 2;
@@ -193,7 +204,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(814, 334);
+            this.btnReset.Location = new System.Drawing.Point(790, 380);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(51, 23);
             this.btnReset.TabIndex = 13;
@@ -201,34 +212,123 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1221, 617);
+            this.tabControl1.TabIndex = 14;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dgvTable);
+            this.tabPage1.Controls.Add(this.btnReset);
+            this.tabPage1.Controls.Add(this.cbPeriod);
+            this.tabPage1.Controls.Add(this.cbGrafik);
+            this.tabPage1.Controls.Add(this.cbCountry);
+            this.tabPage1.Controls.Add(this.treeView1);
+            this.tabPage1.Controls.Add(this.btnQuery);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.btnLoad);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.btnRefreshPeriod);
+            this.tabPage1.Controls.Add(this.btnRefreshCountry);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.btnCheckTextQuery);
+            this.tabPage1.Controls.Add(this.tbTextForQuery);
+            this.tabPage1.Controls.Add(this.tbQuery);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1213, 591);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cbPeriod
+            // 
+            this.cbPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPeriod.FormattingEnabled = true;
+            this.cbPeriod.Location = new System.Drawing.Point(1034, 270);
+            this.cbPeriod.Name = "cbPeriod";
+            this.cbPeriod.Size = new System.Drawing.Size(121, 21);
+            this.cbPeriod.TabIndex = 7;
+            this.cbPeriod.SelectedIndexChanged += new System.EventHandler(this.cbPeriod_SelectedIndexChanged);
+            // 
+            // cbGrafik
+            // 
+            this.cbGrafik.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbGrafik.FormattingEnabled = true;
+            this.cbGrafik.Location = new System.Drawing.Point(788, 270);
+            this.cbGrafik.Name = "cbGrafik";
+            this.cbGrafik.Size = new System.Drawing.Size(121, 21);
+            this.cbGrafik.TabIndex = 7;
+            this.cbGrafik.SelectedIndexChanged += new System.EventHandler(this.cbGrafik_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1031, 254);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Период";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(785, 254);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "График работы";
+            // 
+            // btnRefreshPeriod
+            // 
+            this.btnRefreshPeriod.Image = global::JobAnalyzer.Properties.Resources.refresh;
+            this.btnRefreshPeriod.Location = new System.Drawing.Point(917, 268);
+            this.btnRefreshPeriod.Name = "btnRefreshPeriod";
+            this.btnRefreshPeriod.Size = new System.Drawing.Size(24, 23);
+            this.btnRefreshPeriod.TabIndex = 2;
+            this.btnRefreshPeriod.UseVisualStyleBackColor = true;
+            this.btnRefreshPeriod.Click += new System.EventHandler(this.btnRefreshPeriod_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.lbKeys);
+            this.tabPage2.Controls.Add(this.btnAnalyze);
+            this.tabPage2.Controls.Add(this.btnAddKeyforAnalyze);
+            this.tabPage2.Controls.Add(this.tbKey);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1213, 591);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1221, 576);
-            this.Controls.Add(this.btnReset);
-            this.Controls.Add(this.treeView1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbCountry);
-            this.Controls.Add(this.tbQuery);
-            this.Controls.Add(this.tbTextForQuery);
-            this.Controls.Add(this.tbKey);
-            this.Controls.Add(this.lbKeys);
-            this.Controls.Add(this.btnAddKeyforAnalyze);
-            this.Controls.Add(this.btnAnalyze);
-            this.Controls.Add(this.btnCheckTextQuery);
-            this.Controls.Add(this.btnRefreshCountry);
-            this.Controls.Add(this.btnLoad);
-            this.Controls.Add(this.dgvTable);
-            this.Controls.Add(this.btnQuery);
+            this.ClientSize = new System.Drawing.Size(1221, 617);
+            this.Controls.Add(this.tabControl1);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -251,6 +351,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCheckTextQuery;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.ComboBox cbGrafik;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button btnRefreshPeriod;
+        private System.Windows.Forms.ComboBox cbPeriod;
+        private System.Windows.Forms.Label label5;
     }
 }
 
