@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace JobAnalyzer
 {
@@ -25,8 +26,10 @@ namespace JobAnalyzer
 
         public AnalyzeKey aKey { get; set; }
 
+        [XmlIgnore]
         public Dictionary<int, List<string>> DicKey { get; set; }
 
+        [XmlIgnore]
         public static string BaseName { get; } = "VacancyList.xml";
 
 
@@ -42,7 +45,15 @@ namespace JobAnalyzer
 
         public void Save()                  // Сохранение
         {
-            XmlSerializeHelper.SerializeAndSave(BaseName, this);
+            try
+            {
+                XmlSerializeHelper.SerializeAndSave(BaseName, this);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ошибка на этапе сохранения файла базы. \n" + ex.Message);
+            }
+
         }
 
         public static VacancyCollection Load()    // Загрузка
