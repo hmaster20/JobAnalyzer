@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Class\Error.cs" />
     <Compile Include="Class\SerializableDictionary.cs" />
+    <Compile Include="Class\VacancyGrafik.cs" />
     <Compile Include="Class\VacancySearch.cs" />
     <Compile Include="Class\Vacancy.cs" />
     <Compile Include="Class\VacancyGlobal.cs" />
