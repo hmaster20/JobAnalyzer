@@ -84,18 +84,19 @@ namespace JobAnalyzer
         public string name { get; set; }    //"От 1 года до 3 лет
     }
 
-    /// <summary>
-    /// График работы
-    /// </summary>
+    /// <summary>График работы</summary>
     public class Schedule
     {
         public string id { get; set; }      // fullDay
         public string name { get; set; }    // Полный день
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 
-    /// <summary>
-    /// Тип занятости
-    /// </summary>
+    /// <summary>Тип занятости</summary>
     public class Employment
     {
         public string id { get; set; }      // full
@@ -134,6 +135,11 @@ namespace JobAnalyzer
         public string id { get; set; }
         public string name { get; set; }
 
+        public static int CompareByName(Areas a, Areas b)
+        {
+            return string.Compare(a.name, b.name);
+        }
+
         public static Areas Find(Areas node, string name)   // Рекурсивный поиск
         {
             if (node == null)
@@ -151,12 +157,7 @@ namespace JobAnalyzer
 
             return null;
         }
-
-        public static int CompareByName(Areas a, Areas b)
-        {
-            return string.Compare(a.name, b.name);
-        }
-
+                
         public static Areas FindbyID(Areas node, string id)   // Рекурсивный поиск
         {
             if (node == null)
