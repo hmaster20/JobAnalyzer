@@ -115,7 +115,7 @@
             // 
             this.cbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCountry.FormattingEnabled = true;
-            this.cbCountry.Location = new System.Drawing.Point(814, 37);
+            this.cbCountry.Location = new System.Drawing.Point(814, 30);
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.Size = new System.Drawing.Size(121, 21);
             this.cbCountry.TabIndex = 7;
@@ -124,7 +124,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(811, 21);
+            this.label1.Location = new System.Drawing.Point(811, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 8;
@@ -133,7 +133,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(810, 243);
+            this.label3.Location = new System.Drawing.Point(810, 248);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 13);
             this.label3.TabIndex = 9;
@@ -141,15 +141,15 @@
             // 
             // tbTextForQuery
             // 
-            this.tbTextForQuery.Location = new System.Drawing.Point(812, 259);
+            this.tbTextForQuery.Location = new System.Drawing.Point(812, 264);
             this.tbTextForQuery.Name = "tbTextForQuery";
-            this.tbTextForQuery.Size = new System.Drawing.Size(291, 20);
+            this.tbTextForQuery.Size = new System.Drawing.Size(367, 20);
             this.tbTextForQuery.TabIndex = 6;
             // 
             // btnRefreshCountry
             // 
             this.btnRefreshCountry.Image = global::JobAnalyzer.Properties.Resources.refresh;
-            this.btnRefreshCountry.Location = new System.Drawing.Point(941, 35);
+            this.btnRefreshCountry.Location = new System.Drawing.Point(941, 28);
             this.btnRefreshCountry.Name = "btnRefreshCountry";
             this.btnRefreshCountry.Size = new System.Drawing.Size(24, 23);
             this.btnRefreshCountry.TabIndex = 2;
@@ -158,24 +158,24 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(813, 64);
+            this.treeView1.Location = new System.Drawing.Point(813, 58);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(366, 176);
+            this.treeView1.Size = new System.Drawing.Size(366, 187);
             this.treeView1.TabIndex = 12;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // tbQuery
             // 
-            this.tbQuery.Location = new System.Drawing.Point(814, 303);
+            this.tbQuery.Location = new System.Drawing.Point(814, 308);
             this.tbQuery.Name = "tbQuery";
             this.tbQuery.ReadOnly = true;
-            this.tbQuery.Size = new System.Drawing.Size(266, 20);
+            this.tbQuery.Size = new System.Drawing.Size(335, 20);
             this.tbQuery.TabIndex = 6;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(812, 287);
+            this.label2.Location = new System.Drawing.Point(812, 292);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 13);
             this.label2.TabIndex = 9;
@@ -184,7 +184,7 @@
             // btnCheckTextQuery
             // 
             this.btnCheckTextQuery.Image = global::JobAnalyzer.Properties.Resources.refresh;
-            this.btnCheckTextQuery.Location = new System.Drawing.Point(1086, 301);
+            this.btnCheckTextQuery.Location = new System.Drawing.Point(1155, 306);
             this.btnCheckTextQuery.Name = "btnCheckTextQuery";
             this.btnCheckTextQuery.Size = new System.Drawing.Size(24, 23);
             this.btnCheckTextQuery.TabIndex = 2;
@@ -193,7 +193,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(1116, 301);
+            this.btnReset.Location = new System.Drawing.Point(814, 334);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(51, 23);
             this.btnReset.TabIndex = 13;
@@ -205,7 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1221, 546);
+            this.ClientSize = new System.Drawing.Size(1221, 576);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.label2);
