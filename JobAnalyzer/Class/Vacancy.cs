@@ -134,7 +134,6 @@ namespace JobAnalyzer
         public string id { get; set; }
         public string name { get; set; }
 
-
         public static Areas Find(Areas node, string name)   // Рекурсивный поиск
         {
             if (node == null)
@@ -151,6 +150,11 @@ namespace JobAnalyzer
             }
 
             return null;
+        }
+
+        public static int CompareByName(Areas a, Areas b)
+        {
+            return string.Compare(a.name, b.name);
         }
 
         public static Areas FindbyID(Areas node, string id)   // Рекурсивный поиск
