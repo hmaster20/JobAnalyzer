@@ -16,7 +16,7 @@ namespace JobAnalyzer
             _VacancySearchCollection = new VacancyCollection();
         }
 
-        public string FindAllVacancies(string key)
+        public string FindAllVacancies(string text, string area, string period)
         {
             //https://krasnodar.hh.ru/search/vacancy
             /*
@@ -40,9 +40,9 @@ namespace JobAnalyzer
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.
                 Create("https://api.hh.ru/vacancies"
-                + "?text=" + key
-                + "&area=" + 53
-                 + "&search_period=" + 1
+                + text      //+ "?text=" + text
+                + area      //+ "&area=" + area
+                + period    // + "&search_period=" + period
                  + "&search_field=name");
 
             request.Method = "GET";
@@ -141,6 +141,45 @@ namespace JobAnalyzer
             }
         }
 
+
+
+
+        public Grafik GetGrafik()
+        {
+            Grafik CollectVac = new Grafik();
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/dictionaries");
+            request.Method = "GET";
+            request.Accept = "application/json";
+            request.ContentType = "application/json";
+            request.UserAgent = "JobAnalyzer - .NET Framework Client";
+
+            try
+            {
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+                {
+                    string line;
+                    if ((line = stream.ReadLine()) != null)
+                    {
+                        CollectVac = JsonConvert.DeserializeObject<Grafik>(line);
+                    }
+                }
+            }
+            catch (WebException exc)
+            {
+                GetErrorDesciption(exc);
+                MessageBox.Show("Сетевая ошибка: " + exc.Message + "\nКод состояния: " + exc.Status);
+            }
+            catch (ProtocolViolationException exc) { MessageBox.Show("Протокольная ошибка: " + exc.Message); }
+            catch (UriFormatException exc) { MessageBox.Show("Ошибка формата URI: " + exc.Message); }
+            catch (NotSupportedException exc) { MessageBox.Show("Неизвестный протокол: " + exc.Message); }
+            catch (IOException exc) { MessageBox.Show("Ошибка ввода-вывода: " + exc.Message); }
+            catch (System.Security.SecurityException exc) { MessageBox.Show("Исключение в связи с нарушением безопасности: " + exc.Message); }
+            catch (InvalidOperationException exc) { MessageBox.Show("Недопустимая операция: " + exc.Message); }
+
+            return CollectVac;
+        }
 
 
 
