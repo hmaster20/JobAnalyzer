@@ -84,8 +84,7 @@ namespace JobAnalyzer
             cbCountry.Items.AddRange(getVacancy.GetCountry().ToArray());    // List<Area> 
             btnRefreshCountry.Enabled = true;
         }
-
-
+        
 
 
         #region Постройка дерева
@@ -98,6 +97,7 @@ namespace JobAnalyzer
 
         void AddChildren(TreeNode treeNode, List<Areas> _areas) // Рекурсивное построение дерева
         {
+            _areas.Sort(Areas.CompareByName);   // Сортировка дерева
             foreach (var item in _areas)
             {
                 TreeNode newNode = new TreeNode(item.name);
@@ -267,20 +267,7 @@ namespace JobAnalyzer
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 
@@ -314,7 +301,5 @@ namespace JobAnalyzer
             tbTextForQuery.Text = "";
             tbQuery.Text = "";
         }
-
-
     }
 }
