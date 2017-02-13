@@ -111,7 +111,6 @@ namespace JobAnalyzer
         #endregion
 
 
-        // Выбор страны
         private void cbCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Получить список регионов
@@ -131,54 +130,50 @@ namespace JobAnalyzer
             TreeViewDeveloper(ars);
         }
 
-
-
-
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            SelectRegion(e);
+            SelectRegion(e.Node.Text);
         }
 
 
-
-
-
         // Выбор региона
-        private void SelectRegion(TreeNodeMouseClickEventArgs e)
+        private void SelectRegion(string nodeName)
         {
             try
             {
-                Areas _regionA = Areas.Find(ars, e.Node.Text);
+                Areas _regionA = Areas.Find(ars, nodeName);
 
                 if (_regionA != null)
                 {
                     string region = "&area=" + _regionA.id;
 
-                    // если нет родителя (parent_id), значит это страна
-                    if (_regionA.parent_id == null)
+                    if (!DicQuery.ContainsKey("country"))// проверяем создан ли ключ
                     {
-                        if (DicQuery.ContainsKey("country"))// проверяем создан ли ключ
+                        DicQuery.Add("country", new List<string>());
+                        DicQuery["country"].Add(region);
+                        return;
+                    }
+                    else
+                    {                       
+                        if (_regionA.parent_id == null) // если нет родителя (parent_id), значит это страна
                         {
                             if (!DicQuery["country"].Contains(region))   // если &area=113 не существует, то добавить
                             {
+                                deleteParent(region);
                                 deleteChild(region);
                                 DicQuery["country"].Add(region);
+                                return;
                             }
-                            return;
-                        }
+                        } // есть родитель, запуск поиска
                         else
                         {
-                            DicQuery.Add("country", new List<string>());
-                            DicQuery["country"].Add(region);
-                            return;
+                            deleteParent(region);
+                            deleteChild(region);
+                            if (!DicQuery["country"].Contains(region))
+                            {
+                                DicQuery["country"].Add(region);
+                            }
                         }
-
-                    } // есть родитель, запуск поиска
-                    else
-                    {
-                        deleteParent(region);
-                        deleteChild(region);
-                        DicQuery["country"].Add(region);
                     }
                 }
 
@@ -192,15 +187,15 @@ namespace JobAnalyzer
             try
             {
                 // 1. проверка наличия дубликатов в словаре
-                if (DicQuery["country"].Contains(node))
-                {
-                    return;
-                }
+                //if (DicQuery["country"].Contains(node))
+                //{
+                //    return;
+                //}
                 // 2. проверка наличие родителей в словаре
                 Areas objectID = Areas.FindbyID(ars, node.Substring(node.LastIndexOf('=') + 1));
 
                 if (objectID != null)
-                { 
+                {
                     if (objectID.parent_id != null)
                     {
                         string parent = "&area=" + objectID.parent_id;
@@ -209,7 +204,7 @@ namespace JobAnalyzer
                             DicQuery["country"].Remove(parent);
 
                         deleteParent(parent);
-                    }       
+                    }
                 }
             }
             catch (Exception ex) { MessageBox.Show("Выполняется метод: checkArea3. /nОшибка:/n" + ex.Message); }
@@ -221,9 +216,17 @@ namespace JobAnalyzer
         {
             string nodeID = node.Substring(node.LastIndexOf('=') + 1);   // 113
 
-            for (int i = 0; i < DicQuery["country"].Count; i++)
+           // List<string> ss = new List<string>();
+
+            string[] arr = new string[] { };
+
+            DicQuery["country"].CopyTo(arr);
+
+
+            // for (int i = 0; i < DicQuery["country"].Count; i++)
+            for (int i = 0; i < arr.Count(); i++)
             {
-                string count = DicQuery["country"][i];
+                string count = arr[i];
                 string count_number = count.Substring(count.LastIndexOf('=') + 1);   // 113
 
                 List<string> listParent = new List<string>();
