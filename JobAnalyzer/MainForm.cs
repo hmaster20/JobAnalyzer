@@ -35,13 +35,6 @@ namespace JobAnalyzer
 
         }
 
-        private void btnQuery_Click(object sender, EventArgs e)
-        {
-            //string vac = "19291539";
-            //getVacancy.GetVacancy(vac);
-
-            //getVacancy.FindAllVacancies("C%23");
-        }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
@@ -56,6 +49,7 @@ namespace JobAnalyzer
 
                 if (_vacancyCollection.VacancyList.Count > 0) RefreshTable();
             }
+            LoadCountry();
         }
 
         private void RefreshTable()    // Обновление таблицы путем фильтрации элементов по полю Path
@@ -87,17 +81,33 @@ namespace JobAnalyzer
         private void btnRefreshCountry_Click(object sender, EventArgs e)
         {
             btnRefreshCountry.Enabled = false;
-            cbCountry.Items.AddRange(getVacancy.GetCountry().ToArray());    // List<Area> 
+            LoadCountry();
             btnRefreshCountry.Enabled = true;
+        }
+
+        private void LoadCountry()
+        {
+            try
+            {
+                cbCountry.Items.Clear();
+                List<Area> ListArea = getVacancy.GetCountry();
+                ListArea.Sort(Area.CompareByName);
+                cbCountry.Items.AddRange(ListArea.ToArray());
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         // Получить периоды
         private void btnRefreshPeriod_Click(object sender, EventArgs e)
         {
             btnRefreshPeriod.Enabled = false;
-
-            cbGrafik.Items.AddRange(getVacancy.GetGrafik().schedule);    // []Schedule        
-
+            cbGrafik.Items.Clear();
+            cbGrafik.Items.AddRange(getVacancy.GetGrafik().schedule);    // []Schedule
             btnRefreshPeriod.Enabled = true;
         }
 
@@ -164,7 +174,6 @@ namespace JobAnalyzer
         }
         #endregion
 
-
         private void cbCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Получить список регионов
@@ -181,6 +190,7 @@ namespace JobAnalyzer
             }
 
             ars = getVacancy.GetRegions(_country.id.ToString());
+            treeView1.Nodes.Clear();
             TreeViewDeveloper(ars);
         }
 
@@ -188,7 +198,6 @@ namespace JobAnalyzer
         {
             SelectRegion(e.Node.Text);
         }
-
 
         // Выбор региона
         private void SelectRegion(string nodeName)
@@ -209,9 +218,9 @@ namespace JobAnalyzer
                     }
                     else
                     {
-                        if (_regionA.parent_id == null) // если нет родителя (parent_id), значит это страна
+                        if (_regionA.parent_id == null)     // если нет родителя (parent_id), значит это страна
                         {
-                            if (!DicQuery["country"].Contains(region))   // если &area=113 не существует, то добавить
+                            if (!DicQuery["country"].Contains(region))  // если &area=113 не существует, то добавить
                             {
                                 deleteParent(region);
                                 deleteChild(region);
@@ -222,9 +231,10 @@ namespace JobAnalyzer
                             {   // даже если он есть удаляем все лишнее
                                 deleteParent(region);
                                 deleteChild(region);
+                                DicQuery["country"].Add(region);// проверка чтобы удаленный объект возвращался на место
                                 return;
                             }
-                        } // есть родитель, запуск поиска
+                        }       // есть родитель, запуск поиска
                         else
                         {
                             deleteParent(region);
@@ -245,12 +255,6 @@ namespace JobAnalyzer
         {
             try
             {
-                // 1. проверка наличия дубликатов в словаре
-                //if (DicQuery["country"].Contains(node))
-                //{
-                //    return;
-                //}
-                // 2. проверка наличие родителей в словаре
                 Areas objectID = Areas.FindbyID(ars, node.Substring(node.LastIndexOf('=') + 1));
 
                 if (objectID != null)
@@ -343,9 +347,13 @@ namespace JobAnalyzer
                             tbQuery.Text += _listElement;
                         }
                     }
-
                 }
             }
+        }
+
+        private void btnQuery_Click(object sender, EventArgs e)
+        {
+            getVacancy.FindAllVacancies(tbQuery.Text);
         }
 
         // сброс
@@ -357,5 +365,17 @@ namespace JobAnalyzer
         }
 
 
+        private void btnVac_Click(object sender, EventArgs e)
+        {
+            //string vac = "19291539";
+            //getVacancy.GetVacancy(vac);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string dd = tbQuery.Text;
+            MessageBox.Show(System.Uri.EscapeDataString(dd));
+            
+        }
     }
 }
