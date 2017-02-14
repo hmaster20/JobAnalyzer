@@ -16,7 +16,7 @@ namespace JobAnalyzer
             _VacancySearchCollection = new VacancyCollection();
         }
 
-        public string FindAllVacancies(string text, string area, string period)
+        public string FindAllVacancies(string query)
         {
             //https://krasnodar.hh.ru/search/vacancy
             /*
@@ -40,9 +40,10 @@ namespace JobAnalyzer
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.
                 Create("https://api.hh.ru/vacancies"
-                + text      //+ "?text=" + text
-                + area      //+ "&area=" + area
-                + period    // + "&search_period=" + period
+                + query
+                //+ "?text=" + text
+                //+ "&area=" + area
+                //+ "&search_period=" + period
                  + "&search_field=name");
 
             request.Method = "GET";
