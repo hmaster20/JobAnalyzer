@@ -53,33 +53,38 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnRefreshPeriod = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnVac = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnQuery
             // 
-            this.btnQuery.Location = new System.Drawing.Point(1110, 459);
+            this.btnQuery.Location = new System.Drawing.Point(1053, 459);
             this.btnQuery.Name = "btnQuery";
-            this.btnQuery.Size = new System.Drawing.Size(75, 23);
+            this.btnQuery.Size = new System.Drawing.Size(132, 23);
             this.btnQuery.TabIndex = 0;
-            this.btnQuery.Text = "Запрос";
+            this.btnQuery.Text = "Выполнить запрос";
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
             // dgvTable
             // 
+            this.dgvTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTable.Location = new System.Drawing.Point(17, 33);
             this.dgvTable.Name = "dgvTable";
-            this.dgvTable.Size = new System.Drawing.Size(227, 379);
+            this.dgvTable.Size = new System.Drawing.Size(762, 532);
             this.dgvTable.TabIndex = 1;
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(1110, 485);
+            this.btnLoad.Location = new System.Drawing.Point(1110, 488);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(75, 23);
             this.btnLoad.TabIndex = 2;
@@ -152,6 +157,7 @@
             // 
             // tbTextForQuery
             // 
+            this.tbTextForQuery.BackColor = System.Drawing.SystemColors.Control;
             this.tbTextForQuery.Location = new System.Drawing.Point(788, 310);
             this.tbTextForQuery.Name = "tbTextForQuery";
             this.tbTextForQuery.Size = new System.Drawing.Size(367, 20);
@@ -169,6 +175,7 @@
             // 
             // treeView1
             // 
+            this.treeView1.BackColor = System.Drawing.SystemColors.Control;
             this.treeView1.Location = new System.Drawing.Point(789, 61);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(366, 187);
@@ -204,7 +211,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(790, 380);
+            this.btnReset.Location = new System.Drawing.Point(1053, 488);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(51, 23);
             this.btnReset.TabIndex = 13;
@@ -216,6 +223,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -225,6 +233,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.dgvTable);
             this.tabPage1.Controls.Add(this.btnReset);
             this.tabPage1.Controls.Add(this.cbPeriod);
@@ -249,7 +259,6 @@
             this.tabPage1.Size = new System.Drawing.Size(1213, 591);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // cbPeriod
             // 
@@ -313,6 +322,36 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btnVac);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1213, 591);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnVac
+            // 
+            this.btnVac.Location = new System.Drawing.Point(47, 76);
+            this.btnVac.Name = "btnVac";
+            this.btnVac.Size = new System.Drawing.Size(75, 23);
+            this.btnVac.TabIndex = 0;
+            this.btnVac.Text = "button1";
+            this.btnVac.UseVisualStyleBackColor = true;
+            this.btnVac.Click += new System.EventHandler(this.btnVac_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(870, 482);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,6 +367,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -359,6 +399,9 @@
         private System.Windows.Forms.Button btnRefreshPeriod;
         private System.Windows.Forms.ComboBox cbPeriod;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btnVac;
+        private System.Windows.Forms.Button button1;
     }
 }
 
