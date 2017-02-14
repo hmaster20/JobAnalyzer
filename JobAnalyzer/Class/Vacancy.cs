@@ -121,6 +121,11 @@ namespace JobAnalyzer
         {
             return name;
         }
+
+        public static int CompareByName(Area a, Area b)
+        {
+            return string.Compare(a.name, b.name);
+        }
     }
 
     /// <summary>Дерево всех регионов</summary>
@@ -157,7 +162,7 @@ namespace JobAnalyzer
 
             return null;
         }
-                
+
         public static Areas FindbyID(Areas node, string id)   // Рекурсивный поиск
         {
             if (node == null)
