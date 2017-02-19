@@ -55,7 +55,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnVac = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -157,7 +156,7 @@
             // 
             // tbTextForQuery
             // 
-            this.tbTextForQuery.BackColor = System.Drawing.SystemColors.Control;
+            this.tbTextForQuery.BackColor = System.Drawing.SystemColors.Window;
             this.tbTextForQuery.Location = new System.Drawing.Point(788, 310);
             this.tbTextForQuery.Name = "tbTextForQuery";
             this.tbTextForQuery.Size = new System.Drawing.Size(367, 20);
@@ -175,7 +174,7 @@
             // 
             // treeView1
             // 
-            this.treeView1.BackColor = System.Drawing.SystemColors.Control;
+            this.treeView1.BackColor = System.Drawing.SystemColors.Window;
             this.treeView1.Location = new System.Drawing.Point(789, 61);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(366, 187);
@@ -234,7 +233,6 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.dgvTable);
             this.tabPage1.Controls.Add(this.btnReset);
             this.tabPage1.Controls.Add(this.cbPeriod);
@@ -258,7 +256,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1213, 591);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Форма запроса";
             // 
             // cbPeriod
             // 
@@ -319,7 +317,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1213, 591);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Форма анализа";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
@@ -329,7 +327,7 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1213, 591);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.Text = "Форма отчета";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // btnVac
@@ -341,16 +339,6 @@
             this.btnVac.Text = "button1";
             this.btnVac.UseVisualStyleBackColor = true;
             this.btnVac.Click += new System.EventHandler(this.btnVac_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(870, 482);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -401,7 +389,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btnVac;
-        private System.Windows.Forms.Button button1;
     }
 }
 

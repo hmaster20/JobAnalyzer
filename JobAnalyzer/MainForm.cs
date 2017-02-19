@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Net;
 
 namespace JobAnalyzer
 {
@@ -334,7 +335,8 @@ namespace JobAnalyzer
         private void btnCheckTextQuery_Click(object sender, EventArgs e)
         {
             tbQuery.Text = "";
-            tbQuery.Text += ("?text=" + tbTextForQuery.Text);
+
+            tbQuery.Text += ("?text=" + System.Uri.EscapeDataString(tbTextForQuery.Text));  // преобразовываем строку в формат URL
 
             if (DicQuery != null && DicQuery.Keys.Count > 0)
             {
@@ -371,11 +373,5 @@ namespace JobAnalyzer
             //getVacancy.GetVacancy(vac);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string dd = tbQuery.Text;
-            MessageBox.Show(System.Uri.EscapeDataString(dd));
-            
-        }
     }
 }
