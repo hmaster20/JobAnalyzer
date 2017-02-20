@@ -93,12 +93,13 @@
             // 
             // btnAnalyze
             // 
-            this.btnAnalyze.Location = new System.Drawing.Point(147, 62);
+            this.btnAnalyze.Location = new System.Drawing.Point(20, 189);
             this.btnAnalyze.Name = "btnAnalyze";
-            this.btnAnalyze.Size = new System.Drawing.Size(75, 23);
+            this.btnAnalyze.Size = new System.Drawing.Size(120, 23);
             this.btnAnalyze.TabIndex = 3;
-            this.btnAnalyze.Text = "Анализ";
+            this.btnAnalyze.Text = "Выполнить анализ";
             this.btnAnalyze.UseVisualStyleBackColor = true;
+            this.btnAnalyze.Click += new System.EventHandler(this.btnAnalyze_Click);
             // 
             // btnAddKeyforAnalyze
             // 

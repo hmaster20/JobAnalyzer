@@ -4,6 +4,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Text;
 
 namespace JobAnalyzer
 {
@@ -155,6 +156,8 @@ namespace JobAnalyzer
             request.ContentType = "application/json";
             request.UserAgent = "JobAnalyzer - .NET Framework Client";
 
+            //Encoding.Convert(Encoding.Unicode, Encoding.UTF8,)
+
             try
             {
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -262,7 +265,7 @@ namespace JobAnalyzer
             catch (System.Security.SecurityException exc) { MessageBox.Show("Исключение в связи с нарушением безопасности: " + exc.Message); }
             catch (InvalidOperationException exc) { MessageBox.Show("Недопустимая операция: " + exc.Message); }
 
-            return CollectVac;
+              return CollectVac;
         }
     }
 }

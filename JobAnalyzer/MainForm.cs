@@ -17,7 +17,8 @@ namespace JobAnalyzer
         VacancyCollection _vacancyCollection;
         Areas ars;
 
-        Dictionary<string, List<string>> DicQuery;
+        /// <summary>Словарь для построения запроса</summary>
+        Dictionary<string, List<string>> DicQuery { get; set; }
 
         public MainForm()
         {
@@ -373,5 +374,9 @@ namespace JobAnalyzer
             //getVacancy.GetVacancy(vac);
         }
 
+        private void btnAnalyze_Click(object sender, EventArgs e)
+        {
+            _vacancyCollection.DicKey
+        }
     }
 }
