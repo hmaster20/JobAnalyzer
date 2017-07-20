@@ -17,7 +17,7 @@ namespace JobAnalyzer
             _VacancySearchCollection = new VacancyCollection();
         }
 
-        public string FindAllVacancies(string query)
+        public object FindAllVacancies(string query)
         {
             //https://krasnodar.hh.ru/search/vacancy
             /*
@@ -39,14 +39,7 @@ namespace JobAnalyzer
              * &no_magic=true     
              */
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.
-                Create("https://api.hh.ru/vacancies"
-                + query
-                //+ "?text=" + text
-                //+ "&area=" + area
-                //+ "&search_period=" + period
-                 + "&search_field=name");
-
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/vacancies" + query + "&search_field=name");
             request.Method = "GET";
             request.Accept = "application/json";
             request.ContentType = "application/json";
@@ -67,8 +60,6 @@ namespace JobAnalyzer
                             _VacancySearchCollection.Add(item);
                         }
                         _VacancySearchCollection.Save();
-
-                        // parsing
                     }
                 }
             }
@@ -108,8 +99,6 @@ namespace JobAnalyzer
                         if ((line = stream.ReadLine()) != null)
                         {
                             Vacancy translation = JsonConvert.DeserializeObject<Vacancy>(line);
-
-                            // parsing
                         }
                     }
                 }
@@ -157,6 +146,9 @@ namespace JobAnalyzer
             request.UserAgent = "JobAnalyzer - .NET Framework Client";
 
             //Encoding.Convert(Encoding.Unicode, Encoding.UTF8,)
+            //s = Encoding.Unicode.GetString(Encoding.Unicode.GetBytes(s));
+            //Где s – это нужная строка.
+            //Вместо Unicode можно также выбирать: ASCII, UTF32, UTF7, UTF8 и Default.
 
             try
             {
@@ -228,12 +220,12 @@ namespace JobAnalyzer
 
             return ar;
         }
-        
+
 
 
         public Areas GetRegions(string coderRegion)
         {
-            Areas CollectVac = new Areas(); 
+            Areas CollectVac = new Areas();
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/areas/" + coderRegion);
             request.Method = "GET";
@@ -249,7 +241,7 @@ namespace JobAnalyzer
                     string line;
                     if ((line = stream.ReadLine()) != null)
                     {
-                       CollectVac = JsonConvert.DeserializeObject<Areas>(line);
+                        CollectVac = JsonConvert.DeserializeObject<Areas>(line);
                     }
                 }
             }
@@ -265,7 +257,7 @@ namespace JobAnalyzer
             catch (System.Security.SecurityException exc) { MessageBox.Show("Исключение в связи с нарушением безопасности: " + exc.Message); }
             catch (InvalidOperationException exc) { MessageBox.Show("Недопустимая операция: " + exc.Message); }
 
-              return CollectVac;
+            return CollectVac;
         }
     }
 }

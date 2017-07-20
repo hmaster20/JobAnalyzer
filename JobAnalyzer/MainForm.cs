@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
+using System.Diagnostics;
 
 namespace JobAnalyzer
 {
@@ -35,6 +36,16 @@ namespace JobAnalyzer
                 cbPeriod.Items.Add(i);
             }
 
+            Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            Debug.AutoFlush = true;
+            Debug.Indent();
+            Debug.WriteLine("Entering Main");
+            Console.WriteLine("Hello World.");
+            Debug.WriteLine("Exiting Main");
+            Debug.Unindent();
+
+            System.Diagnostics.Trace.WriteLine("Trace - Hello World!");
+            System.Diagnostics.Debug.WriteLine("Debug - Hello World!");
         }
 
 
@@ -376,7 +387,8 @@ namespace JobAnalyzer
 
         private void btnAnalyze_Click(object sender, EventArgs e)
         {
-            _vacancyCollection.DicKey
+
+            //  _vacancyCollection.DicKey
         }
     }
 }
