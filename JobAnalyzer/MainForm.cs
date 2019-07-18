@@ -31,8 +31,8 @@ namespace JobAnalyzer
                 cbPeriod.Items.Add(i);
             }
 
-            Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
-            Debug.AutoFlush = true;
+            //Debug.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            //Debug.AutoFlush = true;
             Debug.Indent();
             Debug.WriteLine("Entering Main");
             Console.WriteLine("Hello World.");
@@ -41,6 +41,9 @@ namespace JobAnalyzer
 
             System.Diagnostics.Trace.WriteLine("Trace - Hello World!");
             System.Diagnostics.Debug.WriteLine("Debug - Hello World!");
+
+
+            tbQuery.Text = Properties.Settings.Default.LastRequest;
         }
 
 
@@ -353,7 +356,7 @@ namespace JobAnalyzer
             }
         }
 
-        
+
         private string getQueryText()
         {
             return tbQuery.Text;
@@ -368,6 +371,12 @@ namespace JobAnalyzer
         private void btnCheckTextQuery_Click(object sender, EventArgs e)
         {
             string query = "";
+
+            //string WordSearch = "";
+            //if (!string.IsNullOrWhiteSpace(System.Uri.EscapeDataString(tbTextForQuery.Text)))
+            //{
+            //    WordSearch = System.Uri.EscapeDataString(tbTextForQuery.Text);
+            //}
 
             query += ("?text=" + System.Uri.EscapeDataString(tbTextForQuery.Text));  // преобразовываем строку в формат URL
 
@@ -385,11 +394,30 @@ namespace JobAnalyzer
                 }
             }
             setQueryText(query);
+
+            SaveAppConfig();
         }
+
+        private void SaveAppConfig()
+        {
+            string Query = tbQuery.Text;
+
+            // 100% рабочий вариант
+            //Properties.Settings.Default.LastRequest = Query;
+            //Properties.Settings.Default.Save();
+            //Properties.Settings.Default.Upgrade();
+            //MessageBox.Show("Saved Settings: " + Query);
+            //Application.Restart();
+
+            Properties.Settings.Default.LastRequest = Query;
+            Properties.Settings.Default.Save();
+        }
+
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
-            getVacancy.FindAllVacancies(tbQuery.Text);
+            string Query = tbQuery.Text;
+            getVacancy.FindAllVacancies(Query);
         }
 
         // сброс
@@ -420,7 +448,7 @@ namespace JobAnalyzer
             List<Specs> ListSpecs = getVacancy.GetSpecs();
             ListSpecs.Sort(Specs.CompareByName);
             cbSpecs.Items.AddRange(ListSpecs.ToArray());
-            btnCheckSpecs.Enabled = true;           
+            btnCheckSpecs.Enabled = true;
         }
     }
 }
