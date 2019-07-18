@@ -353,8 +353,7 @@ namespace JobAnalyzer
             }
         }
 
-
-
+        
         private string getQueryText()
         {
             return tbQuery.Text;
@@ -418,19 +417,10 @@ namespace JobAnalyzer
         {
             btnCheckSpecs.Enabled = false;
             cbSpecs.Items.Clear();
-
-            //cbCountry.Items.Clear();
-            //List<Area> ListArea = getVacancy.GetCountry();
-            //ListArea.Sort(Area.CompareByName);
-            //cbCountry.Items.AddRange(ListArea.ToArray());
-
             List<Specs> ListSpecs = getVacancy.GetSpecs();
             ListSpecs.Sort(Specs.CompareByName);
-
             cbSpecs.Items.AddRange(ListSpecs.ToArray());
             btnCheckSpecs.Enabled = true;           
         }
-
-
     }
 }
