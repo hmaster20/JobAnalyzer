@@ -110,6 +110,29 @@ namespace JobAnalyzer
         public string name { get; set; }
     }
 
+
+    /// <summary>Профессиональная область</summary>
+    public class Specs
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public List<Specialization> specializations { get; set; }
+
+        public override string ToString()
+        {
+            return name;
+        }
+    }
+
+    /// <summary>Профессиональная область - Специализация</summary>
+    public class Specialization
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public bool laboring { get; set; }
+    }
+
+
     /// <summary>Регион (Страны)</summary>
     public class Area
     {
