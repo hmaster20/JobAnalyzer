@@ -122,6 +122,11 @@ namespace JobAnalyzer
         {
             return name;
         }
+
+        internal static int CompareByName(Specs a, Specs b)
+        {
+            return string.Compare(a.name, b.name);
+        }
     }
 
     /// <summary>Профессиональная область - Специализация</summary>
