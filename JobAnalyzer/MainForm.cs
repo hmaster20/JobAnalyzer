@@ -127,37 +127,51 @@ namespace JobAnalyzer
                 _period = (Schedule)cbGrafik.SelectedItem;
             }
 
-            string gr = "&schedule=" + _period.id;
-
-            if (!DicQuery.ContainsKey("grafik"))// проверяем создан ли ключ
-            {
-                DicQuery.Add("grafik", new List<string>());
-                DicQuery["grafik"].Add(gr);
-                return;
-            }
-            else
-            {
-                DicQuery["grafik"].Clear();
-                DicQuery["grafik"].Add(gr);
-            }
+            string key = "grafik";
+            string par = "&schedule=" + _period.id;
+            SetRequestParam(key, par);
         }
+
 
         private void cbPeriod_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string pr = "&search_period=" + cbPeriod.SelectedItem.ToString();
+            string key = "period";
+            string par = "&search_period=" + cbPeriod.SelectedItem.ToString();
+            SetRequestParam(key, par);
+        }
 
-            if (!DicQuery.ContainsKey("period"))// проверяем создан ли ключ
+        private void cbSpecs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Specs _spec = new Specs();
+            if (cbSpecs.SelectedItem is Specs)
             {
-                DicQuery.Add("period", new List<string>());
-                DicQuery["period"].Add(pr);
+                _spec = (Specs)cbSpecs.SelectedItem;
+            }
+
+            string key = "specs";
+            string par = "&specialization=" + _spec.id;
+            SetRequestParam(key, par);
+        }
+
+        /// <summary>Корректировка словаря параметров запросов</summary>
+        /// <param name="key">ключ</param>
+        /// <param name="par">URL значение</param>
+        private void SetRequestParam(string key, string par)
+        {
+            if (!DicQuery.ContainsKey(key)) // проверяем создан ли ключ
+            {
+                DicQuery.Add(key, new List<string>());
+                DicQuery[key].Add(par);
                 return;
             }
             else
             {
-                DicQuery["period"].Clear();
-                DicQuery["period"].Add(pr);
+                DicQuery[key].Clear();
+                DicQuery[key].Add(par);
             }
         }
+
+
 
         #region Постройка дерева
         void TreeViewDeveloper(Areas _areas)
@@ -399,5 +413,24 @@ namespace JobAnalyzer
 
             //  _vacancyCollection.DicKey
         }
+
+        private void btnCheckSpecs_Click(object sender, EventArgs e)
+        {
+            btnCheckSpecs.Enabled = false;
+            cbSpecs.Items.Clear();
+
+            //cbCountry.Items.Clear();
+            //List<Area> ListArea = getVacancy.GetCountry();
+            //ListArea.Sort(Area.CompareByName);
+            //cbCountry.Items.AddRange(ListArea.ToArray());
+
+            List<Specs> ListSpecs = getVacancy.GetSpecs();
+            ListSpecs.Sort(Specs.CompareByName);
+
+            cbSpecs.Items.AddRange(ListSpecs.ToArray());
+            btnCheckSpecs.Enabled = true;           
+        }
+
+
     }
 }
