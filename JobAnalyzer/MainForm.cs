@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Net;
-using System.Diagnostics;
 
 namespace JobAnalyzer
 {
@@ -233,20 +228,26 @@ namespace JobAnalyzer
                     {
                         if (_regionA.parent_id == null)     // если нет родителя (parent_id), значит это страна
                         {
-                            if (!DicQuery["country"].Contains(region))  // если &area=113 не существует, то добавить
-                            {
-                                deleteParent(region);
-                                deleteChild(region);
-                                DicQuery["country"].Add(region);
-                                return;
-                            }
-                            else
-                            {   // даже если он есть удаляем все лишнее
-                                deleteParent(region);
-                                deleteChild(region);
-                                DicQuery["country"].Add(region);// проверка чтобы удаленный объект возвращался на место
-                                return;
-                            }
+                            //if (!DicQuery["country"].Contains(region))  // если &area=113 не существует, то добавить
+                            //{
+                            //    deleteParent(region);
+                            //    deleteChild(region);
+                            //    DicQuery["country"].Add(region);
+                            //    return;
+                            //}
+                            //else
+                            //{   // даже если он есть удаляем все лишнее
+                            //    deleteParent(region);
+                            //    deleteChild(region);
+                            //    DicQuery["country"].Add(region);// проверка чтобы удаленный объект возвращался на место
+                            //    return;
+                            //}
+
+                            deleteParent(region);
+                            deleteChild(region);
+                            DicQuery["country"].Add(region);
+                            return;
+
                         }       // есть родитель, запуск поиска
                         else
                         {
