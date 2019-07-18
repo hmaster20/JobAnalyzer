@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using Newtonsoft.Json;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JobAnalyzer
 {
@@ -80,47 +79,6 @@ namespace JobAnalyzer
         }
 
 
-        public string GetVacancy(string vac)
-        {
-            if (vac.Length > 0)
-            {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.
-                    Create("https://api.hh.ru/vacancies/" + vac);
-                request.Method = "GET";
-                request.Accept = "application/json";
-                request.ContentType = "application/json";
-                request.UserAgent = "JobAnalyzer - .NET Framework Client";
-
-                try
-                {
-                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                    using (StreamReader stream = new StreamReader(response.GetResponseStream()))
-                    {
-                        string line;
-                        if ((line = stream.ReadLine()) != null)
-                        {
-                            Vacancy translation = JsonConvert.DeserializeObject<Vacancy>(line);
-                        }
-                    }
-                }
-                catch (WebException exc)
-                {
-                    GetErrorDesciption(exc);
-                    MessageBox.Show("Сетевая ошибка: " + exc.Message + "\nКод состояния: " + exc.Status);
-                }
-                catch (ProtocolViolationException exc) { MessageBox.Show("Протокольная ошибка: " + exc.Message); }
-                catch (UriFormatException exc) { MessageBox.Show("Ошибка формата URI: " + exc.Message); }
-                catch (NotSupportedException exc) { MessageBox.Show("Неизвестный протокол: " + exc.Message); }
-                catch (IOException exc) { MessageBox.Show("Ошибка ввода-вывода: " + exc.Message); }
-                catch (System.Security.SecurityException exc) { MessageBox.Show("Исключение в связи с нарушением безопасности: " + exc.Message); }
-                catch (InvalidOperationException exc) { MessageBox.Show("Недопустимая операция: " + exc.Message); }
-
-                return vac;
-            }
-            else
-                return "";
-        }
-
         private static void GetErrorDesciption(WebException exc)
         {
             using (StreamReader stream = new StreamReader(exc.Response.GetResponseStream()))
@@ -132,52 +90,6 @@ namespace JobAnalyzer
                 }
             }
         }
-
-
-
-
-        public Grafik GetGrafik()
-        {
-            Grafik CollectVac = new Grafik();
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/dictionaries");
-            request.Method = "GET";
-            request.Accept = "application/json";
-            request.ContentType = "application/json";
-            request.UserAgent = "JobAnalyzer - .NET Framework Client";
-
-            //Encoding.Convert(Encoding.Unicode, Encoding.UTF8,)
-            //s = Encoding.Unicode.GetString(Encoding.Unicode.GetBytes(s));
-            //Где s – это нужная строка.
-            //Вместо Unicode можно также выбирать: ASCII, UTF32, UTF7, UTF8 и Default.
-
-            try
-            {
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                using (StreamReader stream = new StreamReader(response.GetResponseStream()))
-                {
-                    string line;
-                    if ((line = stream.ReadLine()) != null)
-                    {
-                        CollectVac = JsonConvert.DeserializeObject<Grafik>(line);
-                    }
-                }
-            }
-            catch (WebException exc)
-            {
-                GetErrorDesciption(exc);
-                MessageBox.Show("Сетевая ошибка: " + exc.Message + "\nКод состояния: " + exc.Status);
-            }
-            catch (ProtocolViolationException exc) { MessageBox.Show("Протокольная ошибка: " + exc.Message); }
-            catch (UriFormatException exc) { MessageBox.Show("Ошибка формата URI: " + exc.Message); }
-            catch (NotSupportedException exc) { MessageBox.Show("Неизвестный протокол: " + exc.Message); }
-            catch (IOException exc) { MessageBox.Show("Ошибка ввода-вывода: " + exc.Message); }
-            catch (System.Security.SecurityException exc) { MessageBox.Show("Исключение в связи с нарушением безопасности: " + exc.Message); }
-            catch (InvalidOperationException exc) { MessageBox.Show("Недопустимая операция: " + exc.Message); }
-
-            return CollectVac;
-        }
-
 
 
         public List<Area> GetCountry()
@@ -224,11 +136,77 @@ namespace JobAnalyzer
 
 
 
+
+
+
+
+
+
+
+
+
+
+        public string GetVacancy(string vac)
+        {
+            if (vac.Length > 0)
+            {
+                string source = GetSource("https://api.hh.ru/vacancies/" + vac);
+
+                Vacancy translation = new Vacancy();
+                if (!string.IsNullOrWhiteSpace(source))
+                {
+                    translation = JsonConvert.DeserializeObject<Vacancy>(source);
+                }
+
+                return vac;
+            }
+            else
+                return "";
+        }
+
+        public Grafik GetGrafik()
+        {
+            string source = GetSource("https://api.hh.ru/dictionaries");
+
+            Grafik CollectVac = new Grafik();
+            if (!string.IsNullOrWhiteSpace(source))
+            {
+                CollectVac = JsonConvert.DeserializeObject<Grafik>(source);
+            }
+            return CollectVac;
+        }
+
         public Areas GetRegions(string coderRegion)
         {
-            Areas CollectVac = new Areas();
+            string source = GetSource("https://api.hh.ru/areas/" + coderRegion);
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/areas/" + coderRegion);
+            Areas CollectVac = new Areas();
+            if (!string.IsNullOrWhiteSpace(source))
+            {
+                CollectVac = JsonConvert.DeserializeObject<Areas>(source);
+            }
+            return CollectVac;
+        }
+
+
+        public List<Specs> GetSpecs()
+        {
+            string source = GetSource("https://api.hh.ru/specializations");
+
+            List<Specs> CollectSpecs = new List<Specs>();
+            if (!string.IsNullOrWhiteSpace(source))
+            {
+                CollectSpecs = JsonConvert.DeserializeObject<List<Specs>>(source);
+            }
+            return CollectSpecs;
+        }
+
+
+        public string GetSource(string url)
+        {
+            string line = "";
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
             request.Accept = "application/json";
             request.ContentType = "application/json";
@@ -239,11 +217,7 @@ namespace JobAnalyzer
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 using (StreamReader stream = new StreamReader(response.GetResponseStream()))
                 {
-                    string line;
-                    if ((line = stream.ReadLine()) != null)
-                    {
-                        CollectVac = JsonConvert.DeserializeObject<Areas>(line);
-                    }
+                    line = stream.ReadLine();
                 }
             }
             catch (WebException exc)
@@ -254,12 +228,20 @@ namespace JobAnalyzer
             catch (ProtocolViolationException exc) { MessageBox.Show("Протокольная ошибка: " + exc.Message); }
             catch (UriFormatException exc) { MessageBox.Show("Ошибка формата URI: " + exc.Message); }
             catch (NotSupportedException exc) { MessageBox.Show("Неизвестный протокол: " + exc.Message); }
-            catch (IOException exc) { MessageBox.Show("Ошибка ввода-вывода: " + exc.Message); }
+            //catch (IOException exc) { MessageBox.Show("Ошибка ввода-вывода: " + exc.Message); }
             catch (System.Security.SecurityException exc) { MessageBox.Show("Исключение в связи с нарушением безопасности: " + exc.Message); }
             catch (InvalidOperationException exc) { MessageBox.Show("Недопустимая операция: " + exc.Message); }
 
-            return CollectVac;
+            return line;
         }
+
+
+
+
+
+
+
+
     }
 }
 
