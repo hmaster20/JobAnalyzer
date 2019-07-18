@@ -1,22 +1,74 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobAnalyzer", "JobAnalyzer\JobAnalyzer.csproj", "{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cloud_Base", "Cloud_tags\Base\Cloud_Base.csproj", "{90433045-C7A0-4163-8B05-6989FDAEE95E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cloud_Controls", "Cloud_tags\Controls\Cloud_Controls.csproj", "{34649D7D-04A9-4092-AD0B-F7022C123FD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cloud_tags", "Cloud_tags", "{AA7DEC7D-54E6-4E6A-9C46-16F2F5D503C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Debug|x86.Build.0 = Debug|Any CPU
 		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Release|x86.ActiveCfg = Release|Any CPU
+		{DE6C5F93-188D-4390-98AC-F1FA4AB02D87}.Release|x86.Build.0 = Release|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Debug|x86.Build.0 = Debug|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Release|x86.ActiveCfg = Release|Any CPU
+		{90433045-C7A0-4163-8B05-6989FDAEE95E}.Release|x86.Build.0 = Release|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Debug|x86.Build.0 = Debug|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Release|x86.ActiveCfg = Release|Any CPU
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{90433045-C7A0-4163-8B05-6989FDAEE95E} = {AA7DEC7D-54E6-4E6A-9C46-16F2F5D503C0}
+		{34649D7D-04A9-4092-AD0B-F7022C123FD7} = {AA7DEC7D-54E6-4E6A-9C46-16F2F5D503C0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1601B9A-5A18-4F9A-A5E0-147B04A9EE3B}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Gma.SourceCodeWordCloud.vsmdi
 	EndGlobalSection
 EndGlobal
