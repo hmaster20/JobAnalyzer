@@ -341,15 +341,22 @@ namespace JobAnalyzer
 
 
 
+        private string getQueryText()
+        {
+            return tbQuery.Text;
+        }
 
-
+        private void setQueryText(string query)
+        {
+            tbQuery.Text = query;
+        }
 
         // проверка строки запроса
         private void btnCheckTextQuery_Click(object sender, EventArgs e)
         {
-            tbQuery.Text = "";
+            string query = "";
 
-            tbQuery.Text += ("?text=" + System.Uri.EscapeDataString(tbTextForQuery.Text));  // преобразовываем строку в формат URL
+            query += ("?text=" + System.Uri.EscapeDataString(tbTextForQuery.Text));  // преобразовываем строку в формат URL
 
             if (DicQuery != null && DicQuery.Keys.Count > 0)
             {
@@ -359,11 +366,12 @@ namespace JobAnalyzer
                     {
                         foreach (var _listElement in DicQuery[_key])
                         {
-                            tbQuery.Text += _listElement;
+                            query += _listElement;
                         }
                     }
                 }
             }
+            setQueryText(query);
         }
 
         private void btnQuery_Click(object sender, EventArgs e)
