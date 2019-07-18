@@ -16,80 +16,138 @@ namespace JobAnalyzer
             _VacancySearchCollection = new VacancyCollection();
         }
 
-        public object FindAllVacancies(string query)
+        //public object FindAllVacancies(string query)
+        //{
+        //    //https://krasnodar.hh.ru/search/vacancy
+        //    /*
+        //     *?text=C%23                    //Ключевые слова
+        //     * &search_field=name           //Искать только = в названии вакансии
+        //     * &search_field=description    //Искать только = в описании вакансии
+        //     * &specialization=1            //Профессиональная область = Информационные технологии, интернет, телеком
+        //     * &area=1                      //Регион = Москва
+        //     * &area=2                      //Регион = Санкт-Петербург
+        //     * &area=53                     //Регион = Краснодар
+        //     * &area=1001                   //Регион = Другие страны
+        //     * &salary=                     //Уровень заработной платы
+        //     * &currency_code=RUR           //Тип валюты
+        //     * &only_with_salary=true       //Скрыть вакансии без указания зарплаты
+        //     * &experience=doesNotMatter    //Требуемый опыт работы
+        //     * &order_by=relevance          //Сортировать = По соответствию
+        //     * &search_period=              //Выводить = За месяц
+        //     * &search_period=1             //Выводить = За сутки
+        //     * &items_on_page=20            //Показывать на странице = 20 вакансий
+        //     * &no_magic=true     
+        //     */
+
+        //    string URL_Query = "https://api.hh.ru/vacancies" + query + "&search_field=name";
+
+        //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL_Query);
+        //    request.Method = "GET";
+        //    request.Accept = "application/json";
+        //    request.ContentType = "application/json";
+        //    request.UserAgent = "JobAnalyzer - .NET Framework Client";
+
+        //    try
+        //    {
+        //        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        //        using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+        //        {
+        //            //string line;
+        //            //if ((line = stream.ReadLine()) != null)
+        //            //{
+        //            //    Search CollectVac = JsonConvert.DeserializeObject<Search>(line);
+
+        //            //    foreach (var item in CollectVac.items)
+        //            //    {
+        //            //        _VacancySearchCollection.Add(item);
+        //            //    }
+        //            //    _VacancySearchCollection.Save();
+        //            //}
+
+        //            //List<Class.RootObject> VacRObj = new List<Class.RootObject>();
+
+        //            Class.RootObject VacRObj = new Class.RootObject();
+
+        //            string line;
+        //            if ((line = stream.ReadLine()) != null)
+        //            {
+        //                //VacRObj = JsonConvert.DeserializeObject<List<Class.RootObject>>(line);
+        //                VacRObj = JsonConvert.DeserializeObject<Class.RootObject>(line);
+        //            }
+
+        //        }
+        //    }
+        //    catch (WebException exc)
+        //    {
+        //        GetErrorDesciption(exc);
+        //        MessageBox.Show("Сетевая ошибка: " + exc.Message + "\nКод состояния: " + exc.Status);
+        //    }
+        //    catch (ProtocolViolationException exc) { MessageBox.Show("Протокольная ошибка: " + exc.Message); }
+        //    catch (UriFormatException exc) { MessageBox.Show("Ошибка формата URI: " + exc.Message); }
+        //    catch (NotSupportedException exc) { MessageBox.Show("Неизвестный протокол: " + exc.Message); }
+        //    catch (IOException exc) { MessageBox.Show("Ошибка ввода-вывода: " + exc.Message); }
+        //    catch (System.Security.SecurityException exc) { MessageBox.Show("Исключение в связи с нарушением безопасности: " + exc.Message); }
+        //    catch (InvalidOperationException exc) { MessageBox.Show("Недопустимая операция: " + exc.Message); }
+
+        //    return "";
+        //}
+
+
+
+        //https://msdn.microsoft.com/ru-ru/library/456dfw4f(v=vs.110).aspx
+        //https://krasnodar.hh.ru/search/vacancy
+        /*
+         *?text=C%23                    //Ключевые слова
+         * &search_field=name           //Искать только = в названии вакансии
+         * &search_field=description    //Искать только = в описании вакансии
+         * &specialization=1            //Профессиональная область = Информационные технологии, интернет, телеком
+         * &area=1                      //Регион = Москва
+         * &area=2                      //Регион = Санкт-Петербург
+         * &area=53                     //Регион = Краснодар
+         * &area=1001                   //Регион = Другие страны
+         * &salary=                     //Уровень заработной платы
+         * &currency_code=RUR           //Тип валюты
+         * &only_with_salary=true       //Скрыть вакансии без указания зарплаты
+         * &experience=doesNotMatter    //Требуемый опыт работы
+         * &order_by=relevance          //Сортировать = По соответствию
+         * &search_period=              //Выводить = За месяц
+         * &search_period=1             //Выводить = За сутки
+         * &items_on_page=20            //Показывать на странице = 20 вакансий
+         * &no_magic=true     
+         */
+
+
+        public List<Class.Item> FindAllVacancies(string query)
         {
-            //https://krasnodar.hh.ru/search/vacancy
-            /*
-             *?text=C%23                    //Ключевые слова
-             * &search_field=name           //Искать только = в названии вакансии
-             * &search_field=description    //Искать только = в описании вакансии
-             * &specialization=1            //Профессиональная область = Информационные технологии, интернет, телеком
-             * &area=1                      //Регион = Москва
-             * &area=2                      //Регион = Санкт-Петербург
-             * &area=53                     //Регион = Краснодар
-             * &area=1001                   //Регион = Другие страны
-             * &salary=                     //Уровень заработной платы
-             * &currency_code=RUR           //Тип валюты
-             * &only_with_salary=true       //Скрыть вакансии без указания зарплаты
-             * &experience=doesNotMatter    //Требуемый опыт работы
-             * &order_by=relevance          //Сортировать = По соответствию
-             * &search_period=              //Выводить = За месяц
-             * &search_period=1             //Выводить = За сутки
-             * &items_on_page=20            //Показывать на странице = 20 вакансий
-             * &no_magic=true     
-             */
+            string URL = "https://api.hh.ru/vacancies" + query + "&search_field=name";
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.hh.ru/vacancies" + query + "&search_field=name");
-            request.Method = "GET";
-            request.Accept = "application/json";
-            request.ContentType = "application/json";
-            request.UserAgent = "JobAnalyzer - .NET Framework Client";
 
-            try
+            List<Class.Item> ListItems = new List<Class.Item>();
+            Class.RootObject VacRObj = new Class.RootObject();
+
+
+            int page_num = 0;
+            string source = GetSource(URL);
+            if (!string.IsNullOrWhiteSpace(source))
             {
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                using (StreamReader stream = new StreamReader(response.GetResponseStream()))
-                {
-                    string line;
-                    if ((line = stream.ReadLine()) != null)
+                VacRObj = JsonConvert.DeserializeObject<Class.RootObject>(source);
+                ListItems.AddRange(VacRObj.items);
+
+                if (VacRObj.pages > 0)
+                {  
+                    while (page_num < VacRObj.pages)
                     {
-                        Search CollectVac = JsonConvert.DeserializeObject<Search>(line);
-
-                        foreach (var item in CollectVac.items)
-                        {
-                            _VacancySearchCollection.Add(item);
-                        }
-                        _VacancySearchCollection.Save();
+                        page_num++;
+                        source = GetSource(URL + "&page=" + page_num);
+                        VacRObj = JsonConvert.DeserializeObject<Class.RootObject>(source);
+                        ListItems.AddRange(VacRObj.items);
                     }
-                }
+                }     
             }
-            catch (WebException exc)
-            {
-                GetErrorDesciption(exc);
-                MessageBox.Show("Сетевая ошибка: " + exc.Message + "\nКод состояния: " + exc.Status);
-            }
-            catch (ProtocolViolationException exc) { MessageBox.Show("Протокольная ошибка: " + exc.Message); }
-            catch (UriFormatException exc) { MessageBox.Show("Ошибка формата URI: " + exc.Message); }
-            catch (NotSupportedException exc) { MessageBox.Show("Неизвестный протокол: " + exc.Message); }
-            catch (IOException exc) { MessageBox.Show("Ошибка ввода-вывода: " + exc.Message); }
-            catch (System.Security.SecurityException exc) { MessageBox.Show("Исключение в связи с нарушением безопасности: " + exc.Message); }
-            catch (InvalidOperationException exc) { MessageBox.Show("Недопустимая операция: " + exc.Message); }
-
-            return "";
+            return ListItems;
         }
 
 
-        private static void GetErrorDesciption(WebException exc)
-        {
-            using (StreamReader stream = new StreamReader(exc.Response.GetResponseStream()))
-            {
-                string line;
-                if ((line = stream.ReadLine()) != null)
-                {
-                    Err translation = JsonConvert.DeserializeObject<Err>(line);
-                }
-            }
-        }
 
 
         public List<Area> GetCountry()
@@ -194,7 +252,17 @@ namespace JobAnalyzer
 
             return line;
         }
+
+        private static void GetErrorDesciption(WebException exc)
+        {
+            using (StreamReader stream = new StreamReader(exc.Response.GetResponseStream()))
+            {
+                string line;
+                if ((line = stream.ReadLine()) != null)
+                {
+                    Err translation = JsonConvert.DeserializeObject<Err>(line);
+                }
+            }
+        }
     }
 }
-
-//https://msdn.microsoft.com/ru-ru/library/456dfw4f(v=vs.110).aspx
