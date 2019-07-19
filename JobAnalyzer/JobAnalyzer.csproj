@@ -91,7 +91,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CustomBlacklist.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resource\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cloud_tags\Base\Cloud_Base.csproj">
+      <Project>{90433045-c7a0-4163-8b05-6989fdaee95e}</Project>
+      <Name>Cloud_Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cloud_tags\Controls\Cloud_Controls.csproj">
+      <Project>{34649d7d-04a9-4092-ad0b-f7022c123fd7}</Project>
+      <Name>Cloud_Controls</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

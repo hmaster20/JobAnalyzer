@@ -28,6 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.ToolStripLabel toolStripLabel3;
+            System.Windows.Forms.ToolStripLabel toolStripLabel5;
+            System.Windows.Forms.ToolStripLabel toolStripLabel1;
+            System.Windows.Forms.ToolStripLabel toolStripLabel2;
+            System.Windows.Forms.Splitter Splitter;
             this.btnQuery = new System.Windows.Forms.Button();
             this.dgvTable = new System.Windows.Forms.DataGridView();
             this.btnLoad = new System.Windows.Forms.Button();
@@ -47,23 +54,53 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnCheckSpecs = new System.Windows.Forms.Button();
+            this.cbSpecs = new System.Windows.Forms.ComboBox();
             this.cbPeriod = new System.Windows.Forms.ComboBox();
             this.cbGrafik = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnRefreshPeriod = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnVac = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.cbSpecs = new System.Windows.Forms.ComboBox();
-            this.btnCheckSpecs = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.hideAndBlackListMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.hideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComboBoxMaxFontSize = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBoxMinFontSize = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBoxFont = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBoxLayout = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ToolStripButtonEditBlacklist = new System.Windows.Forms.ToolStripButton();
+            this.toolStripComboBoxLanguage = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.ToolStripButtonCancel = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripButtonGo = new System.Windows.Forms.ToolStripButton();
+            this.MainToolStrip = new System.Windows.Forms.ToolStrip();
+            toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            Splitter = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.contextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.SuspendLayout();
+            this.MainToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnQuery
@@ -267,6 +304,26 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Форма запроса";
             // 
+            // btnCheckSpecs
+            // 
+            this.btnCheckSpecs.Image = global::JobAnalyzer.Properties.Resources.refresh;
+            this.btnCheckSpecs.Location = new System.Drawing.Point(1132, 312);
+            this.btnCheckSpecs.Name = "btnCheckSpecs";
+            this.btnCheckSpecs.Size = new System.Drawing.Size(24, 23);
+            this.btnCheckSpecs.TabIndex = 16;
+            this.btnCheckSpecs.UseVisualStyleBackColor = true;
+            this.btnCheckSpecs.Click += new System.EventHandler(this.btnCheckSpecs_Click);
+            // 
+            // cbSpecs
+            // 
+            this.cbSpecs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSpecs.FormattingEnabled = true;
+            this.cbSpecs.Location = new System.Drawing.Point(788, 314);
+            this.cbSpecs.Name = "cbSpecs";
+            this.cbSpecs.Size = new System.Drawing.Size(338, 21);
+            this.cbSpecs.TabIndex = 15;
+            this.cbSpecs.SelectedIndexChanged += new System.EventHandler(this.cbSpecs_SelectedIndexChanged);
+            // 
             // cbPeriod
             // 
             this.cbPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -295,6 +352,15 @@
             this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Период";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(786, 296);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(151, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Профессиональная область";
             // 
             // label4
             // 
@@ -352,46 +418,251 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.splitContainer1);
+            this.tabPage4.Controls.Add(this.MainToolStrip);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1213, 591);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Диаграмма";
             // 
-            // cbSpecs
+            // hideAndBlackListMenuItem
             // 
-            this.cbSpecs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSpecs.FormattingEnabled = true;
-            this.cbSpecs.Location = new System.Drawing.Point(788, 314);
-            this.cbSpecs.Name = "cbSpecs";
-            this.cbSpecs.Size = new System.Drawing.Size(338, 21);
-            this.cbSpecs.TabIndex = 15;
-            this.cbSpecs.SelectedIndexChanged += new System.EventHandler(this.cbSpecs_SelectedIndexChanged);
+            this.hideAndBlackListMenuItem.Name = "hideAndBlackListMenuItem";
+            this.hideAndBlackListMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.hideAndBlackListMenuItem.Text = "Hide and add to black list";
             // 
-            // btnCheckSpecs
+            // contextMenu
             // 
-            this.btnCheckSpecs.Image = global::JobAnalyzer.Properties.Resources.refresh;
-            this.btnCheckSpecs.Location = new System.Drawing.Point(1132, 312);
-            this.btnCheckSpecs.Name = "btnCheckSpecs";
-            this.btnCheckSpecs.Size = new System.Drawing.Size(24, 23);
-            this.btnCheckSpecs.TabIndex = 16;
-            this.btnCheckSpecs.UseVisualStyleBackColor = true;
-            this.btnCheckSpecs.Click += new System.EventHandler(this.btnCheckSpecs_Click);
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hideMenuItem,
+            this.hideAndBlackListMenuItem});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.Size = new System.Drawing.Size(209, 48);
             // 
-            // label6
+            // hideMenuItem
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(786, 296);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Профессиональная область";
+            this.hideMenuItem.Name = "hideMenuItem";
+            this.hideMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.hideMenuItem.Text = "Hide this word";
+            // 
+            // toolTip
+            // 
+            this.toolTip.Active = false;
+            this.toolTip.AutomaticDelay = 2000;
+            this.toolTip.AutoPopDelay = 20000;
+            this.toolTip.InitialDelay = 2000;
+            this.toolTip.ReshowDelay = 1000;
+            this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip.ToolTipTitle = "Statistics:";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Size = new System.Drawing.Size(1213, 563);
+            this.splitContainer1.SplitterDistance = 777;
+            this.splitContainer1.TabIndex = 18;
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(0, 25);
+            // 
+            // toolStripComboBoxMaxFontSize
+            // 
+            this.toolStripComboBoxMaxFontSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxMaxFontSize.Items.AddRange(new object[] {
+            "8",
+            "10",
+            "12",
+            "14",
+            "16",
+            "20",
+            "24",
+            "28",
+            "36",
+            "48",
+            "60",
+            "72",
+            "80",
+            "86"});
+            this.toolStripComboBoxMaxFontSize.Name = "toolStripComboBoxMaxFontSize";
+            this.toolStripComboBoxMaxFontSize.Size = new System.Drawing.Size(75, 28);
+            // 
+            // toolStripComboBoxMinFontSize
+            // 
+            this.toolStripComboBoxMinFontSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxMinFontSize.DropDownWidth = 75;
+            this.toolStripComboBoxMinFontSize.Items.AddRange(new object[] {
+            "6",
+            "8",
+            "10",
+            "12",
+            "14",
+            "16",
+            "20",
+            "24",
+            "28",
+            "36",
+            "48",
+            "72"});
+            this.toolStripComboBoxMinFontSize.Name = "toolStripComboBoxMinFontSize";
+            this.toolStripComboBoxMinFontSize.Size = new System.Drawing.Size(75, 28);
+            // 
+            // toolStripComboBoxFont
+            // 
+            this.toolStripComboBoxFont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxFont.DropDownWidth = 150;
+            this.toolStripComboBoxFont.Name = "toolStripComboBoxFont";
+            this.toolStripComboBoxFont.Size = new System.Drawing.Size(150, 28);
+            // 
+            // toolStripComboBoxLayout
+            // 
+            this.toolStripComboBoxLayout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxLayout.Name = "toolStripComboBoxLayout";
+            this.toolStripComboBoxLayout.Size = new System.Drawing.Size(121, 28);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
+            // ToolStripButtonEditBlacklist
+            // 
+            this.ToolStripButtonEditBlacklist.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToolStripButtonEditBlacklist.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonEditBlacklist.Image")));
+            this.ToolStripButtonEditBlacklist.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripButtonEditBlacklist.Name = "ToolStripButtonEditBlacklist";
+            this.ToolStripButtonEditBlacklist.Size = new System.Drawing.Size(77, 25);
+            this.ToolStripButtonEditBlacklist.Text = "Edit Blacklist";
+            this.ToolStripButtonEditBlacklist.Click += new System.EventHandler(this.ToolStripButtonEditBlacklistClick);
+            // 
+            // toolStripComboBoxLanguage
+            // 
+            this.toolStripComboBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBoxLanguage.Items.AddRange(new object[] {
+            "c#",
+            "Java",
+            "C++",
+            "VB.NET",
+            "English *.txt",
+            "Any *.txt"});
+            this.toolStripComboBoxLanguage.Name = "toolStripComboBoxLanguage";
+            this.toolStripComboBoxLanguage.Size = new System.Drawing.Size(75, 28);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripButtonSave
+            // 
+            this.toolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSave.Image")));
+            this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSave.Name = "toolStripButtonSave";
+            this.toolStripButtonSave.Size = new System.Drawing.Size(76, 25);
+            this.toolStripButtonSave.Text = "Snapshot";
+            this.toolStripButtonSave.Click += new System.EventHandler(this.ToolStripButtonSaveClick);
+            // 
+            // ToolStripProgressBar
+            // 
+            this.ToolStripProgressBar.Margin = new System.Windows.Forms.Padding(3);
+            this.ToolStripProgressBar.Name = "ToolStripProgressBar";
+            this.ToolStripProgressBar.Size = new System.Drawing.Size(200, 22);
+            // 
+            // ToolStripButtonCancel
+            // 
+            this.ToolStripButtonCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ToolStripButtonCancel.Enabled = false;
+            this.ToolStripButtonCancel.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonCancel.Image")));
+            this.ToolStripButtonCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripButtonCancel.Name = "ToolStripButtonCancel";
+            this.ToolStripButtonCancel.Size = new System.Drawing.Size(47, 25);
+            this.ToolStripButtonCancel.Text = "Cancel";
+            // 
+            // ToolStripButtonGo
+            // 
+            this.ToolStripButtonGo.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonGo.Image")));
+            this.ToolStripButtonGo.ImageTransparentColor = System.Drawing.Color.White;
+            this.ToolStripButtonGo.Name = "ToolStripButtonGo";
+            this.ToolStripButtonGo.Size = new System.Drawing.Size(74, 25);
+            this.ToolStripButtonGo.Text = "Generate";
+            this.ToolStripButtonGo.Click += new System.EventHandler(this.ToolStripButtonGoClick);
+            // 
+            // MainToolStrip
+            // 
+            this.MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripButtonGo,
+            this.ToolStripButtonCancel,
+            this.ToolStripProgressBar,
+            this.toolStripButtonSave,
+            this.toolStripSeparator1,
+            this.toolStripComboBoxLanguage,
+            this.ToolStripButtonEditBlacklist,
+            this.toolStripSeparator2,
+            toolStripLabel3,
+            this.toolStripComboBoxLayout,
+            toolStripLabel5,
+            this.toolStripComboBoxFont,
+            toolStripLabel1,
+            this.toolStripComboBoxMinFontSize,
+            toolStripLabel2,
+            this.toolStripComboBoxMaxFontSize,
+            this.toolStripLabel4,
+            this.toolStripSeparator3});
+            this.MainToolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.MainToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.MainToolStrip.Name = "MainToolStrip";
+            this.MainToolStrip.Size = new System.Drawing.Size(1213, 28);
+            this.MainToolStrip.TabIndex = 17;
+            this.MainToolStrip.Text = "toolStrip1";
+            // 
+            // toolStripLabel3
+            // 
+            toolStripLabel3.Name = "toolStripLabel3";
+            toolStripLabel3.Size = new System.Drawing.Size(46, 25);
+            toolStripLabel3.Text = "Layout:";
+            // 
+            // toolStripLabel5
+            // 
+            toolStripLabel5.Name = "toolStripLabel5";
+            toolStripLabel5.Size = new System.Drawing.Size(34, 25);
+            toolStripLabel5.Text = "Font:";
+            // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new System.Drawing.Size(58, 25);
+            toolStripLabel1.Text = "size from:";
+            // 
+            // toolStripLabel2
+            // 
+            toolStripLabel2.Name = "toolStripLabel2";
+            toolStripLabel2.Size = new System.Drawing.Size(21, 25);
+            toolStripLabel2.Text = "to:";
+            // 
+            // Splitter
+            // 
+            Splitter.Dock = System.Windows.Forms.DockStyle.Right;
+            Splitter.Location = new System.Drawing.Point(1218, 0);
+            Splitter.Name = "Splitter";
+            Splitter.Size = new System.Drawing.Size(3, 617);
+            Splitter.TabIndex = 16;
+            Splitter.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1221, 617);
+            this.Controls.Add(Splitter);
             this.Controls.Add(this.tabControl1);
             this.Name = "MainForm";
             this.Text = "Form1";
@@ -403,6 +674,13 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.contextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.MainToolStrip.ResumeLayout(false);
+            this.MainToolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -440,6 +718,26 @@
         private System.Windows.Forms.Button btnCheckSpecs;
         private System.Windows.Forms.ComboBox cbSpecs;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripMenuItem hideAndBlackListMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem hideMenuItem;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxMaxFontSize;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxMinFontSize;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxFont;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxLayout;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton ToolStripButtonEditBlacklist;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxLanguage;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSave;
+        private System.Windows.Forms.ToolStripProgressBar ToolStripProgressBar;
+        private System.Windows.Forms.ToolStripButton ToolStripButtonCancel;
+        private System.Windows.Forms.ToolStripButton ToolStripButtonGo;
+        private System.Windows.Forms.ToolStrip MainToolStrip;
     }
 }
 
