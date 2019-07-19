@@ -5,6 +5,7 @@ using Gma.CodeCloud.Base.TextAnalyses.Blacklist;
 using Gma.CodeCloud.Base.TextAnalyses.Processing;
 using Gma.CodeCloud.Base.TextAnalyses.Stemmers;
 using Gma.CodeCloud.Controls;
+using LiteDB;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -471,7 +472,11 @@ namespace JobAnalyzer
 
             var listVacs = getcontentVacancy(ListURL);
 
-            SaveContentVacancy(listVacs);
+            //SaveContentVacancy(listVacs);
+
+            SaveToDB(listVacs);
+
+            Debug.WriteLine("Request completed successfully!");
         }
 
         private List<Class.Vacancy.RootObject> getcontentVacancy(List<string> ListURL)
@@ -485,6 +490,52 @@ namespace JobAnalyzer
             }
             return listVacs;
         }
+
+        private void SaveToDB(List<Class.Vacancy.RootObject> listVacs)
+        {
+           listVacs = listVacs.GroupBy(x => x.id).Select(x => x.First()).ToList();
+
+            foreach (Class.Vacancy.RootObject _obj in listVacs)
+            {
+                // Open database (or create if not exits)
+                using (var db = new LiteDatabase(@"LiteData.db"))
+                {
+                    //// Get customer collection
+                    //var customers = db.GetCollection<Class.Vacancy.RootObject>("customers");
+
+                    //// Create your new customer instance
+                    //var customer = new Class.Vacancy.RootObject
+                    //{
+                    //    Name = "John Doe",
+                    //    Phones = new string[] { "8000-0000", "9000-0000" },
+                    //    IsActive = true
+                    //};
+
+                    //// Insert new customer document (Id will be auto-incremented)
+                    //customers.Insert(customer);
+
+                    //// Update a document inside a collection
+                    //customer.Name = "Joana Doe";
+
+                    //customers.Update(customer);
+
+                    //// Index document using a document property
+                    //customers.EnsureIndex(x => x.Name);
+
+                    //// Use Linq to query documents
+                    //var results = customers.Find(x => x.Name.StartsWith("Jo"));
+
+                    var vacancies = db.GetCollection<Class.Vacancy.RootObject>("Vacancies");
+                    if (!vacancies.Exists(x => x.id.Contains(_obj.id)))
+                    {
+                        vacancies.Insert(_obj);
+                    }
+                }
+            }
+
+
+        }
+
 
         private void SaveContentVacancy(List<Class.Vacancy.RootObject> listVacs)
         {
