@@ -404,14 +404,14 @@ namespace JobAnalyzer
             string Query = tbQuery.Text;
 
             // 100% рабочий вариант
-            Properties.Settings.Default.LastRequest = Query;
-            Properties.Settings.Default.Save();
-            Properties.Settings.Default.Upgrade();
-            MessageBox.Show("Saved Settings: " + Query);
-            Application.Restart();
-
             //Properties.Settings.Default.LastRequest = Query;
             //Properties.Settings.Default.Save();
+            //Properties.Settings.Default.Upgrade();
+            //MessageBox.Show("Saved Settings: " + Query);
+            //Application.Restart();
+
+            Properties.Settings.Default.LastRequest = Query;
+            Properties.Settings.Default.Save();
         }
 
 
@@ -437,7 +437,7 @@ namespace JobAnalyzer
             foreach (var _url in ListURL)
             {
                 listVacs.Add(getVacancy.GetVacContent(_url));
-                break;
+                //break;
             }
             return listVacs;
         }
@@ -449,7 +449,24 @@ namespace JobAnalyzer
                 using (System.IO.StreamWriter file = new System.IO.StreamWriter(_obj.id + ".txt", true))
                 {
                     string desc = _obj.description;
+
                     desc = StripHTML(desc);
+                    //Debug.WriteLine(desc);
+
+                    desc = TrimNonAscii(desc);
+                    //Debug.WriteLine(desc);
+
+                    //desc = RemoveCyrillic(desc);
+                    //Debug.WriteLine(desc);
+
+                    desc = RemovePunctuationCharacters(desc);
+                    //Debug.WriteLine(desc);
+
+                    desc = RemoveOneSymbol(desc);
+                    //Debug.WriteLine(desc);
+
+                    desc = RemoveDuplicateSpace(desc);
+                    //Debug.WriteLine(desc);
 
                     file.WriteLine(desc);
                 }
@@ -461,6 +478,43 @@ namespace JobAnalyzer
             string pattern = @"<(.|\n)*?>";
             return Regex.Replace(htmlString, pattern, string.Empty);
         }
+
+        private string TrimNonAscii(string value)
+        {
+            string pattern = "[^ -~]+";
+            Regex reg_exp = new Regex(pattern);
+            return reg_exp.Replace(value, "");
+        }
+
+        private string RemoveCyrillic(string value)
+        {
+            return Regex.Replace(value, "[^a-zA-Z0-9% ._]", string.Empty);
+        }
+
+        private string RemovePunctuationCharacters(string value)
+        {
+           return Regex.Replace(value, @"\p{P}", " ");
+        }
+
+        private string RemoveDuplicateSpace(string tempo)
+        {
+            RegexOptions options = RegexOptions.None;
+            Regex regex = new Regex("[ ]{2,}", options);
+            tempo = regex.Replace(tempo, " ");
+            return tempo;
+        }
+
+        private string RemoveOneSymbol(string input)
+        {
+            Regex re = new Regex(@"\b\w{1}\b");
+            var result = re.Replace(input, "");
+            return result;
+        }
+
+
+
+
+
 
 
 
