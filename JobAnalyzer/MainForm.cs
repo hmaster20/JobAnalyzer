@@ -47,13 +47,13 @@ namespace JobAnalyzer
             #region Инициализация облачных тэгов
             /////////
             m_CloudControl.Dock = DockStyle.Fill;
-            this.splitContainer1.Panel1.Controls.Add(m_CloudControl);
+            splitContainer1.Panel1.Controls.Add(m_CloudControl);
             m_CloudControl.MouseClick += CloudControlClick;
             m_CloudControl.MouseMove += CloudControlMouseMove;
             m_CloudControl.Paint += CloudControlPaint;
 
-            this.toolStripComboBoxLayout.Items.AddRange(GetAvailableLayouts());
-            this.toolStripComboBoxLayout.SelectedItem = LayoutType.Spiral;
+            toolStripComboBoxLayout.Items.AddRange(GetAvailableLayouts());
+            toolStripComboBoxLayout.SelectedItem = LayoutType.Spiral;
 
             toolStripComboBoxFont.Items.AddRange(GetNamesWitRegularStyle());
 
@@ -163,9 +163,14 @@ namespace JobAnalyzer
         private void btnRefreshPeriod_Click(object sender, EventArgs e)
         {
             btnRefreshPeriod.Enabled = false;
+            getJobPlan();
+            btnRefreshPeriod.Enabled = true;
+        }
+
+        private void getJobPlan()
+        {
             cbGrafik.Items.Clear();
             cbGrafik.Items.AddRange(getVacancy.GetGrafik().schedule);    // []Schedule
-            btnRefreshPeriod.Enabled = true;
         }
 
         private void cbGrafik_SelectedIndexChanged(object sender, EventArgs e)
@@ -493,7 +498,7 @@ namespace JobAnalyzer
 
         private void SaveToDB(List<Class.Vacancy.RootObject> listVacs)
         {
-           listVacs = listVacs.GroupBy(x => x.id).Select(x => x.First()).ToList();
+            listVacs = listVacs.GroupBy(x => x.id).Select(x => x.First()).ToList();
 
             foreach (Class.Vacancy.RootObject _obj in listVacs)
             {
@@ -541,31 +546,42 @@ namespace JobAnalyzer
         {
             foreach (Class.Vacancy.RootObject _obj in listVacs)
             {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(_obj.id + ".txt", true))
-                {
-                    string desc = _obj.description;
-
-                    desc = StripHTML(desc);
-                    //Debug.WriteLine(desc);
-
-                    desc = TrimNonAscii(desc);
-                    //Debug.WriteLine(desc);
-
-                    //desc = RemoveCyrillic(desc);
-                    //Debug.WriteLine(desc);
-
-                    desc = RemovePunctuationCharacters(desc);
-                    //Debug.WriteLine(desc);
-
-                    desc = RemoveOneSymbol(desc);
-                    //Debug.WriteLine(desc);
-
-                    desc = RemoveDuplicateSpace(desc);
-                    //Debug.WriteLine(desc);
-
-                    file.WriteLine(desc);
-                }
+                SaveRootObject(_obj);
             }
+        }
+
+        private void SaveRootObject(Class.Vacancy.RootObject _obj)
+        {
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(_obj.id + ".txt", true))
+            {
+                string desc = _obj.description;
+
+                desc = ClearUnsuppporteSymbol(desc);
+
+                file.WriteLine(desc);
+            }
+        }
+
+        private string ClearUnsuppporteSymbol(string desc)
+        {
+            desc = StripHTML(desc);
+            //Debug.WriteLine(desc);
+
+            desc = TrimNonAscii(desc);
+            //Debug.WriteLine(desc);
+
+            //desc = RemoveCyrillic(desc);
+            //Debug.WriteLine(desc);
+
+            desc = RemovePunctuationCharacters(desc);
+            //Debug.WriteLine(desc);
+
+            desc = RemoveOneSymbol(desc);
+            //Debug.WriteLine(desc);
+
+            desc = RemoveDuplicateSpace(desc);
+            //Debug.WriteLine(desc);
+            return desc;
         }
 
         public static string StripHTML(string htmlString)
@@ -641,21 +657,23 @@ namespace JobAnalyzer
         private void btnCheckSpecs_Click(object sender, EventArgs e)
         {
             btnCheckSpecs.Enabled = false;
+            getSpecs();
+            btnCheckSpecs.Enabled = true;
+        }
+
+        private void getSpecs()
+        {
             cbSpecs.Items.Clear();
             List<Specs> ListSpecs = getVacancy.GetSpecs();
             ListSpecs.Sort(Specs.CompareByName);
             cbSpecs.Items.AddRange(ListSpecs.ToArray());
-            btnCheckSpecs.Enabled = true;
         }
 
 
-
-
-
-
-
-
-
+        /// 
+        ///
+        ///
+        
 
 
         #region Cloud Handler
@@ -699,7 +717,7 @@ namespace JobAnalyzer
                 return;
             }
 
-            LayoutItem itemUderMouse = this.m_CloudControl.ItemUnderMouse;
+            LayoutItem itemUderMouse = m_CloudControl.ItemUnderMouse;
             if (itemUderMouse == null)
             {
                 return;
@@ -752,7 +770,7 @@ namespace JobAnalyzer
 
         private void CloudControlMouseMove(object sender, MouseEventArgs e)
         {
-            LayoutItem itemUderMouse = this.m_CloudControl.ItemUnderMouse;
+            LayoutItem itemUderMouse = m_CloudControl.ItemUnderMouse;
             if (itemUderMouse == null)
             {
                 toolTip.SetToolTip(m_CloudControl, null);
@@ -786,7 +804,7 @@ namespace JobAnalyzer
 
         private void ApplyResults(Task<List<IWord>> task)
         {
-            this.Invoke(
+            Invoke(
                 new Action(
                     () =>
                     {
@@ -807,7 +825,7 @@ namespace JobAnalyzer
                         }
 
                         m_TotalWordCount = m_CloudControl.WeightedWords.Sum(word => word.Occurrences);
-                        this.IsRunning = false;
+                        IsRunning = false;
                     }));
         }
 
@@ -825,13 +843,13 @@ namespace JobAnalyzer
         public void SetCaptionThreadsafe(string fileName)
         {
             Action<string> setCaption = SetCaptionText;
-            this.Invoke(setCaption, fileName);
+            Invoke(setCaption, fileName);
         }
 
         public void SetCaptionText(string text)
         {
             ToolStripProgressBar.Value = m_ProgressValue;
-            this.Text = string.Concat("Source Code Word Colud Generator :: " + text);
+            Text = string.Concat("Source Code Word Colud Generator :: " + text);
         }
 
         private void ToolStripButtonCancelClick(object sender, EventArgs e)
@@ -930,7 +948,7 @@ namespace JobAnalyzer
 
         private IWord GetWordUnderMouse()
         {
-            LayoutItem itemUderMouse = this.m_CloudControl.ItemUnderMouse;
+            LayoutItem itemUderMouse = m_CloudControl.ItemUnderMouse;
             return itemUderMouse == null
                 ? new Word(string.Empty, 0)
                 : itemUderMouse.Word;
@@ -959,9 +977,33 @@ namespace JobAnalyzer
                         : ImageFormat.Bmp);
             }
         }
+
+
         #endregion
 
+        private void btnInit_Click(object sender, EventArgs e)
+        {
+            getJobPlan();
+            getSpecs();
+        }
 
+        private void tbQuery_DoubleClick(object sender, EventArgs e)
+        {
+            tbQuery.ReadOnly = false;
+        }
 
+        private void btnCheckDB_Click(object sender, EventArgs e)
+        {
+            using (var db = new LiteDatabase(@"LiteData.db"))
+            {
+                var vacancies = db.GetCollection<Class.Vacancy.RootObject>("Vacancies");
+                var result = vacancies.FindAll();
+
+                foreach (var _obj in result)
+                {
+                    SaveRootObject(_obj);
+                }
+            }
+        }
     }
 }
