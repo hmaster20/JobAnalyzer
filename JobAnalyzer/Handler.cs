@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
@@ -124,13 +125,17 @@ namespace JobAnalyzer
 
             List<Class.Item> ListItems = new List<Class.Item>();
             Class.RootObject VacRObj = new Class.RootObject();
-
-
+                                 
             int page_num = 0;
             string source = GetSource(URL);
             if (!string.IsNullOrWhiteSpace(source))
             {
                 VacRObj = JsonConvert.DeserializeObject<Class.RootObject>(source);
+
+                Debug.WriteLine(VacRObj.found);
+                Debug.WriteLine(VacRObj.pages);
+                Debug.WriteLine(VacRObj.per_page);
+
                 ListItems.AddRange(VacRObj.items);
 
                 if (VacRObj.pages > 0)
@@ -147,6 +152,18 @@ namespace JobAnalyzer
             return ListItems;
         }
 
+
+        public Class.Vacancy.RootObject GetVacContent(string url)
+        {
+            string source = GetSource(url);
+
+            Class.Vacancy.RootObject VacContent = new Class.Vacancy.RootObject();
+            if (!string.IsNullOrWhiteSpace(source))
+            {
+                VacContent = JsonConvert.DeserializeObject<Class.Vacancy.RootObject>(source);
+            }
+            return VacContent;
+        }
 
 
 
