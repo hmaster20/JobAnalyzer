@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace JobAnalyzer
@@ -403,22 +404,69 @@ namespace JobAnalyzer
             string Query = tbQuery.Text;
 
             // 100% рабочий вариант
-            //Properties.Settings.Default.LastRequest = Query;
-            //Properties.Settings.Default.Save();
-            //Properties.Settings.Default.Upgrade();
-            //MessageBox.Show("Saved Settings: " + Query);
-            //Application.Restart();
-
             Properties.Settings.Default.LastRequest = Query;
             Properties.Settings.Default.Save();
+            Properties.Settings.Default.Upgrade();
+            MessageBox.Show("Saved Settings: " + Query);
+            Application.Restart();
+
+            //Properties.Settings.Default.LastRequest = Query;
+            //Properties.Settings.Default.Save();
         }
 
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
             string Query = tbQuery.Text;
-            getVacancy.FindAllVacancies(Query);
+            List<Class.Item> VacItems = getVacancy.FindAllVacancies(Query);
+            List<string> ListURL = new List<string>();
+            foreach (var item in VacItems)
+            {
+                ListURL.Add(item.url);
+            }
+
+            var listVacs = getcontentVacancy(ListURL);
+
+            SaveContentVacancy(listVacs);
         }
+
+        private List<Class.Vacancy.RootObject> getcontentVacancy(List<string> ListURL)
+        {
+            List<Class.Vacancy.RootObject> listVacs = new List<Class.Vacancy.RootObject>();
+
+            foreach (var _url in ListURL)
+            {
+                listVacs.Add(getVacancy.GetVacContent(_url));
+                break;
+            }
+            return listVacs;
+        }
+
+        private void SaveContentVacancy(List<Class.Vacancy.RootObject> listVacs)
+        {
+            foreach (Class.Vacancy.RootObject _obj in listVacs)
+            {
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(_obj.id + ".txt", true))
+                {
+                    string desc = _obj.description;
+                    desc = StripHTML(desc);
+
+                    file.WriteLine(desc);
+                }
+            }
+        }
+
+        public static string StripHTML(string htmlString)
+        {
+            string pattern = @"<(.|\n)*?>";
+            return Regex.Replace(htmlString, pattern, string.Empty);
+        }
+
+
+
+
+
+
 
         // сброс
         private void btnReset_Click(object sender, EventArgs e)

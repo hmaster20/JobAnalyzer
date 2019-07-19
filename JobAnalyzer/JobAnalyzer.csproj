@@ -55,6 +55,7 @@
     <Compile Include="Class\VacancyGlobal.cs" />
     <Compile Include="Class\VacancyCollection.cs" />
     <Compile Include="Class\VacRootObject2019.cs" />
+    <Compile Include="Class\VacUserSource2019.cs" />
     <Compile Include="Class\XmlSerializeHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
