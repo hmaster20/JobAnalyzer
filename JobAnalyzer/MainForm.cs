@@ -45,7 +45,6 @@ namespace JobAnalyzer
             InitializeComponent();
 
             #region Инициализация облачных тэгов
-            /////////
             m_CloudControl.Dock = DockStyle.Fill;
             splitContainer1.Panel1.Controls.Add(m_CloudControl);
             m_CloudControl.MouseClick += CloudControlClick;
@@ -60,8 +59,8 @@ namespace JobAnalyzer
             toolStripComboBoxMinFontSize.SelectedItem = "8";
             toolStripComboBoxMaxFontSize.SelectedItem = "72";
             toolStripComboBoxFont.SelectedItem = "Tahoma";
-            toolStripComboBoxLanguage.SelectedItem = "c#";
-            /////////
+            //toolStripComboBoxLanguage.SelectedItem = "c#";
+            toolStripComboBoxLanguage.SelectedItem = "Any *.txt";
             #endregion
 
 
@@ -505,31 +504,6 @@ namespace JobAnalyzer
                 // Open database (or create if not exits)
                 using (var db = new LiteDatabase(@"LiteData.db"))
                 {
-                    //// Get customer collection
-                    //var customers = db.GetCollection<Class.Vacancy.RootObject>("customers");
-
-                    //// Create your new customer instance
-                    //var customer = new Class.Vacancy.RootObject
-                    //{
-                    //    Name = "John Doe",
-                    //    Phones = new string[] { "8000-0000", "9000-0000" },
-                    //    IsActive = true
-                    //};
-
-                    //// Insert new customer document (Id will be auto-incremented)
-                    //customers.Insert(customer);
-
-                    //// Update a document inside a collection
-                    //customer.Name = "Joana Doe";
-
-                    //customers.Update(customer);
-
-                    //// Index document using a document property
-                    //customers.EnsureIndex(x => x.Name);
-
-                    //// Use Linq to query documents
-                    //var results = customers.Find(x => x.Name.StartsWith("Jo"));
-
                     var vacancies = db.GetCollection<Class.Vacancy.RootObject>("Vacancies");
                     if (!vacancies.Exists(x => x.id.Contains(_obj.id)))
                     {
@@ -537,8 +511,6 @@ namespace JobAnalyzer
                     }
                 }
             }
-
-
         }
 
 
@@ -550,6 +522,8 @@ namespace JobAnalyzer
             }
         }
 
+        /// <summary>Сохранение описания вакансий в файл</summary>
+        /// <param name="_obj">Vacancy object</param>
         private void SaveRootObject(Class.Vacancy.RootObject _obj)
         {
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(_obj.id + ".txt", true))
@@ -622,16 +596,7 @@ namespace JobAnalyzer
             return result;
         }
 
-
-
-
-
-
-
-
-
-
-
+        
 
         // сброс
         private void btnReset_Click(object sender, EventArgs e)
@@ -669,11 +634,6 @@ namespace JobAnalyzer
             cbSpecs.Items.AddRange(ListSpecs.ToArray());
         }
 
-
-        /// 
-        ///
-        ///
-        
 
 
         #region Cloud Handler
@@ -885,8 +845,7 @@ namespace JobAnalyzer
         private void ToolStripComboBoxFontSelectedIndexChanged(object sender, EventArgs e)
         {
             m_CloudControl.Font = new Font(toolStripComboBoxFont.Text, 12, FontStyle.Regular);
-            int value;
-            if (int.TryParse(toolStripComboBoxMinFontSize.Text, out value))
+            if (int.TryParse(toolStripComboBoxMinFontSize.Text, out int value))
             {
                 m_CloudControl.MinFontSize = value;
             }
@@ -956,11 +915,13 @@ namespace JobAnalyzer
 
         private void ToolStripButtonSaveClick(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = @"PNG (*.png)|*.png|Bitmap (*.bmp)|*.bmp";
-            //saveFileDialog.FileName = Path.GetFileName(FolderTree.SelectedPath);
-            saveFileDialog.FileName = "Cloud_image";
-            saveFileDialog.DefaultExt = "png";
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = @"PNG (*.png)|*.png|Bitmap (*.bmp)|*.bmp",
+                //saveFileDialog.FileName = Path.GetFileName(FolderTree.SelectedPath);
+                FileName = "Cloud_image",
+                DefaultExt = "png"
+            };
 
             if (saveFileDialog.ShowDialog() != DialogResult.OK)
             {
@@ -981,6 +942,7 @@ namespace JobAnalyzer
 
         #endregion
 
+
         private void btnInit_Click(object sender, EventArgs e)
         {
             getJobPlan();
@@ -996,10 +958,10 @@ namespace JobAnalyzer
         {
             using (var db = new LiteDatabase(@"LiteData.db"))
             {
-                var vacancies = db.GetCollection<Class.Vacancy.RootObject>("Vacancies");
-                var result = vacancies.FindAll();
+                LiteCollection<Class.Vacancy.RootObject> vacancies = db.GetCollection<Class.Vacancy.RootObject>("Vacancies");
+                IEnumerable<Class.Vacancy.RootObject> result = vacancies.FindAll();
 
-                foreach (var _obj in result)
+                foreach (Class.Vacancy.RootObject _obj in result)
                 {
                     SaveRootObject(_obj);
                 }
