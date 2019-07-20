@@ -536,6 +536,7 @@ namespace JobAnalyzer
             }
         }
 
+        /// <summary>Очистка текста о спец.чимвлов и кирилицы</summary>
         private string ClearUnsuppporteSymbol(string desc)
         {
             desc = StripHTML(desc);
@@ -696,11 +697,11 @@ namespace JobAnalyzer
 
             //string path = FolderTree.SelectedPath;
             string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            Language language = ByLanguageFactory.GetLanguageFromString(toolStripComboBoxLanguage.Text);
-            FileIterator fileIterator = ByLanguageFactory.GetFileIterator(language);
+            Language formatFiles = ByLanguageFactory.GetLanguageFromString(toolStripComboBoxLanguage.Text);
+            FileIterator fileIterator = ByLanguageFactory.GetFileIterator(formatFiles);
 
-            IBlacklist blacklist = ByLanguageFactory.GetBlacklist(language);
-            IWordStemmer stemmer = ByLanguageFactory.GetStemmer(language);
+            IBlacklist blacklist = ByLanguageFactory.GetBlacklist(formatFiles);
+            IWordStemmer stemmer = ByLanguageFactory.GetStemmer(formatFiles);
 
             SetCaptionText("Estimating ...");
 
@@ -718,7 +719,7 @@ namespace JobAnalyzer
             m_CancelSource = new CancellationTokenSource();
             Task.Factory
                 .StartNew(
-                    () => GetWordsParallely(files, language, blacklist, stemmer), m_CancelSource.Token)
+                    () => GetWordsParallely(files, formatFiles, blacklist, stemmer), m_CancelSource.Token)
                 .ContinueWith(
                     ApplyResults);
         }
@@ -753,6 +754,53 @@ namespace JobAnalyzer
                 .WithCancellation(m_CancelSource.Token)
                 .WithCallback(DoProgress)
                 .SelectMany(file => ByLanguageFactory.GetWordExtractor(language, file))
+                .Filter(blacklist)
+                .CountOccurences()
+                .GroupByStem(stemmer)
+                .SortByOccurences()
+                .AsEnumerable()
+                .Cast<IWord>()
+                .ToList();
+        }
+
+        /// ////////////////////////////////////////////////////////////////////////////////////////////
+        /// 
+
+        private void ToolStripButtonGoClick2(object sender, EventArgs e)
+        {
+            IsRunning = true;
+
+            Language formatFiles = ByLanguageFactory.GetLanguageFromString(toolStripComboBoxLanguage.Text);
+            FileIterator fileIterator = ByLanguageFactory.GetFileIterator(formatFiles);
+
+            IBlacklist blacklist = ByLanguageFactory.GetBlacklist(formatFiles);
+            IWordStemmer stemmer = ByLanguageFactory.GetStemmer(formatFiles);
+
+            SetCaptionText("Estimating ...");
+
+            string[] files ;
+
+            ToolStripProgressBar.Maximum = files.Length;
+
+            m_CloudControl.WeightedWords = new List<IWord>();
+
+            //Note do not dispose m_CancelSource it will be disposed by task 
+            //TODO need to find correct way to work with CancelationToken
+            //http://stackoverflow.com/questions/6960520/when-to-dispose-cancellationtokensource
+            m_CancelSource = new CancellationTokenSource();
+            Task.Factory
+                .StartNew(
+                    () => GetWordsParallely2(files, blacklist, stemmer), m_CancelSource.Token)
+                .ContinueWith(
+                    ApplyResults);
+        }
+
+
+        private List<IWord> GetWordsParallely2(IEnumerable<string> files, IBlacklist blacklist, IWordStemmer stemmer)
+        {
+            return files
+                .AsParallel()
+                .WithCallback(DoProgress)
                 .Filter(blacklist)
                 .CountOccurences()
                 .GroupByStem(stemmer)

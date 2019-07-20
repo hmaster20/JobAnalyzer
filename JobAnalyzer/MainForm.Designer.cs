@@ -54,6 +54,7 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnCheckDB = new System.Windows.Forms.Button();
             this.btnInit = new System.Windows.Forms.Button();
             this.btnCheckSpecs = new System.Windows.Forms.Button();
             this.cbSpecs = new System.Windows.Forms.ComboBox();
@@ -87,7 +88,6 @@
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.hideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.btnCheckDB = new System.Windows.Forms.Button();
             toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -337,15 +337,25 @@
             this.tabPage1.Controls.Add(this.tbQuery);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1213, 591);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Форма запроса";
             // 
+            // btnCheckDB
+            // 
+            this.btnCheckDB.Location = new System.Drawing.Point(790, 513);
+            this.btnCheckDB.Name = "btnCheckDB";
+            this.btnCheckDB.Size = new System.Drawing.Size(134, 23);
+            this.btnCheckDB.TabIndex = 18;
+            this.btnCheckDB.Text = "from DB to many files";
+            this.btnCheckDB.UseVisualStyleBackColor = true;
+            this.btnCheckDB.Click += new System.EventHandler(this.btnCheckDB_Click);
+            // 
             // btnInit
             // 
             this.btnInit.Location = new System.Drawing.Point(1131, 17);
-            this.btnInit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInit.Margin = new System.Windows.Forms.Padding(2);
             this.btnInit.Name = "btnInit";
             this.btnInit.Size = new System.Drawing.Size(32, 19);
             this.btnInit.TabIndex = 17;
@@ -438,7 +448,7 @@
             this.tabPage2.Controls.Add(this.tbKey);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1213, 591);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Форма анализа";
@@ -680,16 +690,6 @@
             this.toolTip.ReshowDelay = 1000;
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip.ToolTipTitle = "Statistics:";
-            // 
-            // btnCheckDB
-            // 
-            this.btnCheckDB.Location = new System.Drawing.Point(807, 513);
-            this.btnCheckDB.Name = "btnCheckDB";
-            this.btnCheckDB.Size = new System.Drawing.Size(75, 23);
-            this.btnCheckDB.TabIndex = 18;
-            this.btnCheckDB.Text = "CheckDB";
-            this.btnCheckDB.UseVisualStyleBackColor = true;
-            this.btnCheckDB.Click += new System.EventHandler(this.btnCheckDB_Click);
             // 
             // MainForm
             // 

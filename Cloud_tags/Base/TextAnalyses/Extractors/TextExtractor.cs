@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Gma.CodeCloud.Base.TextAnalyses.Extractors;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Threading;
-using Gma.CodeCloud.Base.TextAnalyses.Extractors;
 
 namespace Gma.CodeCloud.Base.Languages
 {
@@ -10,8 +9,7 @@ namespace Gma.CodeCloud.Base.Languages
     {
         private readonly string m_File;
 
-        public TextExtractor(string file)
-            : base()
+        public TextExtractor(string file) : base()
         {
             m_File = file;
         }
@@ -33,7 +31,7 @@ namespace Gma.CodeCloud.Base.Languages
         {
             string line = reader.ReadLine();
             while (line != null)
-            {   
+            {
                 if (CanSkipFile(line))
                 {
                     break;
