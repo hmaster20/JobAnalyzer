@@ -6,9 +6,7 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Extractors
 {
     public abstract class BaseExtractor : IEnumerable<string>
     {
-        protected BaseExtractor()
-        {
-        }
+        protected BaseExtractor() { }
 
         protected virtual IEnumerable<string> GetWordsInLine(string line)
         {

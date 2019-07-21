@@ -71,6 +71,7 @@ namespace Gma.CodeCloud.Base
             return 0;
         }
 
+        /// <summary>Извлекает слова из файла</summary>
         public static IEnumerable<string> GetWordExtractor(Language language, string  file)
         {
             switch (language)
