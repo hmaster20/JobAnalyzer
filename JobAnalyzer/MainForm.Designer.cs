@@ -88,6 +88,7 @@
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.hideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.btnDBtoDiagram = new System.Windows.Forms.Button();
             toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -312,6 +313,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.btnDBtoDiagram);
             this.tabPage1.Controls.Add(this.btnCheckDB);
             this.tabPage1.Controls.Add(this.btnInit);
             this.tabPage1.Controls.Add(this.btnCheckSpecs);
@@ -344,7 +346,7 @@
             // 
             // btnCheckDB
             // 
-            this.btnCheckDB.Location = new System.Drawing.Point(790, 513);
+            this.btnCheckDB.Location = new System.Drawing.Point(790, 499);
             this.btnCheckDB.Name = "btnCheckDB";
             this.btnCheckDB.Size = new System.Drawing.Size(134, 23);
             this.btnCheckDB.TabIndex = 18;
@@ -691,6 +693,16 @@
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip.ToolTipTitle = "Statistics:";
             // 
+            // btnDBtoDiagram
+            // 
+            this.btnDBtoDiagram.Location = new System.Drawing.Point(790, 528);
+            this.btnDBtoDiagram.Name = "btnDBtoDiagram";
+            this.btnDBtoDiagram.Size = new System.Drawing.Size(134, 23);
+            this.btnDBtoDiagram.TabIndex = 19;
+            this.btnDBtoDiagram.Text = "from DB to diagram";
+            this.btnDBtoDiagram.UseVisualStyleBackColor = true;
+            this.btnDBtoDiagram.Click += new System.EventHandler(this.btnDBtoDiagram_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -774,6 +786,7 @@
         private System.Windows.Forms.ToolStrip MainToolStrip;
         private System.Windows.Forms.Button btnInit;
         private System.Windows.Forms.Button btnCheckDB;
+        private System.Windows.Forms.Button btnDBtoDiagram;
     }
 }
 

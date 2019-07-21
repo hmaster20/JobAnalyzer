@@ -8,13 +8,12 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Processing
     {
         private readonly IEnumerable<IWord> m_AssociatedWords;
 
-        public WordGroup(string stem, IEnumerable<IWord> associatedWords)
-            : this()
+        public WordGroup(string stem, IEnumerable<IWord> associatedWords) : this()
         {
-            this.Stem = stem;
-            this.m_AssociatedWords = associatedWords;
-            this.Occurrences = this.m_AssociatedWords.Sum(word => word.Occurrences);
-            this.Text = this.m_AssociatedWords.Max().Text;
+            Stem = stem;
+            m_AssociatedWords = associatedWords;
+            Occurrences = m_AssociatedWords.Sum(word => word.Occurrences);
+            Text = m_AssociatedWords.Max().Text;
         }
 
         public string Stem { get; set; }
@@ -25,7 +24,7 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Processing
 
         public int CompareTo(IWord other)
         {
-            return this.Occurrences - other.Occurrences;
+            return Occurrences - other.Occurrences;
         }
 
         public IEnumerator<IWord> GetEnumerator()
@@ -40,13 +39,13 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Processing
 
         public string GetCaption()
         {
-            string caption =  string.Empty;
+            string caption = string.Empty;
             return
                 this
                 .OrderByDescending(
                     word => word.Occurrences)
                 .Aggregate(
-                    caption, 
+                    caption,
                     (s, word) => string.Format("{0}\r\n{1}\t{2}", s, word.Text, word.Occurrences));
         }
     }

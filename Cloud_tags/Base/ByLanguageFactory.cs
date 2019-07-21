@@ -162,6 +162,9 @@ namespace Gma.CodeCloud.Base
             }
         }
 
+        /// <summary>Делает поправку для каждого типа файлов</summary>
+        /// <param name="language"></param>
+        /// <returns></returns>
         public static IWordStemmer GetStemmer(Language language)
         {
             switch (language)

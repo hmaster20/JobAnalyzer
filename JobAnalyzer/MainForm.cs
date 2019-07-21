@@ -36,6 +36,7 @@ namespace JobAnalyzer
         Handler getVacancy;
         VacancyCollection _vacancyCollection;
         Areas ars;
+        string DBstorage;
 
         /// <summary>Словарь для построения запроса</summary>
         Dictionary<string, List<string>> DicQuery { get; set; }
@@ -64,6 +65,7 @@ namespace JobAnalyzer
             #endregion
 
 
+            DBstorage = @"LiteData.db";
 
             getVacancy = new Handler();
 
@@ -502,7 +504,7 @@ namespace JobAnalyzer
             foreach (Class.Vacancy.RootObject _obj in listVacs)
             {
                 // Open database (or create if not exits)
-                using (var db = new LiteDatabase(@"LiteData.db"))
+                using (var db = new LiteDatabase(DBstorage))
                 {
                     var vacancies = db.GetCollection<Class.Vacancy.RootObject>("Vacancies");
                     if (!vacancies.Exists(x => x.id.Contains(_obj.id)))
@@ -597,7 +599,7 @@ namespace JobAnalyzer
             return result;
         }
 
-        
+
 
         // сброс
         private void btnReset_Click(object sender, EventArgs e)
@@ -698,8 +700,8 @@ namespace JobAnalyzer
             //string path = FolderTree.SelectedPath;
             string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             Language formatFiles = ByLanguageFactory.GetLanguageFromString(toolStripComboBoxLanguage.Text);
-            FileIterator fileIterator = ByLanguageFactory.GetFileIterator(formatFiles);
 
+            FileIterator fileIterator = ByLanguageFactory.GetFileIterator(formatFiles);
             IBlacklist blacklist = ByLanguageFactory.GetBlacklist(formatFiles);
             IWordStemmer stemmer = ByLanguageFactory.GetStemmer(formatFiles);
 
@@ -745,7 +747,12 @@ namespace JobAnalyzer
             toolTip.ToolTipTitle = string.Format("Statistics for word [{0}]", itemUderMouse.Word.Text);
         }
 
-
+        /// <summary>Поиск и выборка слова с учетом фильтра</summary>
+        /// <param name="files"></param>
+        /// <param name="language"></param>
+        /// <param name="blacklist"></param>
+        /// <param name="stemmer"></param>
+        /// <returns></returns>
         private List<IWord> GetWordsParallely(IEnumerable<string> files, Language language, IBlacklist blacklist, IWordStemmer stemmer)
         {
             return files
@@ -766,19 +773,16 @@ namespace JobAnalyzer
         /// ////////////////////////////////////////////////////////////////////////////////////////////
         /// 
 
-        private void ToolStripButtonGoClick2(object sender, EventArgs e)
+        private void CreateDiagram(string[] files)
         {
-            IsRunning = true;
+            FileIterator fileIterator = ByLanguageFactory.GetFileIterator(ByLanguageFactory.GetLanguageFromString(toolStripComboBoxLanguage.Text));
+            IBlacklist blacklist = ByLanguageFactory.GetBlacklist(Language.AnyTxt);
+            //IWordStemmer stemmer = ByLanguageFactory.GetStemmer(Language.AnyTxt);
+            IWordStemmer stemmer = new LowerCaseStemmer();
 
-            Language formatFiles = ByLanguageFactory.GetLanguageFromString(toolStripComboBoxLanguage.Text);
-            FileIterator fileIterator = ByLanguageFactory.GetFileIterator(formatFiles);
-
-            IBlacklist blacklist = ByLanguageFactory.GetBlacklist(formatFiles);
-            IWordStemmer stemmer = ByLanguageFactory.GetStemmer(formatFiles);
+            //{ Gma.CodeCloud.Base.TextAnalyses.Stemmers.LowerCaseStemmer}
 
             SetCaptionText("Estimating ...");
-
-            string[] files ;
 
             ToolStripProgressBar.Maximum = files.Length;
 
@@ -790,13 +794,17 @@ namespace JobAnalyzer
             m_CancelSource = new CancellationTokenSource();
             Task.Factory
                 .StartNew(
-                    () => GetWordsParallely2(files, blacklist, stemmer), m_CancelSource.Token)
+                    () => GetWordsParallelyLiteDB(files, blacklist, stemmer), m_CancelSource.Token)
                 .ContinueWith(
                     ApplyResults);
         }
 
-
-        private List<IWord> GetWordsParallely2(IEnumerable<string> files, IBlacklist blacklist, IWordStemmer stemmer)
+        /// <summary>Модификация для работы с базой</summary>
+        /// <param name="files"></param>
+        /// <param name="blacklist"></param>
+        /// <param name="stemmer"></param>
+        /// <returns></returns>
+        private List<IWord> GetWordsParallelyLiteDB(IEnumerable<string> files, IBlacklist blacklist, IWordStemmer stemmer)
         {
             return files
                 .AsParallel()
@@ -810,6 +818,8 @@ namespace JobAnalyzer
                 .ToList();
         }
 
+        /// <summary>Передача тэгов на панель отрисовки</summary>
+        /// <param name="task"></param>
         private void ApplyResults(Task<List<IWord>> task)
         {
             Invoke(
@@ -829,6 +839,8 @@ namespace JobAnalyzer
                             }
 
                             SetCaptionThreadsafe("Finished");
+                            //var a = task.Result;
+                            //m_CloudControl.WeightedWords = a;
                             m_CloudControl.WeightedWords = task.Result;
                         }
 
@@ -1004,7 +1016,7 @@ namespace JobAnalyzer
 
         private void btnCheckDB_Click(object sender, EventArgs e)
         {
-            using (var db = new LiteDatabase(@"LiteData.db"))
+            using (var db = new LiteDatabase(DBstorage))
             {
                 LiteCollection<Class.Vacancy.RootObject> vacancies = db.GetCollection<Class.Vacancy.RootObject>("Vacancies");
                 IEnumerable<Class.Vacancy.RootObject> result = vacancies.FindAll();
@@ -1014,6 +1026,33 @@ namespace JobAnalyzer
                     SaveRootObject(_obj);
                 }
             }
+        }
+
+
+
+        private void btnDBtoDiagram_Click(object sender, EventArgs e)
+        {
+            List<string> TEst = new List<string>();
+
+            using (var db = new LiteDatabase(DBstorage))
+            {
+                LiteCollection<Class.Vacancy.RootObject> vacancies = db.GetCollection<Class.Vacancy.RootObject>("Vacancies");
+                IEnumerable<Class.Vacancy.RootObject> result = vacancies.FindAll();
+
+                foreach (Class.Vacancy.RootObject _obj in result)
+                {
+                    string desc = _obj.description;
+
+                    desc = ClearUnsuppporteSymbol(desc);
+
+                    TEst.Add(desc);
+                }
+            }
+
+            string[] files = TEst.ToArray();
+
+            CreateDiagram(files);
+
         }
     }
 }
