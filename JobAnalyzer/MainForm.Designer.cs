@@ -54,6 +54,7 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnDBtoDiagram = new System.Windows.Forms.Button();
             this.btnCheckDB = new System.Windows.Forms.Button();
             this.btnInit = new System.Windows.Forms.Button();
             this.btnCheckSpecs = new System.Windows.Forms.Button();
@@ -88,7 +89,6 @@
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.hideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.btnDBtoDiagram = new System.Windows.Forms.Button();
             toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -343,6 +343,16 @@
             this.tabPage1.Size = new System.Drawing.Size(1213, 591);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Форма запроса";
+            // 
+            // btnDBtoDiagram
+            // 
+            this.btnDBtoDiagram.Location = new System.Drawing.Point(790, 528);
+            this.btnDBtoDiagram.Name = "btnDBtoDiagram";
+            this.btnDBtoDiagram.Size = new System.Drawing.Size(134, 23);
+            this.btnDBtoDiagram.TabIndex = 19;
+            this.btnDBtoDiagram.Text = "from DB to diagram";
+            this.btnDBtoDiagram.UseVisualStyleBackColor = true;
+            this.btnDBtoDiagram.Click += new System.EventHandler(this.btnDBtoDiagram_Click);
             // 
             // btnCheckDB
             // 
@@ -693,16 +703,6 @@
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip.ToolTipTitle = "Statistics:";
             // 
-            // btnDBtoDiagram
-            // 
-            this.btnDBtoDiagram.Location = new System.Drawing.Point(790, 528);
-            this.btnDBtoDiagram.Name = "btnDBtoDiagram";
-            this.btnDBtoDiagram.Size = new System.Drawing.Size(134, 23);
-            this.btnDBtoDiagram.TabIndex = 19;
-            this.btnDBtoDiagram.Text = "from DB to diagram";
-            this.btnDBtoDiagram.UseVisualStyleBackColor = true;
-            this.btnDBtoDiagram.Click += new System.EventHandler(this.btnDBtoDiagram_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -711,7 +711,7 @@
             this.Controls.Add(Splitter);
             this.Controls.Add(this.tabControl1);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "JobAnalyzer";
             this.Load += new System.EventHandler(this.Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).EndInit();
             this.tabControl1.ResumeLayout(false);
