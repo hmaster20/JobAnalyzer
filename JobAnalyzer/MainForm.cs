@@ -809,6 +809,7 @@ namespace JobAnalyzer
             return files
                 .AsParallel()
                 .WithCallback(DoProgress)
+                .SelectMany(file => ByLanguageFactory.GetWordExtractor(file))
                 .Filter(blacklist)
                 .CountOccurences()
                 .GroupByStem(stemmer)

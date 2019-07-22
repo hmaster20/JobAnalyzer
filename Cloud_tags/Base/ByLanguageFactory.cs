@@ -99,6 +99,12 @@ namespace Gma.CodeCloud.Base
             return null;
         }
 
+        public static IEnumerable<string> GetWordExtractor(string file)
+        {
+            string[] Words = file.Trim().Split(' ');
+            return Words;
+        }
+
         private const string s_CSharpBlacklistFileName = "CSharpBlacklist.txt";
         private const string s_JavaBlacklistFileName = "JavaBlacklist.txt";
         private const string s_VbNetBlacklistFileName = "VBNetBlacklist.txt";
