@@ -528,7 +528,14 @@ namespace JobAnalyzer
         /// <param name="_obj">Vacancy object</param>
         private void SaveRootObject(Class.Vacancy.RootObject _obj)
         {
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(_obj.id + ".txt", true))
+            string fileName = _obj.id + ".txt";
+
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName, true))
             {
                 string desc = _obj.description;
 
