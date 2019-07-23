@@ -8,6 +8,7 @@ using Gma.CodeCloud.Controls;
 using LiteDB;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -89,8 +90,39 @@ namespace JobAnalyzer
             System.Diagnostics.Trace.WriteLine("Trace - Hello World!");
             System.Diagnostics.Debug.WriteLine("Debug - Hello World!");
 
+            tbQuery.Text = LoadAppConfig();
+        }
 
-            tbQuery.Text = Properties.Settings.Default.LastRequest;
+        private string LoadAppConfig()
+        {
+            return Properties.Settings.Default.LastRequest;
+        }
+
+        private void SaveAppConfig(string query)
+        {
+            //string Query = tbQuery.Text;
+
+            // 100% рабочий вариант
+            //Properties.Settings.Default.LastRequest = Query;
+            //Properties.Settings.Default.Save();
+            //Properties.Settings.Default.Upgrade();
+            //MessageBox.Show("Saved Settings: " + Query);
+            //Application.Restart();
+
+            Properties.Settings.Default.LastRequest = query;
+            Properties.Settings.Default.Save();
+            ConfigurationManager.RefreshSection("appSettings");
+            ConfigurationManager.RefreshSection("userSettings");
+
+            //// Open App.Config of executable
+            //System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            //// Add an Application Setting.
+            //config.AppSettings.Settings.Remove("LastDateFeesChecked");
+            //config.AppSettings.Settings.Add("LastDateFeesChecked", DateTime.Now.ToShortDateString());
+            //// Save the configuration file.
+            //config.Save(ConfigurationSaveMode.Modified);
+            //// Force a reload of a changed section.
+            //ConfigurationManager.RefreshSection("appSettings");
         }
 
 
@@ -422,15 +454,7 @@ namespace JobAnalyzer
         // проверка строки запроса
         private void btnCheckTextQuery_Click(object sender, EventArgs e)
         {
-            string query = "";
-
-            //string WordSearch = "";
-            //if (!string.IsNullOrWhiteSpace(System.Uri.EscapeDataString(tbTextForQuery.Text)))
-            //{
-            //    WordSearch = System.Uri.EscapeDataString(tbTextForQuery.Text);
-            //}
-
-            query += ("?text=" + System.Uri.EscapeDataString(tbTextForQuery.Text));  // преобразовываем строку в формат URL
+            string query = "?text=" + System.Uri.EscapeDataString(tbTextForQuery.Text);  // преобразовываем строку в формат URL
 
             if (DicQuery != null && DicQuery.Keys.Count > 0)
             {
@@ -446,24 +470,9 @@ namespace JobAnalyzer
                 }
             }
             setQueryText(query);
-
-            SaveAppConfig();
+            SaveAppConfig(getQueryText());
         }
 
-        private void SaveAppConfig()
-        {
-            string Query = tbQuery.Text;
-
-            // 100% рабочий вариант
-            //Properties.Settings.Default.LastRequest = Query;
-            //Properties.Settings.Default.Save();
-            //Properties.Settings.Default.Upgrade();
-            //MessageBox.Show("Saved Settings: " + Query);
-            //Application.Restart();
-
-            Properties.Settings.Default.LastRequest = Query;
-            Properties.Settings.Default.Save();
-        }
 
 
         private void btnQuery_Click(object sender, EventArgs e)
@@ -478,7 +487,7 @@ namespace JobAnalyzer
 
             var listVacs = getcontentVacancy(ListURL);
 
-            //SaveContentVacancy(listVacs);
+            //SaveContentVacancyToFiles(listVacs);
 
             SaveToDB(listVacs);
 
@@ -516,7 +525,7 @@ namespace JobAnalyzer
         }
 
 
-        private void SaveContentVacancy(List<Class.Vacancy.RootObject> listVacs)
+        private void SaveContentVacancyToFiles(List<Class.Vacancy.RootObject> listVacs)
         {
             foreach (Class.Vacancy.RootObject _obj in listVacs)
             {
@@ -1061,6 +1070,35 @@ namespace JobAnalyzer
 
             CreateDiagram(files);
 
+            DisplayPresetData();
+        }
+
+        private List<Class.Vacancy.RootObject> GetAll()
+        {
+            var list = new List<Class.Vacancy.RootObject>();
+            using (var db = new LiteDatabase(DBstorage))
+            {
+                var col = db.GetCollection<Class.Vacancy.RootObject>("Vacancies");
+                foreach (Class.Vacancy.RootObject _id in col.FindAll())
+                {
+                    list.Add(_id);
+                }
+            }
+            return list;
+        }
+
+        public void DisplayPresetData()
+        {
+            dgvTable.DataSource = GetAll();
+        }
+
+        private void tbQuery_Enter(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                tbQuery.ReadOnly = true;
+                SaveAppConfig(getQueryText());
+            }
         }
     }
 }

@@ -267,6 +267,7 @@
             this.tbQuery.Size = new System.Drawing.Size(335, 20);
             this.tbQuery.TabIndex = 6;
             this.tbQuery.DoubleClick += new System.EventHandler(this.tbQuery_DoubleClick);
+            this.tbQuery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbQuery_Enter);
             // 
             // label2
             // 
@@ -346,7 +347,7 @@
             // 
             // btnDBtoDiagram
             // 
-            this.btnDBtoDiagram.Location = new System.Drawing.Point(790, 528);
+            this.btnDBtoDiagram.Location = new System.Drawing.Point(790, 501);
             this.btnDBtoDiagram.Name = "btnDBtoDiagram";
             this.btnDBtoDiagram.Size = new System.Drawing.Size(134, 23);
             this.btnDBtoDiagram.TabIndex = 19;
@@ -356,7 +357,7 @@
             // 
             // btnCheckDB
             // 
-            this.btnCheckDB.Location = new System.Drawing.Point(790, 499);
+            this.btnCheckDB.Location = new System.Drawing.Point(790, 472);
             this.btnCheckDB.Name = "btnCheckDB";
             this.btnCheckDB.Size = new System.Drawing.Size(134, 23);
             this.btnCheckDB.TabIndex = 18;
