@@ -41,7 +41,8 @@ namespace JobAnalyzer
 
         public List<Class.Item> FindAllVacancies(string query)
         {
-            string URL = "https://api.hh.ru/vacancies" + query + "&search_field=name";
+            //string URL = "https://api.hh.ru/vacancies" + query + "&search_field=name";
+            string URL = "https://api.hh.ru/vacancies" + query;
 
             List<Class.Item> ListItems = new List<Class.Item>();
             Class.RootObject VacRObj = new Class.RootObject();
