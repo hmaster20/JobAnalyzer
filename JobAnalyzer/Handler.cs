@@ -43,7 +43,6 @@ namespace JobAnalyzer
         {
             string URL = "https://api.hh.ru/vacancies" + query + "&search_field=name";
 
-
             List<Class.Item> ListItems = new List<Class.Item>();
             Class.RootObject VacRObj = new Class.RootObject();
                                  
@@ -73,7 +72,6 @@ namespace JobAnalyzer
             return ListItems;
         }
 
-
         public Class.Vacancy.RootObject GetVacContent(string url)
         {
             string source = GetSource(url);
@@ -85,8 +83,6 @@ namespace JobAnalyzer
             }
             return VacContent;
         }
-
-
 
         public List<Area> GetCountry()
         {
@@ -100,7 +96,6 @@ namespace JobAnalyzer
             }
             return ar;
         }
-
 
         public Vacancy GetVacancy(string vac)
         {
@@ -144,7 +139,6 @@ namespace JobAnalyzer
             return CollectVac;
         }
 
-
         public List<Specs> GetSpecs()
         {
             string source = GetSource("https://api.hh.ru/specializations");
@@ -156,7 +150,6 @@ namespace JobAnalyzer
             }
             return CollectSpecs;
         }
-
 
         public string GetSource(string url)
         {
@@ -178,7 +171,7 @@ namespace JobAnalyzer
             }
             catch (WebException exc)
             {
-                GetErrorDesciption(exc);
+                //GetErrorDesciption(exc);
                 MessageBox.Show("Сетевая ошибка: " + exc.Message + "\nКод состояния: " + exc.Status);
             }
             catch (ProtocolViolationException exc) { MessageBox.Show("Протокольная ошибка: " + exc.Message); }

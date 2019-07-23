@@ -24,7 +24,7 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Extractors.Code
         {
             if (text.StartsWith("using")) return string.Empty;
             if (text.StartsWith("namespace")) return string.Empty;
-            if (text.StartsWith("#") & (text.Contains("region") || text.Contains("endregion"))) return string.Empty;
+            if (text.StartsWith("#") && text.Contains("region")) return string.Empty;
             return text;
         }
     }

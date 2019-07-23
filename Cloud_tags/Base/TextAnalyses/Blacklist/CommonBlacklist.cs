@@ -36,7 +36,7 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Blacklist
                 string line = reader.ReadLine();
                 while (line != null)
                 {
-                    line.Trim();
+                    line = line.Trim();
                     commonBlacklist.Add(line);
                     line = reader.ReadLine();
                 }

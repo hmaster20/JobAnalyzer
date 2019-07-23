@@ -30,7 +30,7 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Extractors.Code
         {
             if (text.StartsWith("Imports")) return string.Empty;
             if (text.StartsWith("Namespace")) return string.Empty;
-            if (text.StartsWith("#") & (text.Contains("region") || text.Contains("endregion"))) return string.Empty;
+            if (text.StartsWith("#") && text.Contains("region")) return string.Empty;
             return text;
         }
     }

@@ -11,7 +11,7 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Extractors
         private readonly Uri m_Uri;
         private bool m_IsScriptMode;
 
-        public UriExtractor(Uri uri) 
+        public UriExtractor(Uri uri)
             : base(null)
         {
             m_Uri = uri;
@@ -19,13 +19,13 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Extractors
 
         public override IEnumerable<string> GetWords()
         {
-            HttpWebRequest request = (HttpWebRequest) WebRequest.Create(m_Uri);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(m_Uri);
             request.Method = "GET";
             using (WebResponse response = request.GetResponse())
             {
                 using (Stream responseStream = response.GetResponseStream())
                 {
-                    if (responseStream==null)
+                    if (responseStream == null)
                     {
                         yield break;
                     }
@@ -67,15 +67,24 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Extractors
                 m_IsScriptMode = true;
             }
 
-            if (m_IsScriptMode)
+            //if (m_IsScriptMode)
+            //{
+            //    indexOfEnd = text.IndexOf("}");
+            //    if (indexOfEnd < 0)
+            //    {
+            //        return text.Remove(indexOfStart);
+            //    }
+            //    m_IsScriptMode = false;
+            //}
+
+            // m_IsScriptMode - всегда true, поэтому if - не уместен
+            indexOfEnd = text.IndexOf("}");
+            if (indexOfEnd < 0)
             {
-                indexOfEnd = text.IndexOf("}");
-                if (indexOfEnd < 0)
-                {
-                    return text.Remove(indexOfStart);
-                }
-                m_IsScriptMode = false;
+                return text.Remove(indexOfStart);
             }
+            m_IsScriptMode = false;
+
 
             int count = indexOfEnd - indexOfStart + 2;
             if (indexOfStart + count < text.Length)

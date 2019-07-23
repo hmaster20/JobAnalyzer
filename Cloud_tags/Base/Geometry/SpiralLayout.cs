@@ -19,7 +19,7 @@ namespace Gma.CodeCloud.Base.Geometry
             const double pointsOnSpital = 500;
 
 
-            Math.Min(Center.Y, Center.X);
+            //Math.Min(Center.Y, Center.X);
             for (int pointIndex = 0; pointIndex < pointsOnSpital; pointIndex++)
             {
                 double dX = pointIndex / pointsOnSpital * Math.Sin(alpha) * Center.X;

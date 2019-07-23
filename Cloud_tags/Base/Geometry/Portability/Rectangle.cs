@@ -95,7 +95,7 @@ namespace Gma.CodeCloud.Base.Geometry.Portability
 
         public static bool operator ==(Rectangle left, Rectangle right)
         {
-            return ((((left.X == right.X) && (left.Y == right.Y)) && (left.Width == right.Width)) && (left.Height == right.Height));
+            return (left.X == right.X) && (left.Y == right.Y) && (left.Width == right.Width) && (left.Height == right.Height);
         }
 
         public static bool operator !=(Rectangle left, Rectangle right)

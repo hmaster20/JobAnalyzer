@@ -1,7 +1,6 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using Gma.CodeCloud.Base.Languages;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Gma.CodeCloud.Base.TextAnalyses.Extractors.Code
 {
@@ -15,7 +14,7 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Extractors.Code
         protected CodeExtractorBase(string file)
             : base(file)
         {
-           
+
         }
 
         protected override IEnumerable<string> GetWordsInLine(string line)
@@ -88,16 +87,23 @@ namespace Gma.CodeCloud.Base.TextAnalyses.Extractors.Code
                 m_IsCommentMode = true;
             }
 
-            if (m_IsCommentMode)
-            {
-                indexOfEnd = text.IndexOf(s_MultilineCommentSuffix);
-                if (indexOfEnd < 0)
-                {
-                    return text.Remove(indexOfStart);
-                }
-                m_IsCommentMode = false;
-            }
+            //if (m_IsCommentMode)
+            //{
+            //    indexOfEnd = text.IndexOf(s_MultilineCommentSuffix);
+            //    if (indexOfEnd < 0)
+            //    {
+            //        return text.Remove(indexOfStart);
+            //    }
+            //    m_IsCommentMode = false;
+            //}
 
+            // m_IsCommentMode - всегда true, поэтому if - не уместен
+            indexOfEnd = text.IndexOf(s_MultilineCommentSuffix);
+            if (indexOfEnd < 0)
+            {
+                return text.Remove(indexOfStart);
+            }
+            m_IsCommentMode = false;
 
             return text.Remove(indexOfStart, indexOfEnd - indexOfStart + 2);
         }
