@@ -89,6 +89,8 @@
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.hideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.listViewOldRequest = new System.Windows.Forms.ListView();
             toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -104,6 +106,7 @@
             this.splitContainer1.SuspendLayout();
             this.MainToolStrip.SuspendLayout();
             this.contextMenu.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripLabel3
@@ -304,6 +307,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -704,6 +708,25 @@
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip.ToolTipTitle = "Statistics:";
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.listViewOldRequest);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1213, 591);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Последние запросы";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // listViewOldRequest
+            // 
+            this.listViewOldRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewOldRequest.Location = new System.Drawing.Point(0, 0);
+            this.listViewOldRequest.Name = "listViewOldRequest";
+            this.listViewOldRequest.Size = new System.Drawing.Size(1213, 591);
+            this.listViewOldRequest.TabIndex = 1;
+            this.listViewOldRequest.UseCompatibleStateImageBehavior = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -728,6 +751,7 @@
             this.MainToolStrip.ResumeLayout(false);
             this.MainToolStrip.PerformLayout();
             this.contextMenu.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -788,6 +812,8 @@
         private System.Windows.Forms.Button btnInit;
         private System.Windows.Forms.Button btnCheckDB;
         private System.Windows.Forms.Button btnDBtoDiagram;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.ListView listViewOldRequest;
     }
 }
 

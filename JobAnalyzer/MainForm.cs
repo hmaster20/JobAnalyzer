@@ -8,6 +8,7 @@ using Gma.CodeCloud.Controls;
 using LiteDB;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
@@ -123,6 +124,42 @@ namespace JobAnalyzer
             //config.Save(ConfigurationSaveMode.Modified);
             //// Force a reload of a changed section.
             //ConfigurationManager.RefreshSection("appSettings");
+        }
+
+        private void SaveOldRequest(string query)
+        {
+            // Open App.Config of executable
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            // Add an Application Setting.
+            config.AppSettings.Settings.Add(DateTime.Now.Ticks.ToString(), query);
+            // Save the configuration file.
+            config.Save(ConfigurationSaveMode.Modified);
+            // Force a reload of a changed section.
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+
+        private void ReloadView()
+        {
+            Console.WriteLine("ReloadView");
+
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            NameValueCollection sAll = ConfigurationManager.AppSettings;
+
+            foreach (string s in sAll.AllKeys)
+            {
+                DateTime myDate = new DateTime(Convert.ToInt64(s));
+                String test = myDate.ToString("dd MMMM yyyy");
+
+                //Console.WriteLine("Key: " + s + " Value: " + sAll.Get(s));
+                Console.WriteLine("Key: " + myDate.ToString() + " Value: " + sAll.Get(s));
+            }
+
+
+            //DateTime myDate = new DateTime(numberOfTicks);
+            //String test = myDate.ToString("MMMM dd, yyyy");
+
+            //DateTime dt = new DateTime(633896886277130000);
+            //dt.ToString() ==> "9/27/2009 10:50:27 PM"
         }
 
 
@@ -471,6 +508,10 @@ namespace JobAnalyzer
             }
             setQueryText(query);
             SaveAppConfig(getQueryText());
+
+            SaveOldRequest(getQueryText());
+
+            ReloadView();
         }
 
 
