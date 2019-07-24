@@ -148,7 +148,7 @@ namespace JobAnalyzer
             foreach (string s in sAll.AllKeys)
             {
                 DateTime myDate = new DateTime(Convert.ToInt64(s));
-                String test = myDate.ToString("dd MMMM yyyy");
+                //string test = myDate.ToString("dd MMMM yyyy");
 
                 //Console.WriteLine("Key: " + s + " Value: " + sAll.Get(s));
                 Console.WriteLine("Key: " + myDate.ToString() + " Value: " + sAll.Get(s));
@@ -160,6 +160,99 @@ namespace JobAnalyzer
 
             //DateTime dt = new DateTime(633896886277130000);
             //dt.ToString() ==> "9/27/2009 10:50:27 PM"
+
+
+
+            listViewOldRequest.View = View.Details;
+            listViewOldRequest.AllowColumnReorder = true;
+            listViewOldRequest.FullRowSelect = true;
+            listViewOldRequest.Sorting = SortOrder.Ascending;
+
+            List<ListViewItem> FullList = new List<ListViewItem>();
+            int counter = 0;
+
+            foreach (string s in sAll.AllKeys)
+            {
+                DateTime myDate = new DateTime(Convert.ToInt64(s));
+                ListViewItem itm = new ListViewItem(myDate.ToString(), counter);
+                itm.SubItems.Add(sAll.Get(s));
+                FullList.Add(itm);
+                counter++;
+            }
+
+            listViewOldRequest.Columns.Add("Дата создания", -2, HorizontalAlignment.Left);
+            listViewOldRequest.Columns.Add("Строка запроса", -2, HorizontalAlignment.Left);
+
+            listViewOldRequest.Items.AddRange(FullList.ToArray());
+            listViewOldRequest.Refresh();
+
+            //// Create a new ListView control.
+            //ListView listViewOldRequest = new ListView();
+            //listView1.Bounds = new Rectangle(new Point(10, 10), new Size(300, 200));
+
+            //// Set the view to show details.
+            //listViewOldRequest.View = View.Details;
+            //// Allow the user to edit item text.
+            //listViewOldRequest.LabelEdit = true;
+            //// Allow the user to rearrange columns.
+            //listViewOldRequest.AllowColumnReorder = true;
+            //// Display check boxes.
+            //listViewOldRequest.CheckBoxes = true;
+            //// Select the item and subitems when selection is made.
+            //listViewOldRequest.FullRowSelect = true;
+            //// Display grid lines.
+            //listViewOldRequest.GridLines = true;
+            //// Sort the items in the list in ascending order.
+            //listViewOldRequest.Sorting = SortOrder.Ascending;
+
+            //// Create three items and three sets of subitems for each item.
+            //ListViewItem item1 = new ListViewItem("item1", 0);
+            //// Place a check mark next to the item.
+            //item1.Checked = true;
+            //item1.SubItems.Add("1");
+            //item1.SubItems.Add("2");
+            //item1.SubItems.Add("3");
+            //ListViewItem item2 = new ListViewItem("item2", 1);
+            //item2.SubItems.Add("4");
+            //item2.SubItems.Add("5");
+            //item2.SubItems.Add("6");
+            //ListViewItem item3 = new ListViewItem("item3", 0);
+            //// Place a check mark next to the item.
+            //item3.Checked = true;
+            //item3.SubItems.Add("7");
+            //item3.SubItems.Add("8");
+            //item3.SubItems.Add("9");
+
+            //// Create columns for the items and subitems.
+            //// Width of -2 indicates auto-size.
+            //listViewOldRequest.Columns.Add("Item Column", -2, HorizontalAlignment.Left);
+            //listViewOldRequest.Columns.Add("Column 2", -2, HorizontalAlignment.Left);
+            //listViewOldRequest.Columns.Add("Column 3", -2, HorizontalAlignment.Left);
+            //listViewOldRequest.Columns.Add("Column 4", -2, HorizontalAlignment.Center);
+
+            ////Add the items to the ListView.
+            //listViewOldRequest.Items.AddRange(new ListViewItem[] { item1, item2, item3 });
+
+            //// Create two ImageList objects.
+            //ImageList imageListSmall = new ImageList();
+            //ImageList imageListLarge = new ImageList();
+
+            // Initialize the ImageList objects with bitmaps.
+            //imageListSmall.Images.Add(Bitmap.FromFile("C:\\MySmallImage1.bmp"));
+            //imageListSmall.Images.Add(Bitmap.FromFile("C:\\MySmallImage2.bmp"));
+            //imageListLarge.Images.Add(Bitmap.FromFile("C:\\MyLargeImage1.bmp"));
+            //imageListLarge.Images.Add(Bitmap.FromFile("C:\\MyLargeImage2.bmp"));
+
+            //Assign the ImageList objects to the ListView.
+            //listView1.LargeImageList = imageListLarge;
+            //listView1.SmallImageList = imageListSmall;
+
+            // Add the ListView to the control collection.
+            //this.Controls.Add(listView1);
+
+            //tabPage5.Controls.Add(listView1);
+
+            //listViewOldRequest = listView1;
         }
 
 
