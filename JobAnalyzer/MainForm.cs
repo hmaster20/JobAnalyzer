@@ -255,6 +255,18 @@ namespace JobAnalyzer
             //listViewOldRequest = listView1;
         }
 
+        private void listViewOldRequest_DoubleClick(object sender, EventArgs e)
+        {
+            if (listViewOldRequest.SelectedItems.Count == 1)
+            {
+                //MessageBox.Show(listViewOldRequest.SelectedItems[0].Text);
+
+                var aa = listViewOldRequest.SelectedItems[0].SubItems[1].Text;
+                setQueryText(aa);
+                MessageBox.Show(aa);
+            }
+        }
+
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
@@ -1234,5 +1246,7 @@ namespace JobAnalyzer
                 SaveAppConfig(getQueryText());
             }
         }
+
+
     }
 }

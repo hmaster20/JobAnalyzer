@@ -726,6 +726,7 @@
             this.listViewOldRequest.Size = new System.Drawing.Size(1213, 591);
             this.listViewOldRequest.TabIndex = 1;
             this.listViewOldRequest.UseCompatibleStateImageBehavior = false;
+            this.listViewOldRequest.DoubleClick += new System.EventHandler(this.listViewOldRequest_DoubleClick);
             // 
             // MainForm
             // 
