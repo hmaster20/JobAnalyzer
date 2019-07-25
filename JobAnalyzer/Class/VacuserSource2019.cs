@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace JobAnalyzer.Class.Vacancy
 {
@@ -125,5 +123,13 @@ namespace JobAnalyzer.Class.Vacancy
         public bool has_test { get; set; }
         public object test { get; set; }
         public string alternate_url { get; set; }
+
+
+        public string dgvID { get { return id; } }
+        public string dgvNAME { get { return name; } }
+        public string dgvDESC { get { return description; } }
+        public string dgvDATE { get { return published_at.ToShortDateString(); } }
+        public string dgvAREA { get { return area.name; } }
+        public string dgvEMPL { get { return employer.name; } }
     }
 }
