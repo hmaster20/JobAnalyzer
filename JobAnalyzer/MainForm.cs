@@ -96,6 +96,9 @@ namespace JobAnalyzer
             dgvTable.DefaultCellStyle.SelectionForeColor = Color.Black;     // Цвета текста выбранной строки
             dgvTable.Columns[dgvTable.Columns.Count - 1].DefaultCellStyle.SelectionForeColor = Color.Blue;    // цвет текста выбранной строки нужного столбца
 
+            dgvTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top 
+                | System.Windows.Forms.AnchorStyles.Left)
+                | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom)));
             dgvTable.AllowDrop = true;
             dgvTable.AllowUserToAddRows = false;
             dgvTable.AllowUserToDeleteRows = false;
@@ -1268,6 +1271,26 @@ namespace JobAnalyzer
             }
         }
 
+        private void dgvTable_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == (dgvTable.Columns.Count - 1))
+            {
+                Class.Vacancy.RootObject record = GetSelectedRecord();
+                if (record != null) record.play();
+            }
+        }
 
+        private Class.Vacancy.RootObject GetSelectedRecord()  // получение выбранной записи в dgvTable
+        {
+            DataGridView dgv = dgvTable;
+            if (dgv != null && dgv.SelectedRows.Count > 0 && dgv.SelectedRows[0].Index > -1)
+            {
+                Class.Vacancy.RootObject record = null;
+                if (dgv.SelectedRows[0].DataBoundItem is Class.Vacancy.RootObject) record = dgv.SelectedRows[0].DataBoundItem as Class.Vacancy.RootObject;
+                //if (dgv.CurrentRow.DataBoundItem is Record) record = dgv.CurrentRow.DataBoundItem as Record;
+                if (record != null) return record;
+            }
+            return null;
+        }
     }
 }

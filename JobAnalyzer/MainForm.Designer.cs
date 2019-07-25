@@ -36,7 +36,6 @@
             System.Windows.Forms.Splitter Splitter;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnQuery = new System.Windows.Forms.Button();
-            this.dgvTable = new System.Windows.Forms.DataGridView();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnAnalyze = new System.Windows.Forms.Button();
             this.btnAddKeyforAnalyze = new System.Windows.Forms.Button();
@@ -85,24 +84,37 @@
             this.toolStripComboBoxMaxFontSize = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.listViewOldRequest = new System.Windows.Forms.ListView();
             this.hideAndBlackListMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.hideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.dgvTable = new System.Windows.Forms.DataGridView();
             this.cmnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnEmpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.listViewOldRequest = new System.Windows.Forms.ListView();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             Splitter = new System.Windows.Forms.Splitter();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -111,8 +123,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.SuspendLayout();
             this.MainToolStrip.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             this.contextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripLabel3
@@ -157,22 +169,6 @@
             this.btnQuery.Text = "Выполнить запрос";
             this.btnQuery.UseVisualStyleBackColor = true;
             this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
-            // 
-            // dgvTable
-            // 
-            this.dgvTable.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cmnID,
-            this.cmnName,
-            this.cmnDesc,
-            this.cmnDate,
-            this.cmnArea,
-            this.cmnEmpl});
-            this.dgvTable.Location = new System.Drawing.Point(17, 33);
-            this.dgvTable.Name = "dgvTable";
-            this.dgvTable.Size = new System.Drawing.Size(762, 532);
-            this.dgvTable.TabIndex = 1;
             // 
             // btnLoad
             // 
@@ -320,7 +316,6 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -331,12 +326,12 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.listViewOldRequest);
             this.tabPage1.Controls.Add(this.btnDBtoDiagram);
             this.tabPage1.Controls.Add(this.btnCheckDB);
             this.tabPage1.Controls.Add(this.btnInit);
             this.tabPage1.Controls.Add(this.btnCheckSpecs);
             this.tabPage1.Controls.Add(this.cbSpecs);
-            this.tabPage1.Controls.Add(this.dgvTable);
             this.tabPage1.Controls.Add(this.btnReset);
             this.tabPage1.Controls.Add(this.cbPeriod);
             this.tabPage1.Controls.Add(this.cbGrafik);
@@ -348,6 +343,7 @@
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.btnRefreshPeriod);
             this.tabPage1.Controls.Add(this.btnRefreshCountry);
@@ -472,6 +468,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.lbKeys);
             this.tabPage2.Controls.Add(this.btnAnalyze);
             this.tabPage2.Controls.Add(this.btnAddKeyforAnalyze);
@@ -486,6 +483,19 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.richTextBox1);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.label14);
+            this.tabPage3.Controls.Add(this.label13);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.label9);
+            this.tabPage3.Controls.Add(this.textBox5);
+            this.tabPage3.Controls.Add(this.textBox4);
+            this.tabPage3.Controls.Add(this.textBox3);
+            this.tabPage3.Controls.Add(this.textBox2);
+            this.tabPage3.Controls.Add(this.textBox1);
+            this.tabPage3.Controls.Add(this.dgvTable);
             this.tabPage3.Controls.Add(this.btnVac);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -496,11 +506,11 @@
             // 
             // btnVac
             // 
-            this.btnVac.Location = new System.Drawing.Point(47, 76);
+            this.btnVac.Location = new System.Drawing.Point(1041, 560);
             this.btnVac.Name = "btnVac";
             this.btnVac.Size = new System.Drawing.Size(75, 23);
             this.btnVac.TabIndex = 0;
-            this.btnVac.Text = "button1";
+            this.btnVac.Text = "Get Details";
             this.btnVac.UseVisualStyleBackColor = true;
             this.btnVac.Click += new System.EventHandler(this.btnVac_Click);
             // 
@@ -688,26 +698,6 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 32);
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.listViewOldRequest);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1213, 591);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Последние запросы";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // listViewOldRequest
-            // 
-            this.listViewOldRequest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewOldRequest.Location = new System.Drawing.Point(0, 0);
-            this.listViewOldRequest.Name = "listViewOldRequest";
-            this.listViewOldRequest.Size = new System.Drawing.Size(1213, 591);
-            this.listViewOldRequest.TabIndex = 1;
-            this.listViewOldRequest.UseCompatibleStateImageBehavior = false;
-            this.listViewOldRequest.DoubleClick += new System.EventHandler(this.listViewOldRequest_DoubleClick);
-            // 
             // hideAndBlackListMenuItem
             // 
             this.hideAndBlackListMenuItem.Name = "hideAndBlackListMenuItem";
@@ -741,6 +731,32 @@
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip.ToolTipTitle = "Statistics:";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Фильтрация:";
+            // 
+            // dgvTable
+            // 
+            this.dgvTable.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cmnID,
+            this.cmnName,
+            this.cmnDesc,
+            this.cmnDate,
+            this.cmnArea,
+            this.cmnEmpl});
+            this.dgvTable.Location = new System.Drawing.Point(8, 29);
+            this.dgvTable.Name = "dgvTable";
+            this.dgvTable.Size = new System.Drawing.Size(930, 554);
+            this.dgvTable.TabIndex = 8;
+            this.dgvTable.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTable_CellContentDoubleClick);
+            // 
             // cmnID
             // 
             this.cmnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -752,10 +768,12 @@
             // 
             // cmnName
             // 
+            this.cmnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.cmnName.DataPropertyName = "dgvNAME";
             this.cmnName.HeaderText = "Название";
             this.cmnName.Name = "cmnName";
             this.cmnName.ReadOnly = true;
+            this.cmnName.Width = 82;
             // 
             // cmnDesc
             // 
@@ -776,19 +794,135 @@
             // 
             // cmnArea
             // 
-            this.cmnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.cmnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.cmnArea.DataPropertyName = "dgvAREA";
             this.cmnArea.HeaderText = "Расположение";
             this.cmnArea.Name = "cmnArea";
             this.cmnArea.ReadOnly = true;
-            this.cmnArea.Width = 21;
+            this.cmnArea.Width = 107;
             // 
             // cmnEmpl
             // 
+            this.cmnEmpl.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.cmnEmpl.DataPropertyName = "dgvEMPL";
             this.cmnEmpl.HeaderText = "Работодатель";
             this.cmnEmpl.Name = "cmnEmpl";
             this.cmnEmpl.ReadOnly = true;
+            this.cmnEmpl.Width = 103;
+            // 
+            // listViewOldRequest
+            // 
+            this.listViewOldRequest.Location = new System.Drawing.Point(20, 36);
+            this.listViewOldRequest.Name = "listViewOldRequest";
+            this.listViewOldRequest.Size = new System.Drawing.Size(627, 488);
+            this.listViewOldRequest.TabIndex = 20;
+            this.listViewOldRequest.UseCompatibleStateImageBehavior = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(17, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(110, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Последние запросы";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(947, 45);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(169, 20);
+            this.textBox1.TabIndex = 9;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(944, 29);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(18, 13);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "ID";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(947, 123);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(169, 275);
+            this.richTextBox1.TabIndex = 11;
+            this.richTextBox1.Text = "";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(947, 84);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(169, 20);
+            this.textBox2.TabIndex = 9;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(944, 68);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(57, 13);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Название";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(947, 417);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(169, 20);
+            this.textBox3.TabIndex = 9;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(944, 401);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(33, 13);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Дата";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(941, 107);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(57, 13);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "Описание";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(947, 458);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(169, 20);
+            this.textBox4.TabIndex = 9;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(944, 442);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(82, 13);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "Расположение";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(947, 500);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(169, 20);
+            this.textBox5.TabIndex = 9;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(944, 484);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(78, 13);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Работодатель";
             // 
             // MainForm
             // 
@@ -800,21 +934,21 @@
             this.Name = "MainForm";
             this.Text = "JobAnalyzer";
             this.Load += new System.EventHandler(this.Form_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.MainToolStrip.ResumeLayout(false);
             this.MainToolStrip.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
             this.contextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -822,7 +956,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnQuery;
-        private System.Windows.Forms.DataGridView dgvTable;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnAnalyze;
         private System.Windows.Forms.Button btnAddKeyforAnalyze;
@@ -875,14 +1008,28 @@
         private System.Windows.Forms.Button btnInit;
         private System.Windows.Forms.Button btnCheckDB;
         private System.Windows.Forms.Button btnDBtoDiagram;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.ListView listViewOldRequest;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridView dgvTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnID;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnArea;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnEmpl;
+        private System.Windows.Forms.ListView listViewOldRequest;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
