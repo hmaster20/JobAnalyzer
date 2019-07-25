@@ -91,6 +91,24 @@ namespace JobAnalyzer
             System.Diagnostics.Trace.WriteLine("Trace - Hello World!");
             System.Diagnostics.Debug.WriteLine("Debug - Hello World!");
 
+            dgvTable.AutoGenerateColumns = false;    // Отключение автоматического заполнения таблицы
+            dgvTable.DefaultCellStyle.SelectionBackColor = Color.Silver;    // Цвет фона выбранной строки
+            dgvTable.DefaultCellStyle.SelectionForeColor = Color.Black;     // Цвета текста выбранной строки
+            dgvTable.Columns[dgvTable.Columns.Count - 1].DefaultCellStyle.SelectionForeColor = Color.Blue;    // цвет текста выбранной строки нужного столбца
+
+            dgvTable.AllowDrop = true;
+            dgvTable.AllowUserToAddRows = false;
+            dgvTable.AllowUserToDeleteRows = false;
+            dgvTable.AllowUserToResizeRows = false;
+            dgvTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dgvTable.BackgroundColor = System.Drawing.SystemColors.Window;
+            dgvTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dgvTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTable.MultiSelect = false;
+            dgvTable.ReadOnly = true;
+            dgvTable.RowHeadersVisible = false;
+            dgvTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+
             tbQuery.Text = LoadAppConfig();
         }
 
@@ -290,6 +308,8 @@ namespace JobAnalyzer
 
             dgvTable.DataSource = null;
             dgvTable.DataSource = filtered;
+
+
         }
 
 
@@ -1235,7 +1255,8 @@ namespace JobAnalyzer
 
         public void DisplayPresetData()
         {
-            dgvTable.DataSource = GetAll();
+            List<Class.Vacancy.RootObject> Source = GetAll();
+            dgvTable.DataSource = Source;
         }
 
         private void tbQuery_Enter(object sender, KeyPressEventArgs e)

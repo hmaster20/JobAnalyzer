@@ -85,12 +85,18 @@
             this.toolStripComboBoxMaxFontSize = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.listViewOldRequest = new System.Windows.Forms.ListView();
             this.hideAndBlackListMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.hideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.listViewOldRequest = new System.Windows.Forms.ListView();
+            this.cmnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnEmpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -105,8 +111,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.SuspendLayout();
             this.MainToolStrip.SuspendLayout();
-            this.contextMenu.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripLabel3
@@ -156,6 +162,13 @@
             // 
             this.dgvTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cmnID,
+            this.cmnName,
+            this.cmnDesc,
+            this.cmnDate,
+            this.cmnArea,
+            this.cmnEmpl});
             this.dgvTable.Location = new System.Drawing.Point(17, 33);
             this.dgvTable.Name = "dgvTable";
             this.dgvTable.Size = new System.Drawing.Size(762, 532);
@@ -675,6 +688,26 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 32);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.listViewOldRequest);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1213, 591);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Последние запросы";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // listViewOldRequest
+            // 
+            this.listViewOldRequest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewOldRequest.Location = new System.Drawing.Point(0, 0);
+            this.listViewOldRequest.Name = "listViewOldRequest";
+            this.listViewOldRequest.Size = new System.Drawing.Size(1213, 591);
+            this.listViewOldRequest.TabIndex = 1;
+            this.listViewOldRequest.UseCompatibleStateImageBehavior = false;
+            this.listViewOldRequest.DoubleClick += new System.EventHandler(this.listViewOldRequest_DoubleClick);
+            // 
             // hideAndBlackListMenuItem
             // 
             this.hideAndBlackListMenuItem.Name = "hideAndBlackListMenuItem";
@@ -708,25 +741,54 @@
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip.ToolTipTitle = "Statistics:";
             // 
-            // tabPage5
+            // cmnID
             // 
-            this.tabPage5.Controls.Add(this.listViewOldRequest);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1213, 591);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Последние запросы";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.cmnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cmnID.DataPropertyName = "dgvID";
+            this.cmnID.HeaderText = "ID";
+            this.cmnID.Name = "cmnID";
+            this.cmnID.ReadOnly = true;
+            this.cmnID.Width = 43;
             // 
-            // listViewOldRequest
+            // cmnName
             // 
-            this.listViewOldRequest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewOldRequest.Location = new System.Drawing.Point(0, 0);
-            this.listViewOldRequest.Name = "listViewOldRequest";
-            this.listViewOldRequest.Size = new System.Drawing.Size(1213, 591);
-            this.listViewOldRequest.TabIndex = 1;
-            this.listViewOldRequest.UseCompatibleStateImageBehavior = false;
-            this.listViewOldRequest.DoubleClick += new System.EventHandler(this.listViewOldRequest_DoubleClick);
+            this.cmnName.DataPropertyName = "dgvNAME";
+            this.cmnName.HeaderText = "Название";
+            this.cmnName.Name = "cmnName";
+            this.cmnName.ReadOnly = true;
+            // 
+            // cmnDesc
+            // 
+            this.cmnDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnDesc.DataPropertyName = "dgvDESC";
+            this.cmnDesc.HeaderText = "Описание";
+            this.cmnDesc.Name = "cmnDesc";
+            this.cmnDesc.ReadOnly = true;
+            // 
+            // cmnDate
+            // 
+            this.cmnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cmnDate.DataPropertyName = "dgvDATE";
+            this.cmnDate.HeaderText = "Дата";
+            this.cmnDate.Name = "cmnDate";
+            this.cmnDate.ReadOnly = true;
+            this.cmnDate.Width = 58;
+            // 
+            // cmnArea
+            // 
+            this.cmnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.cmnArea.DataPropertyName = "dgvAREA";
+            this.cmnArea.HeaderText = "Расположение";
+            this.cmnArea.Name = "cmnArea";
+            this.cmnArea.ReadOnly = true;
+            this.cmnArea.Width = 21;
+            // 
+            // cmnEmpl
+            // 
+            this.cmnEmpl.DataPropertyName = "dgvEMPL";
+            this.cmnEmpl.HeaderText = "Работодатель";
+            this.cmnEmpl.Name = "cmnEmpl";
+            this.cmnEmpl.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -751,8 +813,8 @@
             this.splitContainer1.ResumeLayout(false);
             this.MainToolStrip.ResumeLayout(false);
             this.MainToolStrip.PerformLayout();
-            this.contextMenu.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
+            this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -815,6 +877,12 @@
         private System.Windows.Forms.Button btnDBtoDiagram;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.ListView listViewOldRequest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnArea;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnEmpl;
     }
 }
 
