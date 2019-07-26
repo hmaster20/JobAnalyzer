@@ -1275,8 +1275,17 @@ namespace JobAnalyzer
         {
             if (e.ColumnIndex == (dgvTable.Columns.Count - 1))
             {
+                //Class.Vacancy.RootObject record = GetSelectedRecord();
+                //if (record != null) record.play();
+
                 Class.Vacancy.RootObject record = GetSelectedRecord();
-                if (record != null) record.play();
+
+                //webBrowser1 = new WebBrowser();
+                //webBrowser1.Hide();
+                webBrowser1.Navigate("about:blank");
+                webBrowser1.DocumentText = record.description;
+                //webBrowser1.Show();
+
             }
         }
 
