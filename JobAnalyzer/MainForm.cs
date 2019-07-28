@@ -103,7 +103,7 @@ namespace JobAnalyzer
             dgvTable.AllowUserToAddRows = false;
             dgvTable.AllowUserToDeleteRows = false;
             dgvTable.AllowUserToResizeRows = false;
-            dgvTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dgvTable.BackgroundColor = System.Drawing.SystemColors.Window;
             dgvTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dgvTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1300,6 +1300,12 @@ namespace JobAnalyzer
                 if (record != null) return record;
             }
             return null;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<Class.Vacancy.RootObject> Source = GetAll();
+            dataGridView1.DataSource = Source;
         }
     }
 }
