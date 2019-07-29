@@ -67,6 +67,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnRefreshPeriod = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -111,8 +113,8 @@
             this.cmnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnEmpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.cmnFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -121,6 +123,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -133,7 +136,6 @@
             this.splitContainer1.SuspendLayout();
             this.MainToolStrip.SuspendLayout();
             this.contextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripLabel3
@@ -378,7 +380,7 @@
             // 
             // btnDBtoDiagram
             // 
-            this.btnDBtoDiagram.Location = new System.Drawing.Point(790, 501);
+            this.btnDBtoDiagram.Location = new System.Drawing.Point(790, 486);
             this.btnDBtoDiagram.Name = "btnDBtoDiagram";
             this.btnDBtoDiagram.Size = new System.Drawing.Size(134, 23);
             this.btnDBtoDiagram.TabIndex = 19;
@@ -388,7 +390,7 @@
             // 
             // btnCheckDB
             // 
-            this.btnCheckDB.Location = new System.Drawing.Point(790, 472);
+            this.btnCheckDB.Location = new System.Drawing.Point(790, 457);
             this.btnCheckDB.Name = "btnCheckDB";
             this.btnCheckDB.Size = new System.Drawing.Size(134, 23);
             this.btnCheckDB.TabIndex = 18;
@@ -510,6 +512,24 @@
             this.tabPage2.Text = "Форма анализа";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(38, 254);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(159, 33);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(1021, 527);
+            this.dataGridView1.TabIndex = 10;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -556,7 +576,9 @@
             this.cmnName,
             this.cmnDate,
             this.cmnArea,
-            this.cmnEmpl});
+            this.cmnEmpl,
+            this.cmnFrom,
+            this.cmnTo});
             this.dgvTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTable.Location = new System.Drawing.Point(0, 0);
             this.dgvTable.Name = "dgvTable";
@@ -976,23 +998,17 @@
             this.cmnEmpl.ReadOnly = true;
             this.cmnEmpl.Width = 103;
             // 
-            // dataGridView1
+            // cmnFrom
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(159, 33);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1021, 527);
-            this.dataGridView1.TabIndex = 10;
+            this.cmnFrom.DataPropertyName = "dgvPriceFrom";
+            this.cmnFrom.HeaderText = "ЗарплатаОт";
+            this.cmnFrom.Name = "cmnFrom";
             // 
-            // button1
+            // cmnTo
             // 
-            this.button1.Location = new System.Drawing.Point(38, 254);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.cmnTo.DataPropertyName = "dgvPriceTo";
+            this.cmnTo.HeaderText = "ЗарплатаДо";
+            this.cmnTo.Name = "cmnTo";
             // 
             // MainForm
             // 
@@ -1009,6 +1025,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -1024,7 +1041,6 @@
             this.MainToolStrip.ResumeLayout(false);
             this.MainToolStrip.PerformLayout();
             this.contextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1102,13 +1118,15 @@
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnID;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnArea;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnEmpl;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnFrom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnTo;
     }
 }
 

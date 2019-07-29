@@ -12,21 +12,37 @@ namespace JobAnalyzer.Class.Vacancy
     public class Area
     {
         public string id { get; set; }
+
+        /// <summary>
+        /// Москва
+        /// </summary>
         public string name { get; set; }
         public string url { get; set; }
     }
 
     public class Salary
     {
+        /// <summary>Зарплата от</summary>
         public int? from { get; set; }
+
+        /// <summary>Зарплата до</summary>
         public int? to { get; set; }
+
+        /// <summary>Валюта, например: RUR</summary>
         public string currency { get; set; }
         public bool gross { get; set; }
     }
 
     public class Type
     {
+        /// <summary>
+        /// open
+        /// </summary>
         public string id { get; set; }
+
+        /// <summary>
+        /// Открытая
+        /// </summary>
         public string name { get; set; }
     }
 
@@ -38,27 +54,63 @@ namespace JobAnalyzer.Class.Vacancy
 
     public class Experience
     {
+        /// <summary>
+        /// between3And6
+        /// </summary>
         public string id { get; set; }
+
+        /// <summary>
+        /// От 3 до 6 лет
+        /// </summary>
         public string name { get; set; }
     }
 
     public class Schedule
     {
+        /// <summary>
+        /// fullDay
+        /// </summary>
         public string id { get; set; }
+
+        /// <summary>
+        /// Полный день
+        /// </summary>
         public string name { get; set; }
     }
 
     public class Employment
     {
+        /// <summary>
+        /// full
+        /// </summary>
         public string id { get; set; }
+
+        /// <summary>
+        /// Полная занятость
+        /// </summary>
         public string name { get; set; }
     }
 
     public class Specialization
     {
+        /// <summary>
+        /// 1.221
+        /// </summary>
         public string id { get; set; }
+
+        /// <summary>
+        /// Программирование, Разработка
+        /// </summary>
         public string name { get; set; }
+
+        /// <summary>
+        /// 1
+        /// </summary>
         public string profarea_id { get; set; }
+
+        /// <summary>
+        /// Информационные технологии, интернет, телеком
+        /// </summary>
         public string profarea_name { get; set; }
     }
 
@@ -124,12 +176,25 @@ namespace JobAnalyzer.Class.Vacancy
         public object test { get; set; }
         public string alternate_url { get; set; }
 
-
         public string dgvID { get { return id; } }
         public string dgvNAME { get { return name; } }
         public string dgvDESC { get { return description; } }
         public string dgvDATE { get { return published_at.ToShortDateString(); } }
         public string dgvAREA { get { return area.name; } }
         public string dgvEMPL { get { return employer.name; } }
+        public string dgvPriceFrom
+        {
+            get
+            {
+                return (salary !=null && salary.from != null) ? salary.from.ToString() : 0.ToString();
+            }
+        }
+        public string dgvPriceTo
+        {
+            get
+            {
+                return (salary != null && salary.to != null) ? salary.to.ToString() : 0.ToString();
+            }
+        }
     }
 }
