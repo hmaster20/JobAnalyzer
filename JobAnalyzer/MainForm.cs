@@ -137,16 +137,6 @@ namespace JobAnalyzer
             Properties.Settings.Default.Save();
             ConfigurationManager.RefreshSection("appSettings");
             ConfigurationManager.RefreshSection("userSettings");
-
-            //// Open App.Config of executable
-            //System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            //// Add an Application Setting.
-            //config.AppSettings.Settings.Remove("LastDateFeesChecked");
-            //config.AppSettings.Settings.Add("LastDateFeesChecked", DateTime.Now.ToShortDateString());
-            //// Save the configuration file.
-            //config.Save(ConfigurationSaveMode.Modified);
-            //// Force a reload of a changed section.
-            //ConfigurationManager.RefreshSection("appSettings");
         }
 
         private void SaveOldRequest(string query)
@@ -155,6 +145,8 @@ namespace JobAnalyzer
             System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             // Add an Application Setting.
             config.AppSettings.Settings.Add(DateTime.Now.Ticks.ToString(), query);
+            // Remove from Setting.
+            //config.AppSettings.Settings.Remove("LastKey");
             // Save the configuration file.
             config.Save(ConfigurationSaveMode.Modified);
             // Force a reload of a changed section.
@@ -274,7 +266,6 @@ namespace JobAnalyzer
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         // Получить периоды
@@ -303,7 +294,6 @@ namespace JobAnalyzer
             string par = "&schedule=" + _period.id;
             SetRequestParam(key, par);
         }
-
 
         private void cbPeriod_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -342,7 +332,6 @@ namespace JobAnalyzer
                 DicQuery[key].Add(par);
             }
         }
-
 
 
         #region Постройка дерева
@@ -482,7 +471,6 @@ namespace JobAnalyzer
 
             DicQuery["country"].ForEach(x => ss.Add(x));
 
-
             // for (int i = 0; i < DicQuery["country"].Count; i++)
             for (int i = 0; i < ss.Count(); i++)
             {
@@ -563,7 +551,6 @@ namespace JobAnalyzer
         }
 
 
-
         private void btnQuery_Click(object sender, EventArgs e)
         {
             string Query = tbQuery.Text;
@@ -612,7 +599,6 @@ namespace JobAnalyzer
                 }
             }
         }
-
 
         private void SaveContentVacancyToFiles(List<Class.Vacancy.RootObject> listVacs)
         {
@@ -704,8 +690,6 @@ namespace JobAnalyzer
             return result;
         }
 
-
-
         // сброс
         private void btnReset_Click(object sender, EventArgs e)
         {
@@ -713,7 +697,6 @@ namespace JobAnalyzer
             tbTextForQuery.Text = "";
             tbQuery.Text = "";
         }
-
 
         private void btnVac_Click(object sender, EventArgs e)
         {
@@ -741,8 +724,7 @@ namespace JobAnalyzer
             ListSpecs.Sort(Specs.CompareByName);
             cbSpecs.Items.AddRange(ListSpecs.ToArray());
         }
-
-
+        
 
         #region Cloud Handler
 
@@ -1133,7 +1115,6 @@ namespace JobAnalyzer
                 }
             }
         }
-
 
 
         private void btnDBtoDiagram_Click(object sender, EventArgs e)
