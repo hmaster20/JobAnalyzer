@@ -133,15 +133,6 @@ namespace JobAnalyzer
 
         private void SaveAppConfig(string query)
         {
-            //string Query = tbQuery.Text;
-
-            // 100% рабочий вариант
-            //Properties.Settings.Default.LastRequest = Query;
-            //Properties.Settings.Default.Save();
-            //Properties.Settings.Default.Upgrade();
-            //MessageBox.Show("Saved Settings: " + Query);
-            //Application.Restart();
-
             Properties.Settings.Default.LastRequest = query;
             Properties.Settings.Default.Save();
             ConfigurationManager.RefreshSection("appSettings");
@@ -1204,17 +1195,15 @@ namespace JobAnalyzer
         {
             if (e.ColumnIndex == (dgvTable.Columns.Count - 1))
             {
-                //Class.Vacancy.RootObject record = GetSelectedRecord();
-                //if (record != null) record.play();
-
                 Class.Vacancy.RootObject record = GetSelectedRecord();
 
-                //webBrowser1 = new WebBrowser();
                 //webBrowser1.Hide();
-                webBrowser1.Navigate("about:blank");
-                webBrowser1.DocumentText = record.description;
+                webBrowser1.Navigate("about:blank"); // или можно webBrowser1 = new WebBrowser();
+                if (record != null)
+                {
+                    webBrowser1.DocumentText = record.description;
+                }         
                 //webBrowser1.Show();
-
             }
         }
 
@@ -1225,7 +1214,6 @@ namespace JobAnalyzer
             {
                 Class.Vacancy.RootObject record = null;
                 if (dgv.SelectedRows[0].DataBoundItem is Class.Vacancy.RootObject) record = dgv.SelectedRows[0].DataBoundItem as Class.Vacancy.RootObject;
-                //if (dgv.CurrentRow.DataBoundItem is Record) record = dgv.CurrentRow.DataBoundItem as Record;
                 if (record != null) return record;
             }
             return null;
@@ -1236,7 +1224,5 @@ namespace JobAnalyzer
             List<Class.Vacancy.RootObject> Source = GetAll();
             dataGridView1.DataSource = Source;
         }
-
-
     }
 }
