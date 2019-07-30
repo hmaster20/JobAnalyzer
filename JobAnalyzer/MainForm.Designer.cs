@@ -73,6 +73,13 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dgvTable = new System.Windows.Forms.DataGridView();
+            this.cmnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnEmpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.btnVac = new System.Windows.Forms.Button();
@@ -108,13 +115,6 @@
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.hideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.cmnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnEmpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -377,6 +377,7 @@
             this.listViewOldRequest.Size = new System.Drawing.Size(627, 488);
             this.listViewOldRequest.TabIndex = 20;
             this.listViewOldRequest.UseCompatibleStateImageBehavior = false;
+            this.listViewOldRequest.DoubleClick += new System.EventHandler(this.listViewOldRequest_DoubleClick);
             // 
             // btnDBtoDiagram
             // 
@@ -585,6 +586,63 @@
             this.dgvTable.Size = new System.Drawing.Size(842, 591);
             this.dgvTable.TabIndex = 8;
             this.dgvTable.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTable_CellContentDoubleClick);
+            // 
+            // cmnID
+            // 
+            this.cmnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cmnID.DataPropertyName = "dgvID";
+            this.cmnID.HeaderText = "ID";
+            this.cmnID.Name = "cmnID";
+            this.cmnID.ReadOnly = true;
+            this.cmnID.Width = 43;
+            // 
+            // cmnName
+            // 
+            this.cmnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cmnName.DataPropertyName = "dgvNAME";
+            this.cmnName.HeaderText = "Название";
+            this.cmnName.Name = "cmnName";
+            this.cmnName.ReadOnly = true;
+            this.cmnName.Width = 82;
+            // 
+            // cmnDate
+            // 
+            this.cmnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cmnDate.DataPropertyName = "dgvDATE";
+            this.cmnDate.HeaderText = "Дата";
+            this.cmnDate.Name = "cmnDate";
+            this.cmnDate.ReadOnly = true;
+            this.cmnDate.Width = 58;
+            // 
+            // cmnArea
+            // 
+            this.cmnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cmnArea.DataPropertyName = "dgvAREA";
+            this.cmnArea.HeaderText = "Расположение";
+            this.cmnArea.Name = "cmnArea";
+            this.cmnArea.ReadOnly = true;
+            this.cmnArea.Width = 107;
+            // 
+            // cmnEmpl
+            // 
+            this.cmnEmpl.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.cmnEmpl.DataPropertyName = "dgvEMPL";
+            this.cmnEmpl.HeaderText = "Работодатель";
+            this.cmnEmpl.Name = "cmnEmpl";
+            this.cmnEmpl.ReadOnly = true;
+            this.cmnEmpl.Width = 103;
+            // 
+            // cmnFrom
+            // 
+            this.cmnFrom.DataPropertyName = "dgvPriceFrom";
+            this.cmnFrom.HeaderText = "ЗарплатаОт";
+            this.cmnFrom.Name = "cmnFrom";
+            // 
+            // cmnTo
+            // 
+            this.cmnTo.DataPropertyName = "dgvPriceTo";
+            this.cmnTo.HeaderText = "ЗарплатаДо";
+            this.cmnTo.Name = "cmnTo";
             // 
             // panel1
             // 
@@ -952,63 +1010,6 @@
             this.toolTip.ReshowDelay = 1000;
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip.ToolTipTitle = "Statistics:";
-            // 
-            // cmnID
-            // 
-            this.cmnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.cmnID.DataPropertyName = "dgvID";
-            this.cmnID.HeaderText = "ID";
-            this.cmnID.Name = "cmnID";
-            this.cmnID.ReadOnly = true;
-            this.cmnID.Width = 43;
-            // 
-            // cmnName
-            // 
-            this.cmnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.cmnName.DataPropertyName = "dgvNAME";
-            this.cmnName.HeaderText = "Название";
-            this.cmnName.Name = "cmnName";
-            this.cmnName.ReadOnly = true;
-            this.cmnName.Width = 82;
-            // 
-            // cmnDate
-            // 
-            this.cmnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.cmnDate.DataPropertyName = "dgvDATE";
-            this.cmnDate.HeaderText = "Дата";
-            this.cmnDate.Name = "cmnDate";
-            this.cmnDate.ReadOnly = true;
-            this.cmnDate.Width = 58;
-            // 
-            // cmnArea
-            // 
-            this.cmnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.cmnArea.DataPropertyName = "dgvAREA";
-            this.cmnArea.HeaderText = "Расположение";
-            this.cmnArea.Name = "cmnArea";
-            this.cmnArea.ReadOnly = true;
-            this.cmnArea.Width = 107;
-            // 
-            // cmnEmpl
-            // 
-            this.cmnEmpl.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.cmnEmpl.DataPropertyName = "dgvEMPL";
-            this.cmnEmpl.HeaderText = "Работодатель";
-            this.cmnEmpl.Name = "cmnEmpl";
-            this.cmnEmpl.ReadOnly = true;
-            this.cmnEmpl.Width = 103;
-            // 
-            // cmnFrom
-            // 
-            this.cmnFrom.DataPropertyName = "dgvPriceFrom";
-            this.cmnFrom.HeaderText = "ЗарплатаОт";
-            this.cmnFrom.Name = "cmnFrom";
-            // 
-            // cmnTo
-            // 
-            this.cmnTo.DataPropertyName = "dgvPriceTo";
-            this.cmnTo.HeaderText = "ЗарплатаДо";
-            this.cmnTo.Name = "cmnTo";
             // 
             // MainForm
             // 

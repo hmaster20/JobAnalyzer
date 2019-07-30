@@ -96,7 +96,7 @@ namespace JobAnalyzer
             dgvTable.DefaultCellStyle.SelectionForeColor = Color.Black;     // Цвета текста выбранной строки
             dgvTable.Columns[dgvTable.Columns.Count - 1].DefaultCellStyle.SelectionForeColor = Color.Blue;    // цвет текста выбранной строки нужного столбца
 
-            dgvTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top 
+            dgvTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top
                 | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right | System.Windows.Forms.AnchorStyles.Bottom)));
             dgvTable.AllowDrop = true;
@@ -191,7 +191,9 @@ namespace JobAnalyzer
 
             //DateTime dt = new DateTime(633896886277130000);
             //dt.ToString() ==> "9/27/2009 10:50:27 PM"
-               
+
+            listViewOldRequest.Items.Clear();
+
             List<ListViewItem> FullList = new List<ListViewItem>();
             int counter = 0;
 
@@ -212,14 +214,11 @@ namespace JobAnalyzer
         {
             if (listViewOldRequest.SelectedItems.Count == 1)
             {
-                //MessageBox.Show(listViewOldRequest.SelectedItems[0].Text);
-
                 var aa = listViewOldRequest.SelectedItems[0].SubItems[1].Text;
                 setQueryText(aa);
                 MessageBox.Show(aa);
             }
         }
-
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
@@ -243,8 +242,6 @@ namespace JobAnalyzer
 
             dgvTable.DataSource = null;
             dgvTable.DataSource = filtered;
-
-
         }
 
 
@@ -1239,5 +1236,7 @@ namespace JobAnalyzer
             List<Class.Vacancy.RootObject> Source = GetAll();
             dataGridView1.DataSource = Source;
         }
+
+
     }
 }
