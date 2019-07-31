@@ -163,9 +163,6 @@ namespace JobAnalyzer
             foreach (string s in sAll.AllKeys)
             {
                 DateTime myDate = new DateTime(Convert.ToInt64(s));
-                //string test = myDate.ToString("dd MMMM yyyy");
-
-                //Console.WriteLine("Key: " + s + " Value: " + sAll.Get(s));
                 Console.WriteLine("Key: " + myDate.ToString() + " Value: " + sAll.Get(s));
             }
 
@@ -1183,6 +1180,8 @@ namespace JobAnalyzer
                 if (record != null)
                 {
                     webBrowser1.DocumentText = record.description;
+                    tbPriceFrom.Text = record.dgvPriceFrom;
+                    tbPriceTo.Text = record.dgvPriceTo;
                 }         
                 //webBrowser1.Show();
             }
@@ -1205,5 +1204,6 @@ namespace JobAnalyzer
             List<Class.Vacancy.RootObject> Source = GetAll();
             dataGridView1.DataSource = Source;
         }
+
     }
 }

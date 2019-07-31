@@ -85,6 +85,7 @@
             this.btnVac = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -92,6 +93,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.tbPriceTo = new System.Windows.Forms.TextBox();
+            this.tbPriceFrom = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -115,6 +118,8 @@
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.hideMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -372,9 +377,9 @@
             // listViewOldRequest
             // 
             this.listViewOldRequest.HideSelection = false;
-            this.listViewOldRequest.Location = new System.Drawing.Point(20, 36);
+            this.listViewOldRequest.Location = new System.Drawing.Point(20, 33);
             this.listViewOldRequest.Name = "listViewOldRequest";
-            this.listViewOldRequest.Size = new System.Drawing.Size(627, 488);
+            this.listViewOldRequest.Size = new System.Drawing.Size(759, 491);
             this.listViewOldRequest.TabIndex = 20;
             this.listViewOldRequest.UseCompatibleStateImageBehavior = false;
             this.listViewOldRequest.DoubleClick += new System.EventHandler(this.listViewOldRequest_DoubleClick);
@@ -471,7 +476,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(17, 20);
+            this.label8.Location = new System.Drawing.Point(17, 17);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(110, 13);
             this.label8.TabIndex = 8;
@@ -589,7 +594,6 @@
             // 
             // cmnID
             // 
-            this.cmnID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.cmnID.DataPropertyName = "dgvID";
             this.cmnID.HeaderText = "ID";
             this.cmnID.Name = "cmnID";
@@ -598,7 +602,6 @@
             // 
             // cmnName
             // 
-            this.cmnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.cmnName.DataPropertyName = "dgvNAME";
             this.cmnName.HeaderText = "Название";
             this.cmnName.Name = "cmnName";
@@ -607,7 +610,6 @@
             // 
             // cmnDate
             // 
-            this.cmnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.cmnDate.DataPropertyName = "dgvDATE";
             this.cmnDate.HeaderText = "Дата";
             this.cmnDate.Name = "cmnDate";
@@ -616,7 +618,6 @@
             // 
             // cmnArea
             // 
-            this.cmnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.cmnArea.DataPropertyName = "dgvAREA";
             this.cmnArea.HeaderText = "Расположение";
             this.cmnArea.Name = "cmnArea";
@@ -625,7 +626,6 @@
             // 
             // cmnEmpl
             // 
-            this.cmnEmpl.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.cmnEmpl.DataPropertyName = "dgvEMPL";
             this.cmnEmpl.HeaderText = "Работодатель";
             this.cmnEmpl.Name = "cmnEmpl";
@@ -647,10 +647,14 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.webBrowser1);
             this.panel1.Controls.Add(this.btnVac);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.label13);
@@ -658,6 +662,8 @@
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.tbPriceTo);
+            this.panel1.Controls.Add(this.tbPriceFrom);
             this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -674,7 +680,7 @@
             this.webBrowser1.Location = new System.Drawing.Point(16, 99);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(332, 275);
+            this.webBrowser1.Size = new System.Drawing.Size(330, 273);
             this.webBrowser1.TabIndex = 12;
             // 
             // btnVac
@@ -682,9 +688,9 @@
             this.btnVac.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVac.Location = new System.Drawing.Point(99, 514);
+            this.btnVac.Location = new System.Drawing.Point(99, 542);
             this.btnVac.Name = "btnVac";
-            this.btnVac.Size = new System.Drawing.Size(159, 28);
+            this.btnVac.Size = new System.Drawing.Size(157, 26);
             this.btnVac.TabIndex = 0;
             this.btnVac.Text = "Get Details";
             this.btnVac.UseVisualStyleBackColor = true;
@@ -706,8 +712,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(16, 21);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(332, 20);
+            this.textBox1.Size = new System.Drawing.Size(330, 20);
             this.textBox1.TabIndex = 9;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(13, 500);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(55, 13);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "Зарплата";
             // 
             // label14
             // 
@@ -725,7 +740,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.Location = new System.Drawing.Point(16, 60);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(332, 20);
+            this.textBox2.Size = new System.Drawing.Size(330, 20);
             this.textBox2.TabIndex = 9;
             // 
             // label13
@@ -744,7 +759,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.Location = new System.Drawing.Point(16, 393);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(332, 20);
+            this.textBox3.Size = new System.Drawing.Size(330, 20);
             this.textBox3.TabIndex = 9;
             // 
             // label11
@@ -763,7 +778,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox4.Location = new System.Drawing.Point(16, 434);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(332, 20);
+            this.textBox4.Size = new System.Drawing.Size(330, 20);
             this.textBox4.TabIndex = 9;
             // 
             // label10
@@ -775,6 +790,26 @@
             this.label10.TabIndex = 10;
             this.label10.Text = "Название";
             // 
+            // tbPriceTo
+            // 
+            this.tbPriceTo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPriceTo.Location = new System.Drawing.Point(212, 516);
+            this.tbPriceTo.Name = "tbPriceTo";
+            this.tbPriceTo.Size = new System.Drawing.Size(134, 20);
+            this.tbPriceTo.TabIndex = 9;
+            // 
+            // tbPriceFrom
+            // 
+            this.tbPriceFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPriceFrom.Location = new System.Drawing.Point(37, 516);
+            this.tbPriceFrom.Name = "tbPriceFrom";
+            this.tbPriceFrom.Size = new System.Drawing.Size(134, 20);
+            this.tbPriceFrom.TabIndex = 9;
+            // 
             // textBox5
             // 
             this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -782,7 +817,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox5.Location = new System.Drawing.Point(16, 476);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(332, 20);
+            this.textBox5.Size = new System.Drawing.Size(330, 20);
             this.textBox5.TabIndex = 9;
             // 
             // label9
@@ -1011,6 +1046,24 @@
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip.ToolTipTitle = "Statistics:";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(13, 519);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(23, 13);
+            this.label16.TabIndex = 10;
+            this.label16.Text = "От:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(183, 519);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(25, 13);
+            this.label17.TabIndex = 10;
+            this.label17.Text = "До:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1128,6 +1181,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnEmpl;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnFrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnTo;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox tbPriceTo;
+        private System.Windows.Forms.TextBox tbPriceFrom;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
     }
 }
 
