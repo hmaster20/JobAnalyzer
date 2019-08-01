@@ -1171,21 +1171,48 @@ namespace JobAnalyzer
 
         private void dgvTable_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == (dgvTable.Columns.Count - 1))
+            //if (e.ColumnIndex == (dgvTable.Columns.Count - 1))
+            //{
+            //    Class.Vacancy.RootObject record = GetSelectedRecord();
+
+            //    //webBrowser1.Hide();
+            //    webBrowser1.Navigate("about:blank"); // или можно webBrowser1 = new WebBrowser();
+            //    if (record != null)
+            //    {
+            //        webBrowser1.DocumentText = record.description;
+            //        tbPriceFrom.Text = record.dgvPriceFrom;
+            //        tbPriceTo.Text = record.dgvPriceTo;
+            //    }         
+            //    //webBrowser1.Show();
+            //}
+        }
+
+        private void dgvTable_SelectionChanged(object sender, EventArgs e)
+        {
+
+            foreach (DataGridViewRow row in dgvTable.SelectedRows)
             {
+                //string value1 = row.Cells[0].Value.ToString();
+                //string value2 = row.Cells[1].Value.ToString();
+
                 Class.Vacancy.RootObject record = GetSelectedRecord();
 
-                //webBrowser1.Hide();
-                webBrowser1.Navigate("about:blank"); // или можно webBrowser1 = new WebBrowser();
+                wBdesc.Navigate("about:blank"); // или можно webBrowser1 = new WebBrowser();
                 if (record != null)
                 {
-                    webBrowser1.DocumentText = record.description;
+                    tbID.Text = record.dgvID;
+                    tbVacName.Text = record.dgvNAME;
+                    tbDate.Text = record.dgvDATE;
+                    tbArea.Text = record.dgvAREA;
+                    tbEmp.Text = record.dgvEMPL;
+                    
+                    wBdesc.DocumentText = record.description;
                     tbPriceFrom.Text = record.dgvPriceFrom;
                     tbPriceTo.Text = record.dgvPriceTo;
-                }         
-                //webBrowser1.Show();
+                }
             }
         }
+
 
         private Class.Vacancy.RootObject GetSelectedRecord()  // получение выбранной записи в dgvTable
         {
@@ -1205,5 +1232,6 @@ namespace JobAnalyzer
             dataGridView1.DataSource = Source;
         }
 
+      
     }
 }
