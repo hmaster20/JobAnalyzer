@@ -12,38 +12,37 @@ namespace JobAnalyzer.Class.Vacancy
     public class Area
     {
         public string id { get; set; }
-
-        /// <summary>
-        /// Москва
-        /// </summary>
         public string name { get; set; }
         public string url { get; set; }
     }
 
     public class Salary
     {
-        /// <summary>Зарплата от</summary>
         public int? from { get; set; }
-
-        /// <summary>Зарплата до</summary>
-        public int? to { get; set; }
-
-        /// <summary>Валюта, например: RUR</summary>
+        public object to { get; set; }
         public string currency { get; set; }
-        public bool gross { get; set; }
+        public object gross { get; set; }
     }
 
     public class Type
     {
-        /// <summary>
-        /// open
-        /// </summary>
         public string id { get; set; }
-
-        /// <summary>
-        /// Открытая
-        /// </summary>
         public string name { get; set; }
+    }
+
+    public class Address
+    {
+        public string city { get; set; }
+        public string street { get; set; }
+        public object building { get; set; }
+        public object description { get; set; }
+        //public double? lat { get; set; }
+        //public double? lng { get; set; }
+        public object lat { get; set; }
+        public object lng { get; set; }
+        public string raw { get; set; }
+        public object metro { get; set; }
+        public List<object> metro_stations { get; set; }
     }
 
     public class Site
@@ -54,63 +53,27 @@ namespace JobAnalyzer.Class.Vacancy
 
     public class Experience
     {
-        /// <summary>
-        /// between3And6
-        /// </summary>
         public string id { get; set; }
-
-        /// <summary>
-        /// От 3 до 6 лет
-        /// </summary>
         public string name { get; set; }
     }
 
     public class Schedule
     {
-        /// <summary>
-        /// fullDay
-        /// </summary>
         public string id { get; set; }
-
-        /// <summary>
-        /// Полный день
-        /// </summary>
         public string name { get; set; }
     }
 
     public class Employment
     {
-        /// <summary>
-        /// full
-        /// </summary>
         public string id { get; set; }
-
-        /// <summary>
-        /// Полная занятость
-        /// </summary>
         public string name { get; set; }
     }
 
     public class Specialization
     {
-        /// <summary>
-        /// 1.221
-        /// </summary>
         public string id { get; set; }
-
-        /// <summary>
-        /// Программирование, Разработка
-        /// </summary>
         public string name { get; set; }
-
-        /// <summary>
-        /// 1
-        /// </summary>
         public string profarea_id { get; set; }
-
-        /// <summary>
-        /// Информационные технологии, интернет, телеком
-        /// </summary>
         public string profarea_name { get; set; }
     }
 
@@ -144,7 +107,7 @@ namespace JobAnalyzer.Class.Vacancy
         public Area area { get; set; }
         public Salary salary { get; set; }
         public Type type { get; set; }
-        public object address { get; set; }
+        public Address address { get; set; }
         public bool allow_messages { get; set; }
         public Site site { get; set; }
         public Experience experience { get; set; }
@@ -176,6 +139,7 @@ namespace JobAnalyzer.Class.Vacancy
         public object test { get; set; }
         public string alternate_url { get; set; }
 
+
         public string dgvID { get { return id; } }
         public string dgvNAME { get { return name; } }
         public string dgvDESC { get { return description; } }
@@ -186,7 +150,7 @@ namespace JobAnalyzer.Class.Vacancy
         {
             get
             {
-                return (salary !=null && salary.from != null) ? salary.from.ToString() : 0.ToString();
+                return (salary != null && salary.from != null) ? salary.from.ToString() : 0.ToString();
             }
         }
         public string dgvPriceTo
@@ -197,4 +161,9 @@ namespace JobAnalyzer.Class.Vacancy
             }
         }
     }
+
+
+
+
+
 }

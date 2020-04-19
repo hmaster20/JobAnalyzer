@@ -46,29 +46,37 @@ namespace JobAnalyzer
 
             List<Class.Item> ListItems = new List<Class.Item>();
             Class.RootObject VacRObj = new Class.RootObject();
-                                 
+
             int page_num = 0;
             string source = GetSource(URL);
             if (!string.IsNullOrWhiteSpace(source))
             {
-                VacRObj = JsonConvert.DeserializeObject<Class.RootObject>(source);
 
-                Debug.WriteLine(VacRObj.found);
-                Debug.WriteLine(VacRObj.pages);
-                Debug.WriteLine(VacRObj.per_page);
+                try
+                {
+                    VacRObj = JsonConvert.DeserializeObject<Class.RootObject>(source);
 
-                ListItems.AddRange(VacRObj.items);
+                    Debug.WriteLine(VacRObj.found);
+                    Debug.WriteLine(VacRObj.pages);
+                    Debug.WriteLine(VacRObj.per_page);
 
-                if (VacRObj.pages > 0)
-                {  
-                    while (page_num < VacRObj.pages)
+                    ListItems.AddRange(VacRObj.items);
+
+                    if (VacRObj.pages > 0)
                     {
-                        page_num++;
-                        source = GetSource(URL + "&page=" + page_num);
-                        VacRObj = JsonConvert.DeserializeObject<Class.RootObject>(source);
-                        ListItems.AddRange(VacRObj.items);
+                        while (page_num < VacRObj.pages)
+                        {
+                            page_num++;
+                            source = GetSource(URL + "&page=" + page_num);
+                            VacRObj = JsonConvert.DeserializeObject<Class.RootObject>(source);
+                            ListItems.AddRange(VacRObj.items);
+                        }
                     }
-                }     
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             return ListItems;
         }

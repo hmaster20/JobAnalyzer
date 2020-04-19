@@ -571,11 +571,16 @@ namespace JobAnalyzer
         {
             List<Class.Vacancy.RootObject> listVacs = new List<Class.Vacancy.RootObject>();
 
-            foreach (var _url in ListURL)
+            for (int numberURL = 0; numberURL < ListURL.Count; numberURL++)
             {
-                listVacs.Add(getVacancy.GetVacContent(_url));
-                //break;
+                listVacs.Add(getVacancy.GetVacContent(ListURL[numberURL]));
             }
+
+            //foreach (var _url in ListURL)
+            //{
+            //    listVacs.Add(getVacancy.GetVacContent(_url));
+            //    //break;
+            //}
             return listVacs;
         }
 
@@ -721,7 +726,7 @@ namespace JobAnalyzer
             ListSpecs.Sort(Specs.CompareByName);
             cbSpecs.Items.AddRange(ListSpecs.ToArray());
         }
-        
+
 
         #region Cloud Handler
 
@@ -1121,7 +1126,10 @@ namespace JobAnalyzer
             using (var db = new LiteDatabase(DBstorage))
             {
                 LiteCollection<Class.Vacancy.RootObject> vacancies = db.GetCollection<Class.Vacancy.RootObject>("Vacancies");
-                IEnumerable<Class.Vacancy.RootObject> result = vacancies.FindAll();
+                //IEnumerable<Class.Vacancy.RootObject> result = vacancies.FindAll();
+                //List<Class.Vacancy.RootObject> result = vacancies.FindAll().ToList<Class.Vacancy.RootObject>();
+                var result = vacancies.FindAll().ToList();
+
 
                 foreach (Class.Vacancy.RootObject _obj in result)
                 {
@@ -1205,7 +1213,7 @@ namespace JobAnalyzer
                     tbDate.Text = record.dgvDATE;
                     tbArea.Text = record.dgvAREA;
                     tbEmp.Text = record.dgvEMPL;
-                    
+
                     wBdesc.DocumentText = record.description;
                     tbPriceFrom.Text = record.dgvPriceFrom;
                     tbPriceTo.Text = record.dgvPriceTo;
@@ -1232,6 +1240,6 @@ namespace JobAnalyzer
             dataGridView1.DataSource = Source;
         }
 
-      
+
     }
 }
