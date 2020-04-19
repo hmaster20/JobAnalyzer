@@ -23,7 +23,7 @@ namespace JobAnalyzer.Class
         public int? from { get; set; }
         public int? to { get; set; }
         public string currency { get; set; }
-        public bool gross { get; set; }
+        public bool? gross { get; set; }
     }
 
     public class Type
@@ -58,9 +58,9 @@ namespace JobAnalyzer.Class
 
     public class LogoUrls
     {
+        public string __invalid_name__240 { get; set; }
         public string __invalid_name__90 { get; set; }
         public string original { get; set; }
-        public string __invalid_name__240 { get; set; }
     }
 
     public class Employer
@@ -74,12 +74,6 @@ namespace JobAnalyzer.Class
         public bool trusted { get; set; }
     }
 
-    public class InsiderInterview
-    {
-        public string id { get; set; }
-        public string url { get; set; }
-    }
-
     public class Snippet
     {
         public string requirement { get; set; }
@@ -88,7 +82,7 @@ namespace JobAnalyzer.Class
 
     public class Phone
     {
-        public object comment { get; set; }
+        public string comment { get; set; }
         public string city { get; set; }
         public string number { get; set; }
         public string country { get; set; }
@@ -120,7 +114,7 @@ namespace JobAnalyzer.Class
         public DateTime created_at { get; set; }
         public bool archived { get; set; }
         public string apply_alternate_url { get; set; }
-        public InsiderInterview insider_interview { get; set; }
+        public object insider_interview { get; set; }
         public string url { get; set; }
         public string alternate_url { get; set; }
         public List<object> relations { get; set; }
