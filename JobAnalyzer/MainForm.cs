@@ -647,10 +647,15 @@ namespace JobAnalyzer
             //Debug.WriteLine(desc);
 
             desc = RemoveOneSymbol(desc);
-            //Debug.WriteLine(desc);
+
+            desc = RemoveNumbers(desc);
+
+            desc = RemovePlus(desc);
+
+            desc = RemoveDuplicate(desc);
 
             desc = RemoveDuplicateSpace(desc);
-            //Debug.WriteLine(desc);
+
             return desc;
         }
 
@@ -672,6 +677,21 @@ namespace JobAnalyzer
             return Regex.Replace(value, "[^a-zA-Z0-9% ._]", string.Empty);
         }
 
+        private string RemoveNumbers(string input)
+        {
+            // Убирает цифры без букв, например: Windows 2012 R2 50, останется только Windows R2
+            Regex re = new Regex(@"\s\d+");
+            var result = re.Replace(input, "");
+            return result;
+        }
+
+        private string RemovePlus(string input)
+        {
+            Regex re = new Regex(@"\+.");
+            var result = re.Replace(input, "");
+            return result;
+        }
+
         private string RemovePunctuationCharacters(string value)
         {
             return Regex.Replace(value, @"\p{P}", " ");
@@ -683,6 +703,13 @@ namespace JobAnalyzer
             Regex regex = new Regex("[ ]{2,}", options);
             tempo = regex.Replace(tempo, " ");
             return tempo;
+        }
+
+        private string RemoveDuplicate(string input)
+        {
+            Regex re = new Regex(@"(\b\S+\b)(?=.*\1)");
+            var result = re.Replace(input, "");
+            return result;
         }
 
         private string RemoveOneSymbol(string input)
