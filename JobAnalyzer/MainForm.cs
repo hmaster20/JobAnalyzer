@@ -638,13 +638,10 @@ namespace JobAnalyzer
             //Debug.WriteLine(desc);
 
             desc = TrimNonAscii(desc);
-            //Debug.WriteLine(desc);
 
             //desc = RemoveCyrillic(desc);
-            //Debug.WriteLine(desc);
 
             desc = RemovePunctuationCharacters(desc);
-            //Debug.WriteLine(desc);
 
             desc = RemoveOneSymbol(desc);
 
@@ -735,7 +732,6 @@ namespace JobAnalyzer
 
         private void btnAnalyze_Click(object sender, EventArgs e)
         {
-
             //  _vacancyCollection.DicKey
         }
 

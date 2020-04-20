@@ -132,29 +132,8 @@
   <metadata name="Splitter.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <metadata name="cmnID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cmnName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cmnDate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cmnArea.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cmnEmpl.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cmnFrom.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cmnTo.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="MainToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>669, 17</value>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>797, 17</value>
   </metadata>
   <metadata name="cmnID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -184,27 +163,27 @@
   <data name="ToolStripButtonGo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASUSURBVEhLjZVJKPVvFMfv1vZdWUgsLETJUqakzPN8I0Lm
-        ebyKCFnYmMm8sCALUViYyjwrdopEpgXClQyXc97zfd4f8c//7X3qyXN/v3M+Z/o+P7q/raqqKquamhpD
-        dXX1VG1t7an8fsbGGc/wDjaa+b8vcbKUPZiQkGAqLy+n0tJSLiws5Ly8PGzCWZ6RvGPYwBY+mvvflzjp
-        ZRsBzc7O5oyMDKqrq+Oenh4eGhpiARHO+CvvlI0WzAhfDfPzKisrK/Ty8nrPzc2l9PR0AqS/v59GRkZo
-        fHycJicnaWJigsbGxmh4eJh6e3uVDWzhA18wNNz3VVJSoi8uLlZZFRUV0fLyMp+dnfHs7Czd39/zw8OD
-        2ouLi+o3nl9eXvLh4SE3NzeT+KBa9vT0fAdLw/5ZEt0yKyvLKJlwQUEB9/X10dXVFRuNRl5ZWaGXlxc2
-        mUxqb25u0uvrK6+trRECXl9f8+joKMlz5YtqwAJTw+t0+fn5g5mZmZSYmEitra00MzNDS0tLtL6+Tltb
-        WySqUb93dnY+9/b2NqColFANgjQ1NSkGWGAqeFpamhWUEB8fT52dnXxxcaHagKzf398ZsPr6esbe3d1V
-        v+GHv7JUVQiCig8ODtTwhaXUJYqz0klJhtTUVI6Li6O9vT1Gf1dXV+nt7Y0BAKiyslKVL8koAGw+AsEG
-        laCd5+fnUBsJi8EEGxVMSTTITKkFrdjY2FAtAAQbw09JSSG9Xk8RERGUnJxM7e3t39qFpKanp0mkrFhg
-        gq0T4zNxVJkdHR3x3d2dygiZfbQCWoeNv78/e3t7k5+fH4eFhVFLS4uqGDZo6e3tLSPJtrY2ZS9BTnWx
-        sbHPkZGRSs8Y1Pz8vKrgIztssaGAgABydXUlZ2dn8vDwIF9fX4IfbnZ3d7fygS8YYOEd2CpAeHi4quDk
-        5ERlBOOvFdjZ2bG5uTmbmZnxr1+/yMbGhp2cnCgwMJBzcnIYATBs+CLAwMAAg6kCSCln0tfPFqFMyPNr
-        AEdHR7a2tlZBLCwsVEA3Nzelrp9aJFJnMEVNpzqZ+JSUwwaDgfb39xlyw8Ag0Y8ALi4u7ODgwLa2tmxv
-        b08yB25oaPhMAkN+enpSvhiysBhMsFGBITo6mjA0SAzfmoWFBXWJAMdGv93d3VX/KyoqaG5u7tuMYAsf
-        +IIBFphg6+RgFRMTY5J+qtJwWSC3x8dHdYkAkPcolwXyqX/8RQU/XTTMBkywYYsggzIUCgkJYVGCGtTN
-        zQ0jCLLr6OhQ8gXwA4y2AA4bfCqOj4+VrzAIAwZTwbGkX5ZRUVHGoKAgSkpKoq6uLiU3VILSMRMMHurC
-        xhnP8A42sIUPfMEAC0wN/2fJAz1uqeidYYhsUDL6ivKhECgGWscZYHwaYNPY2Ag4w1dm9Q6Whv2+JEAh
-        gmAewcHBjJsKjUNdkDDuCbLFGWqRNikbsVV9hy8YGu7npVViRC+hHpSMf0AY3teNZ3gHG9jC538z/+9C
-        /8QBgzeFhoaq7PD98fHxwVbfIlQp73BjTbCFj+b+70tKtxKAQUBTkuWZnPFZecYZz/AONpr5D0un+w1c
-        hOszqBon9AAAAABJRU5ErkJggg==
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAScSURBVEhLjZVLSNRdFMBn27aVCxFduJCCaBm+MAgfPXxk
+        qSRGimZaar5GKIySFi6yMJF8tGkxtZCCajMamKk91IXuhCKSJl2UmCNiOnlO53f7K/nhF124zP3fe87v
+        PO8d39/GtWvXYm/cuOG/fv16sK2t7bN9/2CyZo8zZDzxfx+mFGMzcPbs2ciVK1ekublZ6+vrtba2lims
+        bU/sTJFBFh1P/e/DlIpshoFevHhRL1y4IDdv3tS+vj59+PChGkhY82tnTsYzFkbXw+w+Wlpa6o8cObJZ
+        U1MjlZWVAuT+/fsyMDAgT58+lefPn8uzZ8/kyZMn8ujRIww5GWTRQReGh9s5mpqaihobG51XDQ0NMjY2
+        pqFQSIeGhmR5eVlXVlbcHBkZcd/sLyws6IcPH/TOnTtiOkSrhw8f3oTlYX8Psx5TXV0dNk/08uXL2t/f
+        L1+/ftVwOKxmSNbX1zUSibj57t072djY0NevXwsGv337po8fP5aJiQmnSzSwYHp4n6+uri5QVVUl586d
+        k87OThkcHJRXr17JmzdvUBTrFvc9NTW1PScnJwVjo6OjQjQYuX37tmPAgung58+fj6UTSkpK5N69ezo/
+        P+/SgNebm5sKrL29XZnT09PuGz1+bbioMELE79+/d8U3lusu67hYn4Xkr6io0OLiYpmZmVHyOz4+Lj9/
+        /lQAgFpbW1345owDILNlCBkiIZ1fvnzR3t5eMZbChE0EQbNGm7luIRVv3751KQDCpPjl5eVSVFQk+fn5
+        UlZWJl1dXTvShVPBYFACgYBjwYTtM+GQKTrPPn78qN+/f3ce4dlWKuh1ZI4eParp6emSlZWleXl51MtF
+        jAwpXVpaUpw0407ejHz2nTlz5sepU6dcP1Oo4eFhF8GWd0yTkWPHjklycrIkJiZKWlqaZGZmCnrc7J6e
+        HqeDLgxYnMF2Bk6ePOkimJubcx4h/GcE+/bt06ioKN2zZ4/u3btX4uPj9dChQ3L8+HG9dOmSYoBio4uB
+        Bw8eKExnwEIJWV63U0SYtOefBg4ePKhxcXHOSHR0tDOYkpLiumu3FN29e1dhWjd99lnFgxaO+v1+mZ2d
+        VdqNgtGiWwaSkpL0wIEDmpCQoPv37xerg966dWvbCYq8trbmdCmysRQmbCLwFxQUCEWjxXhrXr586S4R
+        cCb5Tk1Ndfm/evWqvHjxYkeNkEUHXRiwYML22SK2sLAwYvl0oXFZaLfV1VV3iQDYOeFyAbf7n18i2O2i
+        URuYsJHFSMCKIjk5OWqeuEItLi4qRvCuu7vbtS/ALTBpAY4MT8WnT5+crjGEAsN0cIblK+b06dPhEydO
+        SGlpKU+GazciIXRqQuHpLiZr9jhDBll00IUBC6aH/z1so4hbav2uCOINIZNXwqdD6Bh6nTVgngZkOjo6
+        gCu6VqtNWB525zAD9RihHtnZ2cpNpcfpLlqYe4K3rOkWS5eTMVmXd3RheLjdhxdJmFzSPYTMHxDF+3Oy
+        xxkyyKLzv57/d5A/U6DwkdzcXOcd709GRgbTvUVEaWfc2Aiy6Hjq/z4s9FgD+A0UNC9DtuZZ+cGaPc6Q
+        8cR3GT7fLx1P6aqpclDAAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="ToolStripButtonCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
